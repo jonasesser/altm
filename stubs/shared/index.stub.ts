@@ -2159,8 +2159,17 @@ export function on(listener: (eventName: string, ...args: any[]) => void): void;
  *
  * @param listener Listener that should be added.
  */
-export function on(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
+export function on(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
+    if (typeof eventNameOrListener === 'function') {
+        // Fall: Nur Listener wurde übergeben
+        const listenerFn = eventNameOrListener;
+        // TODO: Implementiere die Logik, um einen globalen Listener zu registrieren, der alle Events empfängt.
+    } else {
+        // Fall: Eventname und Listener wurden übergeben
+        const eventName = eventNameOrListener;
+        // listener ist hier definiert.
+        // TODO: Implementiere die Logik, um den Listener nur für das spezifische Event zu registrieren.
+    }
 }
 
 export function once(eventName: string, listener: (...args: any[]) => void): void;
@@ -2172,8 +2181,17 @@ export function once(listener: (eventName: string, ...args: any[]) => void): voi
  *
  * @param listener Listener that should be added.
  */
-export function once(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
+export function once(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
+    if (typeof eventNameOrListener === 'function') {
+        // Fall: Nur Listener wurde übergeben.
+        const listenerFn = eventNameOrListener;
+        // TODO: Implementiere die Logik, um einen globalen "once"-Listener zu registrieren.
+    } else {
+        // Fall: eventName und listener wurden übergeben.
+        const eventName = eventNameOrListener;
+        // listener ist hier definiert.
+        // TODO: Implementiere die Logik, um den "once"-Listener nur für das spezifische Event zu registrieren.
+    }
 }
 
 export function off(eventName: string, listener: (...args: any[]) => void): void;
@@ -2185,8 +2203,17 @@ export function off(listener: (eventName: string, ...args: any[]) => void): void
  *
  * @param listener Listener that should be removed.
  */
-export function off(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
+export function off(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
+    if (typeof eventNameOrListener === 'function') {
+        // Fall: Es wurde nur ein Listener übergeben.
+        const listenerFn = eventNameOrListener;
+        // TODO: Implementiere die Logik, um den globalen Listener zu entfernen.
+    } else {
+        // Fall: Es wurden Eventname und Listener übergeben.
+        const eventName = eventNameOrListener;
+        // listener ist hier garantiert definiert.
+        // TODO: Implementiere die Logik, um den Listener für das spezifische Event zu entfernen.
+    }
 }
 
 export function setInterval(handler: (...args: any[]) => void, miliseconds: number): number;
@@ -2365,9 +2392,9 @@ export class Vector3 {
      * Adds two vectors.
      */
 
-    public add(x: number | [number, number, number] | IVector3, y: number, z: number): Vector3 {
+    public add(x: number | [number, number, number] | IVector3, y?: number, z?: number): Vector3 {
         // TODO implement
-        return null;
+        return null as any;
     }
     /**
      * Subtracts two vectors.
@@ -2385,7 +2412,7 @@ export class Vector3 {
      * Subtracts two vectors.
      */
 
-    public sub(x: number | [number, number, number] | IVector3, y: number, z: number): Vector3 {
+    public sub(x: number | [number, number, number] | IVector3, y?: number, z?: number): Vector3 {
         // TODO implement
         return null;
     }
@@ -2405,7 +2432,7 @@ export class Vector3 {
      * Divides two vectors.
      */
 
-    public div(x: number | [number, number, number] | IVector3, y: number, z: number): Vector3 {
+    public div(x: number | [number, number, number] | IVector3, y?: number, z?: number): Vector3 {
         // TODO implement
         return null;
     }
@@ -2425,7 +2452,7 @@ export class Vector3 {
      * Calculates dot product between two vectors.
      */
 
-    public dot(x: number | [number, number, number] | IVector3, y: number, z: number): number {
+    public dot(x: number | [number, number, number] | IVector3, y?: number, z?: number): number {
         // TODO implement
         return 0;
     }
@@ -2445,7 +2472,7 @@ export class Vector3 {
      * Calculates cross product between two vectors.
      */
 
-    public cross(x: number | [number, number, number] | IVector3, y: number, z: number): Vector3 {
+    public cross(x: number | [number, number, number] | IVector3, y?: number, z?: number): Vector3 {
         // TODO implement
         return null;
     }
@@ -2465,7 +2492,7 @@ export class Vector3 {
      * Multiplies two vectors.
      */
 
-    public mul(x: number | [number, number, number] | IVector3, y: number, z: number): Vector3 {
+    public mul(x: number | [number, number, number] | IVector3, y?: number, z?: number): Vector3 {
         // TODO implement
         return null;
     }
@@ -2985,12 +3012,11 @@ export class BaseObject {
     public setMeta<K extends ExtractStringKeys<ICustomBaseObjectMeta>>(key: K, value: ICustomBaseObjectMeta[K]): void;
     /** @deprecated See {@link ICustomBaseObjectMeta} */
     public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
-
-    public setMeta<K extends string | ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(
+    public setMeta<K extends string, V>(
         key: K | MetaValues<ICustomBaseObjectMeta>,
-        value: InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void> | ICustomBaseObjectMeta[K] | InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>,
+        value: K extends ExtractStringKeys<ICustomBaseObjectMeta> ? ICustomBaseObjectMeta[K] | InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void> : InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>,
     ): void {
-        // TODO implement
+        // TODO Implementieren
     }
     /**
      * Gets a value using the specified key.
@@ -3002,10 +3028,11 @@ export class BaseObject {
     public getSyncedMeta<K extends ExtractStringKeys<ICustomBaseObjectSyncedMeta>>(key: K): ICustomBaseObjectSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomBaseObjectSyncedMeta} */
 
-    public getSyncedMeta<K extends string | ExtractStringKeys<ICustomBaseObjectSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomBaseObjectSyncedMeta[K] | V {
-        // TODO implement
-        return null;
+    public getSyncedMeta<K extends string, V>(key: K | MetaValues<ICustomBaseObjectSyncedMeta>): K extends ExtractStringKeys<ICustomBaseObjectSyncedMeta> ? ICustomBaseObjectSyncedMeta[K] | V : unknown {
+        // TODO implementieren
+        return null as any;
     }
+
     /**
      * Determines whether contains the specified key.
      *
