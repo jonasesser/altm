@@ -8,6 +8,9 @@
         "alt-shared": ["./stubs/shared/index.stub.ts"],
         "alt-client": ["./stubs/client/index.stub.ts"],
         "alt-server": ["./stubs/server/index.stub.ts"],
+        "natives": ["./stubs/natives/index.stub.ts"],
+        "webviews": ["./stubs/webviews/index.stub.ts"],
+        "workers": ["./stubs/workers/index.stub.ts"],
       }
     }
   }
