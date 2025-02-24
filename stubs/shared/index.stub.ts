@@ -1678,7 +1678,7 @@ export type InterfaceValueByKey<
       ? (VReplace extends void ? TInterface[TKey] : VReplace)
       : VDefault
   );
-type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
+export type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
     [K in keyof TInterface as Extract<K, string>]: TInterface[K];
   };
 export type EventParameters<
@@ -1955,15 +1955,15 @@ export interface IInspectOptions {
   sorted: boolean | ((a: string, b: string) => number);
 }
 
-export const resourceName: string;
-export const version: string;
-export const sdkVersion: string;
-export const branch: string;
-export const debug: boolean;
-export const defaultDimension: number;
-export const globalDimension: number;
-export const isClient: boolean;
-export const isServer: boolean;
+export const resourceName: string = "defaultResource";
+export const version: string = "1.0.0";
+export const sdkVersion: string = "1.0.0";
+export const branch: string = "main";
+export const debug: boolean = false;
+export const defaultDimension: number = 0;
+export const globalDimension: number = 0;
+export const isClient: boolean = false;
+export const isServer: boolean = true;
 // Do not add anything here, add to the Utils namespace instead!
 // (this class is only here to be extended by client and server)
 export function deleteMeta(key: string): void;
