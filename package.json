@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@citizenfx/client": "^2.0.12966-1",
+    "@citizenfx/server": "^2.0.12966-1",
     "prettier": "^3.5.2"
   },
   "prettier": {

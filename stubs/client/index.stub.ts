@@ -1,565 +1,9 @@
 // Stub für index.d.ts
 
 import * as shared from 'alt-shared';
+import { ConfigFlag, GameFont, IClientEvent, ICustomEmitEvent, Locale, StatName, TextAlign } from './types';
+import * as fx from "@citizenfx/client";
 
-export enum Locale {
-    Arabic = 'ar',
-    Belarusian = 'by',
-    Czech = 'cz',
-    German = 'de',
-    English = 'en',
-    Spanish = 'es',
-    Farsi = 'fa',
-    French = 'fr',
-    Hebrew = 'he',
-    Hungarian = 'hu',
-    Indonesian = 'id',
-    Hindi = 'in_hd', // Wrong tag (hi_in)
-    Malayalam = 'in_ml', // Wrong tag (ml_in)
-    Telugu = 'in_tl', // Wrong tag (te_in)
-    Tamil = 'in_tm', // Wrong tag (ta_in)
-    Italian = 'it',
-    Lithuanian = 'lt',
-    Latvian = 'lv',
-    NorwegianBokmal = 'nb_no',
-    NorwegianNynorsk = 'nn_no',
-    Polish = 'pl',
-    Portugese = 'pt',
-    BrazilianPortuguese = 'pt_br',
-    Romanian = 'ro',
-
-    Serbian = 'rs', // Wrong tag (sr)
-    Russian = 'ru',
-    Slovak = 'sk',
-    Thai = 'th',
-    Turkish = 'tr',
-    Ukrainian = 'ua', // Wrong tag (uk)
-    ChineseSimplified = 'zh_cn',
-    ChineseTraditional = 'zh_tw',
-}
-export enum StatName {
-    Stamina = 'stamina',
-    Strength = 'strength',
-    LungCapacity = 'lung_capacity',
-    Wheelie = 'wheelie_ability',
-    Flying = 'flying_ability',
-    Shooting = 'shooting_ability',
-    Stealth = 'stealth_ability',
-}
-export enum VehicleIndicatorLights {
-    None = 0,
-    BlinkLeft = 1,
-    BlinkRight = 2,
-    BlinkPermBoth = 4,
-    StaticBoth = 8,
-    Interior = 64,
-}
-export enum WebSocketReadyState {
-    Connecting,
-    Open,
-    Closing,
-    Closed,
-}
-export enum ConfigFlag {
-    DisableAutoWeaponSwap = 'DISABLE_AUTO_WEAPON_SWAP',
-    DisablePedPropKnockOff = 'DISABLE_PED_PROP_KNOCK_OFF',
-    DisableIdleCamera = 'DISABLE_IDLE_CAMERA',
-    DisableVehicleEngineShutdownOnLeave = 'DISABLE_VEHICLE_ENGINE_SHUTDOWN_ON_LEAVE',
-    DisableSPEnterVehicleClipset = 'DISABLE_SP_ENTER_VEHICLE_CLIPSET',
-    ForceRenderSnow = 'FORCE_RENDER_SNOW',
-    ForceHideNightProps = 'FORCE_HIDE_NIGHT_PROPS',
-    ForceShowNightProps = 'FORCE_SHOW_NIGHT_PROPS',
-    DisableEmissiveLightsRendering = 'DISABLE_EMISSIVE_LIGHTS_RENDERING',
-    /**
-     * Forces vehicle tyre burst even if 0 damage is applied.
-     * Useful when damage in weapon meta is set to 0, and is calculated manually by script in event.
-     */
-    ForceVehicleTyreBurst = 'FORCE_VEHICLE_TYRE_BURST',
-    /**
-     * Prevents head props from being hidden when getting into the vehicle.
-     * Equivalent to calling `setPedResetFlag` native with flag 337 in every tick.
-     */
-    SwapAllowHeadPropInVehicleFlag = 'SWAP_ALLOW_HEAD_PROP_IN_VEHICLE_FLAG',
-}
-export enum WatermarkPosition {
-    BottomRight = 0,
-    TopRight = 1,
-    TopLeft = 2,
-    TopCenter = 3,
-    BottomCenter = 4,
-}
-export enum GameFont {
-    ChaletLondon,
-    HouseScript,
-    Monospace,
-    CharletComprimeColonge = 4,
-    Pricedown = 7,
-}
-export enum TextAlign {
-    Center,
-    Left,
-    Rigth,
-}
-export enum TextLabelAlignment {
-    Left,
-    Right,
-    Center,
-    Justify,
-}
-export enum CookieSameSite {
-    NoRestriction = 'NO_RESTRICTION',
-    LaxMode = 'LAX_MODE',
-    StrictMode = 'STRICT_MODE',
-}
-export enum CookiePriority {
-    Low = 'LOW',
-    Medium = 'MEDIUM',
-    High = 'HIGH',
-}
-export interface IClientEvent {
-    anyResourceError: (resourceName: string) => void;
-    anyResourceStart: (resourceName: string) => void;
-    anyResourceStop: (resourceName: string) => void;
-    /**
-     * @remarks The seat indexes start with 1 (driver seat).
-     */
-    changedVehicleSeat: (vehicle: Vehicle, oldSeat: number, seat: number) => void;
-    connectionComplete: () => void;
-    consoleCommand: (name: string, ...args: string[]) => void;
-    disconnect: () => void;
-    /**
-     * @remarks The seat indexes start with 1 (driver seat).
-     */
-    enteredVehicle: (vehicle: Vehicle, seat: number) => void;
-    gameEntityCreate: (entity: Entity) => void;
-    gameEntityDestroy: (entity: Entity) => void;
-    keydown: (key: shared.KeyCode) => void;
-    keyup: (key: shared.KeyCode) => void;
-    /**
-     * @remarks The seat indexes start with 1 (driver seat).
-     */
-    leftVehicle: (vehicle: Vehicle, seat: number) => void;
-    /**
-     * @remarks The seat indexes start with 1 (driver seat).
-     */
-    startEnteringVehicle: (vehicle: Vehicle, seat: number, player: Player) => boolean | void;
-    /**
-     * @remarks The seat indexes start with 1 (driver seat).
-     */
-    startLeavingVehicle: (vehicle: Vehicle, seat: number, player: Player) => boolean | void;
-    removeEntity: (object: Entity) => void;
-    resourceStart: (errored: boolean) => void;
-    resourceStop: () => void;
-    resourceError: (error: Error, file: string, line: number, stackTrace: string) => void;
-    syncedMetaChange: (entity: Entity, key: string, value: any, oldValue: any) => void;
-    streamSyncedMetaChange: (object: BaseObject, key: string, value: any, oldValue: any) => void;
-    globalMetaChange: (key: string, value: any, oldValue: any) => void;
-    globalSyncedMetaChange: (key: string, value: any, oldValue: any) => void;
-    /**
-     * @remarks See https://alloc8or.re/gta5/doc/enums/eTaskTypeIndex.txt for task ids.
-     */
-    taskChange: (oldTask: number, newTask: number) => boolean | void;
-    spawned: () => void;
-    localMetaChange: (key: string, newValue: any, oldValue: any) => void;
-    /**
-     * @remarks Triggers only if the old or new owner is the local player.
-     */
-    netOwnerChange: (entity: Entity, owner: Player, oldOwner: Player) => void;
-    windowFocusChange: (isFocused: boolean) => void;
-    windowResolutionChange: (oldResolution: shared.Vector2, newResolution: shared.Vector2) => void;
-    playerAnimationChange: (target: Player, oldAnimDict: number, newAnimDict: number, oldAnimName: number, newAnimName: number) => void;
-    playerWeaponShoot: (weaponHash: number, totalAmmo: number, ammoInClip: number) => void;
-    playerWeaponChange: (oldWeapon: number, newWeapon: number) => void;
-    baseObjectCreate: (baseObject: BaseObject) => void;
-    baseObjectRemove: (baseObject: BaseObject) => void;
-    weaponDamage: (target: Entity, weaponHash: number, damage: number, offset: shared.Vector3, bodyPart: shared.BodyPart, sourceEntity: Entity) => number | boolean | void;
-    /**
-     * Triggers when an Virtual Entity position is changed
-     */
-    worldObjectPositionChange: (object: WorldObject, oldPosition: shared.Vector3) => void;
-    worldObjectStreamIn: (object: WorldObject) => void;
-    worldObjectStreamOut: (object: WorldObject) => void;
-    metaChange: (target: BaseObject, key: string, value: any, oldValue: any) => void;
-    entityEnterColshape: (colshape: Colshape, entity: Entity) => void;
-    entityLeaveColshape: (colshape: Colshape, entity: Entity) => void;
-    entityHitEntity: (damager: Entity, target: Entity, weaponHash: number) => void;
-    playerBulletHit: (weaponHash: number, victim: Entity, position: shared.Vector3) => void;
-    voiceConnection: (state: shared.VoiceConnectionState) => void;
-    playerStartTalking: (target: Player) => void;
-    playerStopTalking: (target: Player) => void;
-    /**
-     * @remarks This event is only triggered for local player.
-     */
-    playerDimensionChange: (player: Player, oldDimension: number, newDimension: number) => void;
-    /**
-     * @remarks This event is only triggered for local player.
-     */
-    playerInteriorChange: (player: Player, oldInterior: number, newInterior: number) => void;
-}
-export interface IDiscordUser {
-    id: string;
-    name: string;
-    discriminator: string;
-    avatar: string;
-}
-/**
- * Vehicle handling, which affects how vehicle responds and reacts to the inputs of a driver.
- * This handling applies to particular vehicle instance, as opposed to the {@link HandlingData}.
- *
- * @remarks Changes will be reflected only on a particular instance of the vehicle. On creation, model handling will be used as a base and changed properties will be added on top of it.
- */
-export interface IVehicleHandling {
-    handlingNameHash: number;
-    acceleration: number;
-    antiRollBarBiasFront: number;
-    antiRollBarBiasRear: number;
-    antiRollBarForce: number;
-    brakeBiasFront: number;
-    brakeBiasRear: number;
-    brakeForce: number;
-    camberStiffness: number;
-    centreOfMassOffset: shared.Vector3;
-    clutchChangeRateScaleDownShift: number;
-    clutchChangeRateScaleUpShift: number;
-    collisionDamageMult: number;
-    damageFlags: number;
-    deformationDamageMult: number;
-    downforceModifier: number;
-    driveBiasFront: number;
-    driveBiasRear: number;
-    driveInertia: number;
-    driveMaxFlatVel: number;
-    engineDamageMult: number;
-    handBrakeForce: number;
-    handlingFlags: number;
-    inertiaMultiplier: shared.Vector3;
-    initialDragCoeff: number;
-    initialDriveForce: number;
-    initialDriveGears: number;
-    initialDriveMaxFlatVel: number;
-    lowSpeedTractionLossMult: number;
-    mass: number;
-    modelFlags: number;
-    monetaryValue: number;
-    oilVolume: number;
-    percentSubmerged: number;
-    percentSubmergedRatio: number;
-    petrolTankVolume: number;
-    rollCentreHeightFront: number;
-    rollCentreHeightRear: number;
-    seatOffsetDistX: number;
-    seatOffsetDistY: number;
-    seatOffsetDistZ: number;
-    steeringLock: number;
-    steeringLockRatio: number;
-    suspensionBiasFront: number;
-    suspensionBiasRear: number;
-    suspensionCompDamp: number;
-    suspensionForce: number;
-    suspensionLowerLimit: number;
-    suspensionRaise: number;
-    suspensionReboundDamp: number;
-    suspensionUpperLimit: number;
-    tractionBiasFront: number;
-    tractionBiasRear: number;
-    tractionCurveLateral: number;
-    tractionCurveLateralRatio: number;
-    tractionCurveMax: number;
-    tractionCurveMaxRatio: number;
-    tractionCurveMin: number;
-    tractionCurveMinRatio: number;
-    tractionLossMult: number;
-    tractionSpringDeltaMax: number;
-    tractionSpringDeltaMaxRatio: number;
-    unkFloat1: number;
-    unkFloat2: number;
-    unkFloat4: number;
-    unkFloat5: number;
-    weaponDamageMult: number;
-    isModified(): boolean;
-    reset(): void;
-}
-export interface IHttpResponse {
-    statusCode: number;
-    body: string;
-    headers: Record<string, string>;
-}
-export interface IHeapStats {
-    heapSizeLimit: number;
-    totalHeapSize: number;
-    usedHeapSize: number;
-    mallocedMemory: number;
-    peakMallocedMemory: number;
-}
-/**
- * Follows Chrome DevTools cpuprofile format.
- * See [Chrome DevTools protocol docs](https://chromedevtools.github.io/devtools-protocol/tot/Profiler/#type-Profile) for more details.
- *
- * In order to analyze resulting Profile - serialize this class as JSON and put to a .cpuprofile file.
- * It will be available to use in DevTools on "Performance" tab, or in Visual Studio Code.
- *
- * @example
- * ```js
- * // server
- * alt.onClient("saveProfile", (player, name, content) => {
- *     fs.writeFileSync("./" + name + ".cpuprofile", content);
- * });
- *
- * // client
- * alt.Profile.startProfiling("test");
- * // do some stuff
- * const profile = alt.Profile.stopProfiling("test");
- * const content = JSON.stringify(profile);
- * alt.emitServer("saveProfile", "test", content);
- * ```
- */
-export interface IProfile {
-    /**
-     * The list of profile nodes. First item is the root node.
-     */
-    nodes: readonly IProfileNode[];
-    /**
-     * Profiling start timestamp in microseconds.
-     */
-    startTime: number;
-    /**
-     * Profiling end timestamp in microseconds.
-     */
-    endTime: number;
-    /**
-     * Ids of samples top nodes.
-     */
-    samples: readonly number[];
-    /**
-     * Time intervals between adjacent samples in microseconds. The first delta is relative to the profile startTime.
-     */
-    timeDeltas: readonly number[];
-}
-export interface IProfileCallFrame {
-    /**
-     * JavaScript function name.
-     */
-    functionName: string;
-    /**
-     * Unique id of the script.
-     */
-    scriptId: number;
-    /**
-     * File path.
-     */
-    url: string;
-    /**
-     * JavaScript script line number (0-based).
-     */
-    lineNumber: number;
-    /**
-     * JavaScript script column number (0-based).
-     */
-    columnNumber: number;
-}
-export interface IProfileNode {
-    /**
-     * Unique id of the node.
-     */
-    id: number;
-    /**
-     * Function location.
-     */
-    callFrame: IProfileCallFrame;
-    /**
-     * Number of samples where this node was on top of the call stack.
-     */
-    hitCount: number;
-    /**
-     * Child node ids.
-     */
-    children: readonly number[];
-    /**
-     * The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
-     */
-    deoptReason: string;
-    /**
-     * An array of source position ticks.
-     */
-    positionTicks: readonly IProfileTickInfo[];
-}
-export interface IProfileTickInfo {
-    /**
-     * Source line number (1-based).
-     */
-    line: number;
-    /**
-     * Number of samples attributed to the source line.
-     */
-    ticks: number;
-}
-/**
- * Extend it by interface merging for use in baseobject meta {@link "alt-client".BaseObject getMeta method}, {@link "alt-client".BaseObject setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomBaseObjectMeta extends shared.ICustomBaseObjectMeta {}
-/**
- * Extend it by interface merging for use in blip meta {@link "alt-client".Blip getMeta method}, {@link "alt-client".Blip setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomBlipMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by merging interfaces for use in checkpoint meta {@link "alt-client".Checkpoint getMeta method}, {@link "alt-client".Checkpoint setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomCheckpointMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomColshapeMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by merging interfaces for use in webview meta {@link "alt-client".WebView getMeta method}, {@link "alt-client".WebView setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomWebViewMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by merging interfaces for use in audio meta {@link "alt-client".Audio getMeta method}, {@link "alt-client".Audio setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomAudioMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by interface merging for use in entity meta {@link "alt-client".Entity getMeta method}, {@link "alt-client".Entity setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomEntityMeta extends ICustomBaseObjectMeta {}
-/**
- * Extend it by merging interfaces for use in player meta {@link "alt-client".Player getMeta method}, {@link "alt-client".Player setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomPlayerMeta extends ICustomEntityMeta {}
-/**
- * Extend it by merging interfaces for use in local player meta {@link "alt-client".LocalPlayer getMeta method}, {@link "alt-client".LocalPlayer setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomLocalPlayerMeta extends ICustomPlayerMeta {}
-/**
- * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Vehicle getMeta method}, {@link "alt-client".Vehicle setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomVehicleMeta extends ICustomEntityMeta {}
-/**
- * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Ped getMeta method}, {@link "alt-client".Ped setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
-export interface ICustomPedMeta extends ICustomEntityMeta {}
-/**
- * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomEmitEvent {
- *        myEvent: (arg1: string, arg2: { key: string, value: number })
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomEmitEvent
- */
-export interface ICustomEmitEvent {}
-export interface IMarkerOptions {
-    type: number;
-    dir: shared.IVector3;
-    rot: shared.IVector3;
-    scale: shared.IVector3;
-    color: shared.RGBA;
-    bobUpAndDown: boolean;
-    faceCamera: boolean;
-    p19: number;
-    rotate: boolean;
-    textureDict: string;
-    textureName: string;
-    drawOnEnts: boolean;
-}
-export interface IInputDevice {
-    name: string;
-    uuid: string;
-}
-export interface ISyncInfo {
-    active: boolean;
-    receivedTick: number;
-    fullyReceivedTick: number;
-    sendTick: number;
-    ackedSendTick: number;
-    propertyCount: number;
-    componentCount: number;
-    /**
-     * 2D array of property update ticks grouped by component
-     */
-    propertyUpdateTicks: number[][];
-}
-/**
- * Axis-Aligned Bounding Box.
- */
-export interface IAABB {
-    min: number;
-    max: number;
-}
-export interface IWebViewParams {
-    url: string;
-    pos: shared.IVector2;
-    size: shared.IVector2;
-    isOverlay: boolean;
-    drawableHash: number;
-    targetTexture: string;
-    headers: Record<string, string>;
-    cookies: ICookie[];
-}
-export interface ICookie {
-    /**
-     * Cookie name must always start with "__altv_"
-     */
-    name: `__altv_${string}`;
-    url: string;
-    value: unknown;
-    httpOnly: boolean;
-    secure: boolean;
-    domain: string;
-    path: string;
-    sameSite: CookieSameSite;
-    priority: CookiePriority;
-    expires: number;
-}
-
-// /**
-//  * Create a attached blip to a ped.
-//  *
-//  * @param ped Index of the player in alt.Player.all.
-//  */
-// export class PedBlip extends Blip {
-//   constructor(ped: number);
-// }
-// /**
-//  * Create a attached blip to a vehicle.
-//  *
-//  * @param vehicle Index of the vehicle in alt.Vehicle.all.
-//  */
-// export class VehicleBlip extends Blip {
-//   constructor(vehicle: number);
-// }
-// Do not add anything here, add to the Utils namespace instead!
-// (this class is here only for extending shared Utils class & namespace)
-export * from 'alt-shared';
-
-export function addGxtText(key: string | number, value: string): void;
 /**
  * Adds a new GXT entry with the specified value.
  *
@@ -572,7 +16,6 @@ export function addGxtText(key: string | number, value: string): void {
     // TODO Implement
 }
 
-export function beginScaleformMovieMethodMinimap(methodName: string): boolean;
 /**
  * Executes the specified scaleform method on the minimap.
  */
@@ -581,62 +24,6 @@ export function beginScaleformMovieMethodMinimap(methodName: string): boolean {
     return false;
 }
 
-export function emit<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
-export function emit<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emit<K extends string>(eventName: Exclude<K, keyof IClientEvent>, args: any[]): void {
-    // TODO Implement
-}
-
-export function emitRaw<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
-export function emitRaw<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emitRaw<K extends string>(eventName: Exclude<K, keyof IClientEvent>, args: any[]): void {
-    // TODO Implement
-}
-
-export function emitServer<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
-export function emitServer<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServer<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
-    // TODO Implement
-}
-
-export function emitServerRaw<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
-export function emitServerRaw<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServerRaw<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
-    // TODO Implement
-}
-
-export function emitServerUnreliable<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
-export function emitServerUnreliable<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServerUnreliable<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
-    // TODO Implement
-}
-
-export function emitRpc<K extends keyof shared.ICustomClientServerRpc>(rpcName: K, ...args: Parameters<shared.ICustomClientServerRpc[K]>): Promise<ReturnType<shared.ICustomClientServerRpc[K]>>;
-export function emitRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, ...args: any[]): Promise<any>;
-export function emitRpc<K extends string>(rpcName: Exclude<K, never>, args: any[]): Promise<any> {
-    // TODO Implement
-    return null;
-}
-
-export function onRpc<K extends keyof shared.ICustomServerClientRpc>(
-    rpcName: K,
-    listener: (...args: Parameters<shared.ICustomServerClientRpc[K]>) => Promise<ReturnType<shared.ICustomServerClientRpc[K]>> | ReturnType<shared.ICustomServerClientRpc[K]>,
-): void;
-export function onRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomServerClientRpc>, listener: (...args: any[]) => Promise<any> | any): void;
-export function onRpc<K extends string>(rpcName: Exclude<K, never>, listener: (...args: any[]) => any): void {
-    // TODO Implement
-}
-
-export function offRpc<K extends keyof shared.ICustomServerClientRpc>(
-    rpcName: K,
-    listener?: (...args: Parameters<shared.ICustomServerClientRpc[K]>) => Promise<ReturnType<shared.ICustomServerClientRpc[K]>> | ReturnType<shared.ICustomServerClientRpc[K]>,
-): void;
-export function offRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomServerClientRpc>, listener?: (...args: any[]) => Promise<any> | any): void;
-export function offRpc<K extends string>(rpcName: Exclude<K, never>, listener: (...args: any[]) => any): void {
-    // TODO Implement
-}
-
-export function gameControlsEnabled(): boolean;
 /**
  * Returns whether the game controls are currently enabled.
  */
@@ -645,91 +32,84 @@ export function gameControlsEnabled(): boolean {
     return false;
 }
 
-export function getCursorPos(normalized?: boolean): shared.Vector2;
 /**
  * Gets the current position of the cursor.
  *
  * @param normalized If true returns coordinates that are in the range 0 to 1. Defaults to false.
  */
-export function getCursorPos(normalized: boolean): shared.Vector2 {
+export function getCursorPos(normalized?: boolean): shared.Vector2 {
     // TODO Implement
     return null;
 }
 
-export function getGxtText(key: string | number): string | null;
 /**
  * Gets the value of the specified GXT entry.
  *
  * @param key GXT entry name.
  */
 export function getGxtText(key: string | number): string {
-    // TODO Implement
+    // TODO Implement - its can be null
     return '';
 }
 
-export function getLicenseHash(): string;
 export function getLicenseHash(): string {
     // TODO Implement
     return '';
 }
 
-export function getLocale(): Locale;
-export function getLocale(): `${Locale}`;
-export function getLocale():
-    | 'ar'
-    | 'by'
-    | 'cz'
-    | 'de'
-    | 'en'
-    | 'es'
-    | 'fa'
-    | 'fr'
-    | 'he'
-    | 'hu'
-    | 'id'
-    | 'in_hd'
-    | 'in_ml'
-    | 'in_tl'
-    | 'in_tm'
-    | 'it'
-    | 'lt'
-    | 'lv'
-    | 'nb_no'
-    | 'nn_no'
-    | 'pl'
-    | 'pt'
-    | 'pt_br'
-    | 'ro'
-    | 'rs'
-    | 'ru'
-    | 'sk'
-    | 'th'
-    | 'tr'
-    | 'ua'
-    | 'zh_cn'
-    | 'zh_tw' {
-    // TODO Implement
-    return null;
+type Language =
+    | { code: 0; name: 'american'; locale: 'en-US' }
+    | { code: 1; name: 'french'; locale: 'fr-FR' }
+    | { code: 2; name: 'german'; locale: 'de-DE' }
+    | { code: 3; name: 'italian'; locale: 'it-IT' }
+    | { code: 4; name: 'spanish'; locale: 'es-ES' }
+    | { code: 5; name: 'brazilian'; locale: 'pt-BR' }
+    | { code: 6; name: 'polish'; locale: 'pl-PL' }
+    | { code: 7; name: 'russian'; locale: 'ru-RU' }
+    | { code: 8; name: 'korean'; locale: 'ko-KR' }
+    | { code: 9; name: 'chinesetrad'; locale: 'zh-TW' }
+    | { code: 10; name: 'japanese'; locale: 'ja-JP' }
+    | { code: 11; name: 'mexican'; locale: 'es-MX' }
+    | { code: 12; name: 'chinesesimp'; locale: 'zh-CN' };
+
+export function getLocale(): Language | null {
+    const id = GetCurrentLanguage();
+
+    const languages: Language[] = [
+        { code: 0, name: 'american', locale: 'en-US' },
+        { code: 1, name: 'french', locale: 'fr-FR' },
+        { code: 2, name: 'german', locale: 'de-DE' },
+        { code: 3, name: 'italian', locale: 'it-IT' },
+        { code: 4, name: 'spanish', locale: 'es-ES' },
+        { code: 5, name: 'brazilian', locale: 'pt-BR' },
+        { code: 6, name: 'polish', locale: 'pl-PL' },
+        { code: 7, name: 'russian', locale: 'ru-RU' },
+        { code: 8, name: 'korean', locale: 'ko-KR' },
+        { code: 9, name: 'chinesetrad', locale: 'zh-TW' },
+        { code: 10, name: 'japanese', locale: 'ja-JP' },
+        { code: 11, name: 'mexican', locale: 'es-MX' },
+        { code: 12, name: 'chinesesimp', locale: 'zh-CN' },
+    ];
+
+    const language = languages.find(lang => lang.code === id);
+
+    return language || null;
 }
 
-export function getMsPerGameMinute(): number;
 /**
  * Gets the current milliseconds per game minute.
  *
  * @remarks This is set with the {@link setMsPerGameMinute} function.
  */
 export function getMsPerGameMinute(): number {
-    // TODO Implement
-    return 0;
+    return GetMillisecondsPerGameMinute();
 }
 
-export function getServerTime(): number;
 /**
  * Gets current server time since epoch in milliseconds.
  */
 export function getServerTime(): number {
-    // TODO Implement
-    return 0;
+    return GetNetworkTime();
 }
 
 export function getPermissionState(permId: shared.Permission): boolean;
@@ -746,40 +126,36 @@ export function getStat(statName: 'stamina' | 'strength' | 'lung_capacity' | 'wh
     return 0;
 }
 
-export function isConsoleOpen(): boolean;
 /**
  * Returns state of console window.
  *
  * @returns True when console window is opened.
  */
 export function isConsoleOpen(): boolean {
-    // TODO Implement
+    // TODO Implement - no possible at moment
     return false;
 }
 
-export function isGameFocused(): boolean;
 /**
  * Returns state of game window.
  *
  * @returns True when game window is focused.
  */
 export function isGameFocused(): boolean {
-    // TODO Implement
+    // TODO Implement - no possible at moment
     return false;
 }
 
-export function isInStreamerMode(): boolean;
 /**
  * Returns if alt:V is in streamer mode.
  *
  * @returns True when alt:V client is launched in streamer mode.
  */
 export function isInStreamerMode(): boolean {
-    // TODO Implement
+    // TODO Implement - no possible at moment
     return false;
 }
 
-export function isKeyToggled(key: shared.KeyCode): boolean;
 /**
  * Returns whether the specified key is toggled.
  *
@@ -790,18 +166,15 @@ export function isKeyToggled(key: shared.KeyCode): boolean {
     return false;
 }
 
-export function isKeyDown(key: shared.KeyCode): boolean;
 /**
  * Determines whether the specified key is pressed.
  *
  * @param Keycode of the key.
  */
 export function isKeyDown(key: shared.KeyCode): boolean {
-    // TODO Implement
-    return false;
+    return IsControlPressed(0, key);
 }
 
-export function isMenuOpen(): boolean;
 /**
  * Returns state of user interface and console window.
  *
@@ -812,13 +185,11 @@ export function isMenuOpen(): boolean {
     return false;
 }
 
-export function isTextureExistInArchetype(modelHash: number, targetTextureName: string): boolean;
 export function isTextureExistInArchetype(modelHash: number, targetTextureName: string): boolean {
     // TODO Implement
     return false;
 }
 
-export function loadModel(modelHash: number): void;
 /**
  * Loads a model into memory synchronously.
  *
@@ -828,10 +199,9 @@ export function loadModel(modelHash: number): void;
  * @param modelHash Hash of the model.
  */
 export function loadModel(modelHash: number): void {
-    // TODO Implement
+
 }
 
-export function loadModelAsync(modelHash: number): void;
 /**
  * Loads a model into memory asynchronously.
  *
@@ -847,71 +217,6 @@ export function loadModelAsync(modelHash: number): void {
     // TODO Implement
 }
 
-export function offServer<K extends keyof shared.ICustomServerClientEvent>(eventName: K, listener: (...args: Parameters<shared.ICustomServerClientEvent[K]>) => void): void;
-export function offServer<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, listener: (...args: any[]) => void): void;
-export function offServer(eventName: string, listener: (...args: any[]) => void): void;
-export function offServer(listener: (eventName: string, ...args: any[]) => void): void;
-/**
- * Unsubscribes from all user-created server events with the specified listener.
- *
- * @remarks Listener should be of the same reference as when event was subscribed to.
- *
- * @param listener Listener that should be removed.
- */
-export function offServer(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
-    if (typeof eventNameOrListener === 'function') {
-        // Fall: Listener-Variante (alle Events abbestellen)
-        const listenerFn = eventNameOrListener;
-        // TODO: Alle Events mit listenerFn abbestellen
-    } else {
-        // Fall: eventName + listener Variante
-        const eventName = eventNameOrListener;
-        // listener ist hier definiert
-        // TODO: Event eventName mit listener abbestellen
-    }
-}
-
-export function on<K extends keyof IClientEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IClientEvent, ICustomEmitEvent, K>) => void): void;
-export function on<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
-export function on<K extends string>(eventName: Exclude<K, keyof IClientEvent>, listener: (...args: any[]) => void): void {
-    // TODO Implement
-}
-
-export function once<K extends keyof IClientEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IClientEvent, ICustomEmitEvent, K>) => void): void;
-export function once<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
-export function once<K extends string>(eventName: Exclude<K, keyof IClientEvent>, listener: (...args: any[]) => void): void {
-    // TODO Implement
-}
-
-export function off<K extends keyof IClientEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IClientEvent, ICustomEmitEvent, K>) => void): void;
-export function off<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
-export function off<K extends string>(eventName: Exclude<K, keyof IClientEvent>, listener: (...args: any[]) => void): void {
-    // TODO Implement
-}
-
-export function onServer<K extends keyof shared.ICustomServerClientEvent>(eventName: K, listener: (...args: Parameters<shared.ICustomServerClientEvent[K]>) => void): void;
-export function onServer<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, listener: (...args: any[]) => void): void;
-export function onServer(listener: (eventName: string, ...args: any[]) => void): void;
-export function onServer(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
-}
-
-export function onceServer<K extends keyof shared.ICustomServerClientEvent>(eventName: K, listener: (...args: Parameters<shared.ICustomServerClientEvent[K]>) => void): void;
-export function onceServer<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, listener: (...args: any[]) => void): void;
-export function onceServer(listener: (eventName: string, ...args: any[]) => void): void;
-/**
- * Subscribes to all server events with the specified listener, which only triggers once.
- *
- * @remarks Listener will be only called for user-created events.
- *
- * @param eventName Name of the event.
- * @param listener Listener that should be added.
- */
-export function onceServer(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
-}
-
-export function removeGxtText(key: string): void;
 /**
  * Removes the specified GXT entry.
  *
@@ -921,51 +226,22 @@ export function removeGxtText(key: string): void {
     // TODO Implement
 }
 
-export function removeIpl(iplName: string): void;
 /**
  * Unloads the specified ipl.
  *
  * @param iplName Name of the ipl.
  */
 export function removeIpl(iplName: string): void {
-    // TODO Implement
+    RemoveIpl(iplName);
 }
 
-export function requestIpl(iplName: string): void;
 /**
  * Loads the specified ipl.
  *
  * @param iplName Name of the ipl.
  */
 export function requestIpl(iplName: string): void {
-    // TODO Implement
-}
-
-export function takeScreenshot(): Promise<string>;
-/**
- * The output is returned as a base64 string.
- *
- * @remarks This function requires [Screen Capture](https://docs.altv.mp/articles/permissions.html) permission from the user.
- *
- * @returns Return is dependent on the success of the operation.
- */
-export function takeScreenshot(): Promise<string> {
-    // TODO Implement
-    return null;
-}
-
-export function takeScreenshotGameOnly(): Promise<string>;
-/**
- * The output is returned as a base64 string.
- *
- * @remarks This only takes a screenshot of the raw GTA:V window. WebViews, game overlays etc. won't be captured.
- * This function requires [Screen Capture](https://docs.altv.mp/articles/permissions.html) permission from the user.
- *
- * @returns Return is dependent on the success of the operation.
- */
-export function takeScreenshotGameOnly(): Promise<string> {
-    // TODO Implement
-    return null;
+    RequestIpl(iplName);
 }
 
 export function resetStat(statName: StatName): void;
@@ -974,7 +250,6 @@ export function resetStat(statName: 'stamina' | 'strength' | 'lung_capacity' | '
     // TODO Implement
 }
 
-export function setCamFrozen(state: boolean): void;
 /**
  * Freezes the camera in place so it doesn't change position or rotation.
  *
@@ -983,56 +258,23 @@ export function setCamFrozen(state: boolean): void;
  * @param state True to freeze the camera, false to unfreeze the camera.
  */
 export function setCamFrozen(state: boolean): void {
-    // TODO Implement
+    // TODO Implement - must be look
 }
 
-export function isCamFrozen(): boolean;
 export function isCamFrozen(): boolean {
+    // TODO Implement - must be look
+    return false;
+}
+
+export function setConfigFlag(flag: ConfigFlag, state: boolean): void {
+    // TODO Implement
+}
+
+export function getConfigFlag(flag: ConfigFlag): boolean {
     // TODO Implement
     return false;
 }
 
-export function setConfigFlag(flag: ConfigFlag, state: boolean): void;
-export function setConfigFlag(flag: `${ConfigFlag}`, state: boolean): void;
-export function setConfigFlag(
-    flag:
-        | 'DISABLE_AUTO_WEAPON_SWAP'
-        | 'DISABLE_PED_PROP_KNOCK_OFF'
-        | 'DISABLE_IDLE_CAMERA'
-        | 'DISABLE_VEHICLE_ENGINE_SHUTDOWN_ON_LEAVE'
-        | 'DISABLE_SP_ENTER_VEHICLE_CLIPSET'
-        | 'FORCE_RENDER_SNOW'
-        | 'FORCE_HIDE_NIGHT_PROPS'
-        | 'FORCE_SHOW_NIGHT_PROPS'
-        | 'DISABLE_EMISSIVE_LIGHTS_RENDERING'
-        | 'FORCE_VEHICLE_TYRE_BURST'
-        | 'SWAP_ALLOW_HEAD_PROP_IN_VEHICLE_FLAG',
-    state: boolean,
-): void {
-    // TODO Implement
-}
-
-export function getConfigFlag(flag: ConfigFlag): boolean;
-export function getConfigFlag(flag: `${ConfigFlag}`): boolean;
-export function getConfigFlag(
-    flag:
-        | 'DISABLE_AUTO_WEAPON_SWAP'
-        | 'DISABLE_PED_PROP_KNOCK_OFF'
-        | 'DISABLE_IDLE_CAMERA'
-        | 'DISABLE_VEHICLE_ENGINE_SHUTDOWN_ON_LEAVE'
-        | 'DISABLE_SP_ENTER_VEHICLE_CLIPSET'
-        | 'FORCE_RENDER_SNOW'
-        | 'FORCE_HIDE_NIGHT_PROPS'
-        | 'FORCE_SHOW_NIGHT_PROPS'
-        | 'DISABLE_EMISSIVE_LIGHTS_RENDERING'
-        | 'FORCE_VEHICLE_TYRE_BURST'
-        | 'SWAP_ALLOW_HEAD_PROP_IN_VEHICLE_FLAG',
-): boolean {
-    // TODO Implement
-    return false;
-}
-
-export function doesConfigFlagExist(flag: string): boolean;
 /**
  * Returns whether the specified config flag exists.
  *
@@ -1044,25 +286,23 @@ export function doesConfigFlagExist(flag: string): boolean {
     return false;
 }
 
-export function setCursorPos(pos: shared.IVector2, normalized?: boolean): void;
 /**
  * Sets the current position of the cursor.
  *
  * @remarks The cursor has to be visible for this to take effect.
  */
 export function setCursorPos(pos: shared.IVector2, normalized: boolean): void {
-    // TODO Implement
+    // TODO - implement normalized
+    SetCursorLocation(pos.x, pos.y);
 }
 
-export function setMsPerGameMinute(milliseconds: number): void;
 /**
  * Sets the amount of real milliseconds that have to pass every game minute.
  */
-export function setMsPerGameMinute(milliseconds: number): void {
-    // TODO Implement
+export function setMsPerGameMinute(ms: number): void {
+    SetMillisecondsPerGameMinute(ms);
 }
 
-export function setRotationVelocity(scriptID: number, x: number, y: number, z: number): void;
 /**
  * Sets the rotation velocity for the specified entity.
  *
@@ -1075,13 +315,10 @@ export function setRotationVelocity(scriptID: number, x: number, y: number, z: n
     // TODO Implement
 }
 
-export function setStat(statName: StatName, value: number): void;
-export function setStat(statName: `${StatName}`, value: number): void;
-export function setStat(statName: 'stamina' | 'strength' | 'lung_capacity' | 'wheelie_ability' | 'flying_ability' | 'shooting_ability' | 'stealth_ability', value: number): void {
+export function setStat(statName: StatName, value: number): void {
     // TODO Implement
 }
 
-export function setWeatherCycle(weathers: number[], multipliers: number[]): void;
 /**
  * Sets the current weather cycle.
  *
@@ -1095,7 +332,6 @@ export function setWeatherCycle(weathers: number[], multipliers: number[]): void
     // TODO Implement
 }
 
-export function setWeatherSyncActive(isActive: boolean): void;
 /**
  * Sets whether the weather sync is active.
  *
@@ -1107,7 +343,6 @@ export function setWeatherSyncActive(isActive: boolean): void {
     // TODO Implement
 }
 
-export function showCursor(state: boolean): void;
 /**
  * Changes the visibility of cursor.
  *
@@ -1116,16 +351,15 @@ export function showCursor(state: boolean): void;
  * @param state A boolean indicating whenever cursor should be visible or not.
  */
 export function showCursor(state: boolean): void {
-    // TODO Implement
+    // TODO Implement - check if works
+    SetNuiFocus(IsNuiFocused(), state);
 }
 
-export function isCursorVisible(): boolean;
 export function isCursorVisible(): boolean {
-    // TODO Implement
+    // TODO Implement - looking
     return false;
 }
 
-export function toggleGameControls(state: boolean): void;
 /**
  * Toggles the game controls.
  *
@@ -1137,91 +371,75 @@ export function toggleGameControls(state: boolean): void {
     // TODO Implement
 }
 
-export function toggleVoiceControls(state: boolean): void;
 export function toggleVoiceControls(state: boolean): void {
     // TODO Implement
 }
 
-export function isFullScreen(): boolean;
 export function isFullScreen(): boolean {
     // TODO Implement
     return false;
 }
 
-export function getPoolSize(poolName: string): number;
 export function getPoolSize(poolName: string): number {
     // TODO Implement
     return 0;
 }
 
-export function getPoolCount(poolName: string): number;
 export function getPoolCount(poolName: string): number {
     // TODO Implement
     return 0;
 }
 
-export function getPoolEntities(poolName: string): number[];
 export function getPoolEntities(poolName: string): number[] {
     // TODO Implement
     return [];
 }
 
-export function getVoicePlayers(): number[];
 // Voice related functions
 export function getVoicePlayers(): number[] {
     // TODO Implement
     return [];
 }
 
-export function removeVoicePlayer(player: number): void;
 export function removeVoicePlayer(player: number): void {
     // TODO Implement
 }
 
-export function getVoiceSpatialVolume(player: number): number;
 export function getVoiceSpatialVolume(player: number): number {
     // TODO Implement
     return 0;
 }
 
-export function setVoiceSpatialVolume(player: number, volume: number): void;
 export function setVoiceSpatialVolume(player: number, volume: number): void {
     // TODO Implement
 }
 
-export function getVoiceNonSpatialVolume(player: number): number;
 export function getVoiceNonSpatialVolume(player: number): number {
     // TODO Implement
     return 0;
 }
 
-export function setVoiceNonSpatialVolume(player: number, volume: number): void;
 export function setVoiceNonSpatialVolume(player: number, volume: number): void {
     // TODO Implement
 }
 
-export function addVoiceFilter(player: number, filter: AudioFilter): void;
 export function addVoiceFilter(player: number, filter: AudioFilter): void {
     // TODO Implement
 }
 
-export function removeVoiceFilter(player: number): void;
 export function removeVoiceFilter(player: number): void {
     // TODO Implement
 }
 
-export function getVoiceFilter(player: number): AudioFilter;
 export function getVoiceFilter(player: number): AudioFilter {
     // TODO Implement
     return null;
 }
 
-export function updateClipContext(context: Record<string, string>): void;
 export function updateClipContext(context: Record<string, string>): void {
     // TODO Implement
 }
 
-export function loadYtyp(path: string): boolean;
 /**
  * Load a specific ytyp file.
  *
@@ -1237,7 +455,6 @@ export function loadYtyp(path: string): boolean {
     return false;
 }
 
-export function unloadYtyp(path: string): boolean;
 /**
  * Unload a specific ytyp file.
  *
@@ -1253,7 +470,6 @@ export function unloadYtyp(path: string): boolean {
     return false;
 }
 
-export function evalModule(code: string): Record<string, any>;
 /**
  * Evaluates and executes the given JavaScript code.
  *
@@ -1267,7 +483,6 @@ export function evalModule(code: string): Record<string, any> {
     return null;
 }
 
-export function getRemoteEventListeners(eventName: string | null): readonly ((...args: any[]) => void)[];
 /**
  * Gets all the listeners that have been subscribed using {@link onServer} for the specified remote event.
  *
@@ -1279,7 +494,6 @@ export function getRemoteEventListeners(eventName: string): readonly ((...args: 
     return [];
 }
 
-export function getHeadshotBase64(id: number): string;
 /**
  * Gets the Base64 encoded string of the headshot with the specified ID.
  *
@@ -1293,7 +507,6 @@ export function getHeadshotBase64(id: number): string {
     return '';
 }
 
-export function setPedDlcClothes(scriptID: number, dlc: number, component: number, drawable: number, texture: number, palette?: number): void;
 /**
  * Sets the specified dlc clothing component to a ped.
  *
@@ -1308,7 +521,6 @@ export function setPedDlcClothes(scriptID: number, dlc: number, component: numbe
     // TODO Implement
 }
 
-export function setPedDlcProp(scriptID: number, dlc: number, component: number, drawable: number, texture: number): void;
 /**
  * Sets the specified dlc prop component to a ped.
  *
@@ -1322,7 +534,6 @@ export function setPedDlcProp(scriptID: number, dlc: number, component: number, 
     // TODO Implement
 }
 
-export function clearPedProp(scriptID: number, component: number): void;
 /**
  * Removes a specified prop component from a ped.
  *
@@ -1333,14 +544,6 @@ export function clearPedProp(scriptID: number, component: number): void {
     // TODO Implement
 }
 
-export function setWatermarkPosition(position: WatermarkPosition): void;
-export function setWatermarkPosition<T extends number>(position: T): void;
-/** @deprecated This method will be removed in the next major release. (v17)  */
-export function setWatermarkPosition<T extends number>(position: T): void {
-    // TODO Implement
-}
-
-export function getPing(): number;
 /**
  * Represents the current client ping.
  */
@@ -1349,7 +552,6 @@ export function getPing(): number {
     return 0;
 }
 
-export function getFps(): number;
 /**
  * Represents the current client fps.
  */
@@ -1358,19 +560,16 @@ export function getFps(): number {
     return 0;
 }
 
-export function getTotalPacketsSent(): bigint;
 export function getTotalPacketsSent(): bigint {
     // TODO Implement
     return 0n;
 }
 
-export function getTotalPacketsLost(): bigint;
 export function getTotalPacketsLost(): bigint {
     // TODO Implement
     return 0n;
 }
 
-export function getServerIp(): string;
 /**
  * Gets the ip adress of the server where you are connected to.
  *
@@ -1381,7 +580,6 @@ export function getServerIp(): string {
     return '';
 }
 
-export function getServerPort(): number;
 /**
  * Gets the port of the server where you are connected to.
  *
@@ -1392,29 +590,12 @@ export function getServerPort(): number {
     return 0;
 }
 
-export function copyToClipboard(val: string): void;
 /**
  * Copy content into users clipboard.
  *
  * @remarks This function requires [Clipboard Access](https://docs.altv.mp/articles/permissions.html) permission from the user.
  */
 export function copyToClipboard(val: string): void {
-    // TODO Implement
-}
-
-export function toggleRmlControls(state: boolean): void;
-export function toggleRmlControls(state: boolean): void {
-    // TODO Implement
-}
-
-export function rmlControlsEnabled(): boolean;
-export function rmlControlsEnabled(): boolean {
-    // TODO Implement
-    return false;
-}
-
-export function loadRmlFont(path: string, name: string, italic?: boolean, bold?: boolean): void;
-export function loadRmlFont(path: string, name: string, italic: boolean, bold: boolean): void {
     // TODO Implement
 }
 
@@ -1438,48 +619,41 @@ export function screenToWorld(xOrValue: number | shared.IVector2, y?: number): s
     return null;
 }
 
-export function getCamPos(): shared.Vector3;
 export function getCamPos(): shared.Vector3 {
     // TODO Implement
     return null;
 }
 
-export function getScreenResolution(): shared.Vector2;
 export function getScreenResolution(): shared.Vector2 {
     // TODO Implement
-    return null;
+    const res = GetScreenResolution()
+    return {x: res[0], y: res[1]};
 }
 
-export function requestModel(model: string | number, timeout?: number): Promise<void>;
 /**
  * Loads a model into memory asynchronously, like {@link loadModelAsync} but more safely.
  *
  * @remarks If you can't load a specific model with this method, use {@link loadModelAsync} instead.
  */
-export function requestModel(model: string | number, timeout: number): Promise<void> {
-    // TODO Implement
-    return null;
+export function requestModel(model: string | number, timeout: number): void {
+    RequestModel(model);
 }
 
-export function requestAnimDict(animDict: string, timeout?: number): Promise<void>;
 export function requestAnimDict(animDict: string, timeout: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
-export function requestAnimSet(animSet: string, timeout?: number): Promise<void>;
 export function requestAnimSet(animSet: string, timeout: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
-export function requestClipSet(clipSet: string, timeout?: number): Promise<void>;
 export function requestClipSet(clipSet: string, timeout: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
-export function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void>;
 export function requestCutscene(cutsceneName: string, flags: string | number, timeout: number): Promise<void> {
     // TODO Implement
     return null;
@@ -1507,7 +681,6 @@ export function drawText3d(text: string, pos3d: shared.IVector3, font: GameFont,
     return null;
 }
 
-export function loadMapArea(pos: shared.IVector3, radius?: number, timeout?: number): Promise<void>;
 /**
  * Loads the map area at a certain position
  * and waits asynchronously until all parts in view area have been loaded.
@@ -1523,34 +696,52 @@ export function loadMapArea(pos: shared.IVector3, radius: number, timeout: numbe
     return null;
 }
 
-export function registerPedheadshotBase64(ped: Player | number): Promise<string>;
 /**
  * Combination of `native.registerPedheadshot` and {@link getHeadshotBase64 alt.getHeadshotBase64}
  */
-export function registerPedheadshotBase64(ped: number | Player): Promise<string> {
+export function registerPedHeadshotBase64(ped: number | Player): Promise<string> {
     // TODO Implement
     return null;
 }
 
-export function registerPedheadshot3Base64(ped: Player | number): Promise<string>;
 /**
  * Combination of `native.registerPedheadshot3` and {@link getHeadshotBase64 alt.getHeadshotBase64}
  */
-export function registerPedheadshot3Base64(ped: number | Player): Promise<string> {
+export function registerPedHeadshot3Base64(ped: number | Player): Promise<string> {
     // TODO Implement
     return null;
 }
 
-export function registerPedheadshotTransparentBase64(ped: Player | number): Promise<string>;
 /**
  * Combination of `native.registerPedheadshotTransparentBase64` and {@link getHeadshotBase64 alt.getHeadshotBase64}
  */
-export function registerPedheadshotTransparentBase64(ped: number | Player): Promise<string> {
+export function registerPedHeadshotTransparentBase64(ped: number | Player): Promise<string> {
     // TODO Implement
     return null;
 }
 
-export function getClosestPlayer(options?: { pos?: shared.IVector3; range?: number }): Player | null;
+export enum EntityType {
+    Ped = "CPed",
+    Vehicle = "CVehicle",
+    NetObject = "CNetObject",
+    Object = "CObject",
+    Pickups = "CPickups"
+}
+
+export function GetAllEntitiesFromType(type: EntityType): number[] {
+    return GetGamePool(type);
+}
+
+export function GetEntitiesFromRange(type: EntityType, range: number = 10) {
+    const playerCoords = GetEntityCoords(GetPlayerPed(-1), true);
+    const pool: number[] = GetGamePool(type);
+    let entities: number[] = [];
+    for (const entity of entities) {
+        const pos = GetEntityCoords(entity, true);
+
+    }
+}
+
 /**
  * Finds the closest player (if any) from {@link Player.streamedIn alt.Player.streamedIn}.
  *
@@ -1563,7 +754,6 @@ export function getClosestPlayer(options: { pos?: shared.IVector3; range?: numbe
     return null;
 }
 
-export function getClosestVehicle(options?: { pos?: shared.IVector3; range?: number }): Vehicle | null;
 /**
  * Finds the closest vehicle (if any) from {@link Vehicle.streamedIn alt.Vehicle.streamedIn}.
  *
@@ -1573,6 +763,7 @@ export function getClosestVehicle(options?: { pos?: shared.IVector3; range?: num
  */
 export function getClosestVehicle(options: { pos?: shared.IVector3; range?: number }): Vehicle {
     // TODO Implement
+
     return null;
 }
 
