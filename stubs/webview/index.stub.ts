@@ -27,7 +27,7 @@ export interface Alt {
    */
   off(eventName: string, listener: (...args: any[]) => void): void;
 
-   /**
+  /**
    * Subscribes to client event handler with specified listener.
    *
    * @param eventName Name of the event.
@@ -43,7 +43,6 @@ export interface Alt {
    */
   once(eventName: string, listener: (...args: any[]) => void): void;
 
-  
   /**
    * Gets all the listeners for the specified webview event.
    *
@@ -70,5 +69,3 @@ export interface Window {
 }
 
 declare var alt: Alt;
-
-
