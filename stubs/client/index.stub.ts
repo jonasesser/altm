@@ -1,7 +1,7 @@
 // Stub für index.d.ts
 
 import * as shared from "alt-shared";
-import { KeyCode, Vector2, Vector3, BodyPart, VoiceConnectionState, IVector3, RGBA, IVector2, ICustomClientServerEvent, ICustomClientServerRpc, ICustomServerClientRpc, Permission, ICustomServerClientEvent, EventParameters, Utils as Utils_1, ICustomPlayerLocalMeta, ExtractStringKeys, BaseObject as BaseObject_1, BaseObjectType, InterfaceValueByKey, MetaValues, ICustomVirtualEntityStreamSyncedMeta, CheckpointType, ICustomEntitySyncedMeta, ICustomEntityStreamSyncedMeta, ICustomPlayerSyncedMeta, ICustomPlayerStreamSyncedMeta, IWeapon, VehicleLockState, ICustomVehicleSyncedMeta, ICustomVehicleStreamSyncedMeta, BlipColor, BlipSprite, BlipType, ICustomPedSyncedMeta, ICustomPedStreamSyncedMeta, MarkerType, ColShapeType } from "alt-shared";
+
 export enum Locale {
     Arabic = "ar",
     Belarusian = "by",
@@ -133,8 +133,8 @@ export interface IClientEvent {
   enteredVehicle: (vehicle: Vehicle, seat: number) => void;
   gameEntityCreate: (entity: Entity) => void;
   gameEntityDestroy: (entity: Entity) => void;
-  keydown: (key: KeyCode) => void;
-  keyup: (key: KeyCode) => void;
+  keydown: (key: shared.KeyCode) => void;
+  keyup: (key: shared.KeyCode) => void;
     /**
      * @remarks The seat indexes start with 1 (driver seat).
      */
@@ -166,25 +166,25 @@ export interface IClientEvent {
      */
   netOwnerChange: (entity: Entity, owner: Player, oldOwner: Player) => void;
   windowFocusChange: (isFocused: boolean) => void;
-  windowResolutionChange: (oldResolution: Vector2, newResolution: Vector2) => void;
+  windowResolutionChange: (oldResolution: shared.Vector2, newResolution: shared.Vector2) => void;
   playerAnimationChange: (target: Player, oldAnimDict: number, newAnimDict: number, oldAnimName: number, newAnimName: number) => void;
   playerWeaponShoot: (weaponHash: number, totalAmmo: number, ammoInClip: number) => void;
   playerWeaponChange: (oldWeapon: number, newWeapon: number) => void;
   baseObjectCreate: (baseObject: BaseObject) => void;
   baseObjectRemove: (baseObject: BaseObject) => void;
-  weaponDamage: (target: Entity, weaponHash: number, damage: number, offset: Vector3, bodyPart: BodyPart, sourceEntity: Entity) => number | boolean | void;
+  weaponDamage: (target: Entity, weaponHash: number, damage: number, offset: shared.Vector3, bodyPart: shared.BodyPart, sourceEntity: Entity) => number | boolean | void;
     /**
      * Triggers when an Virtual Entity position is changed
      */
-  worldObjectPositionChange: (object: WorldObject, oldPosition: Vector3) => void;
+  worldObjectPositionChange: (object: WorldObject, oldPosition: shared.Vector3) => void;
   worldObjectStreamIn: (object: WorldObject) => void;
   worldObjectStreamOut: (object: WorldObject) => void;
   metaChange: (target: BaseObject, key: string, value: any, oldValue: any) => void;
   entityEnterColshape: (colshape: Colshape, entity: Entity) => void;
   entityLeaveColshape: (colshape: Colshape, entity: Entity) => void;
   entityHitEntity: (damager: Entity, target: Entity, weaponHash: number) => void;
-  playerBulletHit: (weaponHash: number, victim: Entity, position: Vector3) => void;
-  voiceConnection: (state: VoiceConnectionState) => void;
+  playerBulletHit: (weaponHash: number, victim: Entity, position: shared.Vector3) => void;
+  voiceConnection: (state: shared.VoiceConnectionState) => void;
   playerStartTalking: (target: Player) => void;
   playerStopTalking: (target: Player) => void;
     /**
@@ -218,7 +218,7 @@ export interface IVehicleHandling {
   brakeBiasRear: number;
   brakeForce: number;
   camberStiffness: number;
-  centreOfMassOffset: Vector3;
+  centreOfMassOffset: shared.Vector3;
   clutchChangeRateScaleDownShift: number;
   clutchChangeRateScaleUpShift: number;
   collisionDamageMult: number;
@@ -232,7 +232,7 @@ export interface IVehicleHandling {
   engineDamageMult: number;
   handBrakeForce: number;
   handlingFlags: number;
-  inertiaMultiplier: Vector3;
+  inertiaMultiplier: shared.Vector3;
   initialDragCoeff: number;
   initialDriveForce: number;
   initialDriveGears: number;
@@ -489,10 +489,10 @@ export interface ICustomEmitEvent {
 }
 export interface IMarkerOptions {
   type: number;
-  dir: IVector3;
-  rot: IVector3;
-  scale: IVector3;
-  color: RGBA;
+  dir: shared.IVector3;
+  rot: shared.IVector3;
+  scale: shared.IVector3;
+  color: shared.RGBA;
   bobUpAndDown: boolean;
   faceCamera: boolean;
   p19: number;
@@ -527,8 +527,8 @@ export interface IAABB {
 }
 export interface IWebViewParams {
   url: string;
-  pos: IVector2;
-  size: IVector2;
+  pos: shared.IVector2;
+  size: shared.IVector2;
   isOverlay: boolean;
   drawableHash: number;
   targetTexture: string;
@@ -665,7 +665,7 @@ export function getCursorPos(normalized?: boolean): shared.Vector2;
    *
    * @param normalized If true returns coordinates that are in the range 0 to 1. Defaults to false.
    */
-export function getCursorPos(normalized: boolean): Vector2 {
+export function getCursorPos(normalized: boolean): shared.Vector2 {
   // TODO Implement
   return null;
 }
@@ -767,7 +767,7 @@ export function isKeyToggled(key: shared.KeyCode): boolean;
    *
    * @param key Keycode.
    */
-export function isKeyToggled(key: KeyCode): boolean {
+export function isKeyToggled(key: shared.KeyCode): boolean {
   // TODO Implement
   return false;
 }
@@ -778,7 +778,7 @@ export function isKeyDown(key: shared.KeyCode): boolean;
    *
    * @param Keycode of the key.
    */
-export function isKeyDown(key: KeyCode): boolean {
+export function isKeyDown(key: shared.KeyCode): boolean {
   // TODO Implement
   return false;
 }
@@ -1010,7 +1010,7 @@ export function setCursorPos(pos: shared.IVector2, normalized?: boolean): void;
    *
    * @remarks The cursor has to be visible for this to take effect.
    */
-export function setCursorPos(pos: IVector2, normalized: boolean): void {
+export function setCursorPos(pos: shared.IVector2, normalized: boolean): void {
   // TODO Implement
 
 }
@@ -1402,26 +1402,26 @@ export function loadRmlFont(path: string, name: string, italic: boolean, bold: b
 
 export function worldToScreen(x: number, y: number, z: number): shared.Vector3;
 export function worldToScreen(value: shared.IVector3): shared.Vector3;
-export function worldToScreen(value: IVector3): Vector3 {
+export function worldToScreen(value: shared.IVector3): shared.Vector3 {
   // TODO Implement
   return null;
 }
 
 export function screenToWorld(x: number, y: number): shared.Vector3;
 export function screenToWorld(value: shared.IVector2): shared.Vector3;
-export function screenToWorld(xOrValue: number | IVector2, y?: number): Vector3 {
+export function screenToWorld(xOrValue: number | shared.IVector2, y?: number): shared.Vector3 {
   // TODO Implement
   return null;
 }
 
 export function getCamPos(): shared.Vector3;
-export function getCamPos(): Vector3 {
+export function getCamPos(): shared.Vector3 {
   // TODO Implement
   return null;
 }
 
 export function getScreenResolution(): shared.Vector2;
-export function getScreenResolution(): Vector2 {
+export function getScreenResolution(): shared.Vector2 {
   // TODO Implement
   return null;
 }
@@ -1462,25 +1462,25 @@ export function requestCutscene(cutsceneName: string, flags: string | number, ti
 }
 
 export function drawText2dThisFrame(text: string, pos2d?: shared.IVector2, font?: GameFont, scale?: number, color?: shared.RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: TextAlign): void;
-export function drawText2dThisFrame(text: string, pos2d: IVector2, font: GameFont, scale: number, color: RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void {
+export function drawText2dThisFrame(text: string, pos2d: shared.IVector2, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void {
   // TODO Implement
 
 }
 
 export function drawText2d(text: string, pos2d?: shared.IVector2, font?: GameFont, scale?: number, color?: shared.RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: TextAlign): shared.Utils.EveryTick;
-export function drawText2d(text: string, pos2d: IVector2, font: GameFont, scale: number, color: RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick {
+export function drawText2d(text: string, pos2d: shared.IVector2, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick {
   // TODO Implement
   return null;
 }
 
 export function drawText3dThisFrame(text: string, pos3d: shared.IVector3, font?: GameFont, scale?: number, color?: shared.RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: TextAlign): void;
-export function drawText3dThisFrame(text: string, pos3d: IVector3, font: GameFont, scale: number, color: RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void {
+export function drawText3dThisFrame(text: string, pos3d: shared.IVector3, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void {
   // TODO Implement
 
 }
 
 export function drawText3d(text: string, pos3d: shared.IVector3, font?: GameFont, scale?: number, color?: shared.RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: TextAlign): shared.Utils.EveryTick;
-export function drawText3d(text: string, pos3d: IVector3, font: GameFont, scale: number, color: RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick {
+export function drawText3d(text: string, pos3d: shared.IVector3, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick {
   // TODO Implement
   return null;
 }
@@ -1496,7 +1496,7 @@ export function loadMapArea(pos: shared.IVector3, radius?: number, timeout?: num
      * @param radius Radius of sphere to load. Defaults to 50.0.
      * @param timeout The maximum milliseconds to wait, otherwise promise will be rejected. Defaults to 5000.
      */
-export function loadMapArea(pos: IVector3, radius: number, timeout: number): Promise<void> {
+export function loadMapArea(pos: shared.IVector3, radius: number, timeout: number): Promise<void> {
   // TODO Implement
   return null;
 }
@@ -1536,7 +1536,7 @@ export function getClosestPlayer(options?: { pos?: shared.IVector3; range?: numb
      *
      * `range` - In which range to search for the nearest player. Defaults to `Infinity`.
      */
-export function getClosestPlayer(options: { pos?: IVector3; range?: number; }): Player {
+export function getClosestPlayer(options: { pos?: shared.IVector3; range?: number; }): Player {
   // TODO Implement
   return null;
 }
@@ -1549,7 +1549,7 @@ export function getClosestVehicle(options?: { pos?: shared.IVector3; range?: num
      *
      * `range` - In which range to search for the nearest vehicle. Defaults to `Infinity`.
      */
-export function getClosestVehicle(options: { pos?: IVector3; range?: number; }): Vehicle {
+export function getClosestVehicle(options: { pos?: shared.IVector3; range?: number; }): Vehicle {
   // TODO Implement
   return null;
 }
@@ -1562,7 +1562,7 @@ export function getClosestObject(options?: { pos?: shared.IVector3; range?: numb
      *
      * `range` - In which range to search for the nearest object. Defaults to `Infinity`.
      */
-export function getClosestObject(options: { pos?: IVector3; range?: number; }): Object {
+export function getClosestObject(options: { pos?: shared.IVector3; range?: number; }): Object {
   // TODO Implement
   return null;
 }
@@ -1575,7 +1575,7 @@ export function getClosestWorldObject(options?: { pos?: shared.IVector3; range?:
      *
      * `range` - In which range to search for the nearest world object. Defaults to `Infinity`.
      */
-export function getClosestWorldObject(options: { pos?: IVector3; range?: number; }): Object {
+export function getClosestWorldObject(options: { pos?: shared.IVector3; range?: number; }): Object {
   // TODO Implement
   return null;
 }
@@ -1589,7 +1589,7 @@ export function getClosestVirtualEntity(options?: { pos?: shared.IVector3; range
      * `range` - In which range to search for the nearest virtualEntity. Defaults to `Infinity`.
      *
      */
-export function getClosestVirtualEntity(options: { pos?: IVector3; range?: number; }): VirtualEntity {
+export function getClosestVirtualEntity(options: { pos?: shared.IVector3; range?: number; }): VirtualEntity {
   // TODO Implement
   return null;
 }
@@ -1658,13 +1658,13 @@ export function loadDefaultIpls(): void {
 
 export function isPointOnScreen(x: number, y: number, z: number): boolean;
 export function isPointOnScreen(value: shared.IVector3): boolean;
-export function isPointOnScreen(value: IVector3): boolean {
+export function isPointOnScreen(value: shared.IVector3): boolean {
   // TODO Implement
   return false;
 }
 
 export function getPedBonePos(ped: number, boneId: number): shared.Vector3;
-export function getPedBonePos(ped: number, boneId: number): Vector3 {
+export function getPedBonePos(ped: number, boneId: number): shared.Vector3 {
   // TODO Implement
   return null;
 }
@@ -1683,12 +1683,12 @@ export class BaseObject extends shared.BaseObject {
      * Gets the base object with the given type and local id
      */
   
-  public static getByID(type: BaseObjectType, id: number): BaseObject {
+  public static getByID(type: shared.BaseObjectType, id: number): BaseObject {
     // TODO implement
     return null;
   }
   
-  public static getByRemoteID(type: BaseObjectType, id: number): BaseObject {
+  public static getByRemoteID(type: shared.BaseObjectType, id: number): BaseObject {
     // TODO implement
     return null;
   }
@@ -1712,12 +1712,12 @@ export class BaseObject extends shared.BaseObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: K, value: ICustomBaseObjectMeta[K]): void;
     /** @deprecated See {@link ICustomBaseObjectMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(key: K | MetaValues<ICustomBaseObjectMeta>, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void> | ICustomBaseObjectMeta[K] | InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(key: K | shared.MetaValues<ICustomBaseObjectMeta>, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void> | ICustomBaseObjectMeta[K] | shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -1741,7 +1741,7 @@ export class WorldObject extends BaseObject {
     /**
      * Object position
      */
-  public pos: Vector3;
+  public pos: shared.Vector3;
     /**
      * Object dimension.
      *
@@ -1752,7 +1752,7 @@ export class WorldObject extends BaseObject {
 }
 
 export class VirtualEntity extends WorldObject {
-  public constructor(group: VirtualEntityGroup, position: Vector3, streamingDistance: number, data: Record<string, any>) {
+  public constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>) {
     super();
     // TODO: Implement constructor
   }
@@ -1771,10 +1771,10 @@ export class VirtualEntity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
   public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: K): ICustomVirtualEntityStreamSyncedMeta[K];
+  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: K): shared.ICustomVirtualEntityStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVirtualEntityStreamSyncedMeta} */
   
-  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVirtualEntityStreamSyncedMeta[K] | V {
+  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomVirtualEntityStreamSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -1902,12 +1902,12 @@ export class Audio extends BaseObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomAudioMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomAudioMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomAudioMeta>>(key: K, value: ICustomAudioMeta[K]): void;
     /** @deprecated See {@link ICustomAudioMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomAudioMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomAudioMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomAudioMeta>, V extends any>(key: K | MetaValues<ICustomAudioMeta>, value: InterfaceValueByKey<ICustomAudioMeta, K, unknown, void> | ICustomAudioMeta[K] | InterfaceValueByKey<ICustomAudioMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomAudioMeta>, V extends any>(key: K | shared.MetaValues<ICustomAudioMeta>, value: shared.InterfaceValueByKey<ICustomAudioMeta, K, unknown, void> | ICustomAudioMeta[K] | shared.InterfaceValueByKey<ICustomAudioMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -1945,11 +1945,11 @@ export class AudioOutputFrontend extends AudioOutput {
 }
 
 export class AudioOutputWorld extends AudioOutput {
-  public constructor(pos: IVector3, categoryHash: number) {
+  public constructor(pos: shared.IVector3, categoryHash: number) {
     super();
     // TODO: Implement constructor
   }
-  public pos: Vector3;
+  public pos: shared.Vector3;
 }
 
 export class AudioOutputAttached extends AudioOutput {
@@ -1961,16 +1961,16 @@ export class AudioOutputAttached extends AudioOutput {
 }
 
 export class Checkpoint extends WorldObject {
-  public constructor(type: CheckpointType, pos: IVector3, nextPos: IVector3, radius: number, height: number, rgbColor: RGBA, iconColor: RGBA, streamingDistance: number) {
+  public constructor(type: shared.CheckpointType, pos: shared.IVector3, nextPos: shared.IVector3, radius: number, height: number, rgbColor: shared.RGBA, iconColor: shared.RGBA, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
-  public checkpointType: CheckpointType;
-  public nextPos: Vector3;
+  public checkpointType: shared.CheckpointType;
+  public nextPos: shared.Vector3;
   public radius: number;
   public height: number;
-  public color: RGBA;
-  public iconColor: RGBA;
+  public color: shared.RGBA;
+  public iconColor: shared.RGBA;
     /**
      * Streaming range for the checkpoint
      */
@@ -2003,7 +2003,7 @@ export class Checkpoint extends WorldObject {
     return false;
   }
   
-  public isPointIn(pos: IVector3): boolean {
+  public isPointIn(pos: shared.IVector3): boolean {
     // TODO implement
     return false;
   }
@@ -2027,12 +2027,12 @@ export class Checkpoint extends WorldObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomCheckpointMeta>>(key: K, value: ICustomCheckpointMeta[K]): void;
     /** @deprecated See {@link ICustomCheckpointMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomCheckpointMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomCheckpointMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomCheckpointMeta>, V extends any>(key: K | MetaValues<ICustomCheckpointMeta>, value: InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void> | ICustomCheckpointMeta[K] | InterfaceValueByKey<ICustomCheckpointMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomCheckpointMeta>, V extends any>(key: K | shared.MetaValues<ICustomCheckpointMeta>, value: shared.InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void> | ICustomCheckpointMeta[K] | shared.InterfaceValueByKey<ICustomCheckpointMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -2081,12 +2081,12 @@ export class Entity extends WorldObject {
      * Object position.
      * @remarks Setting this throws an error if the client is not the network owner of an entity
      */
-  declare public pos: Vector3;
+  declare public pos: shared.Vector3;
     /**
      * Entity rotation in radians
      * @remarks Setting this throws an error if the client is not the network owner of an entity
      */
-  public rot: Vector3;
+  public rot: shared.Vector3;
   public readonly visible: boolean;
   public frozen: boolean;
     /**
@@ -2100,12 +2100,12 @@ export class Entity extends WorldObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomEntityMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomEntityMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: K, value: ICustomEntityMeta[K]): void;
     /** @deprecated See {@link ICustomEntityMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomEntityMeta>, V extends any>(key: K | MetaValues<ICustomEntityMeta>, value: InterfaceValueByKey<ICustomEntityMeta, K, unknown, void> | ICustomEntityMeta[K] | InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomEntityMeta>, V extends any>(key: K | shared.MetaValues<ICustomEntityMeta>, value: shared.InterfaceValueByKey<ICustomEntityMeta, K, unknown, void> | ICustomEntityMeta[K] | shared.InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -2136,10 +2136,10 @@ export class Entity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
   public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: K): ICustomEntitySyncedMeta[K];
+  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: K): shared.ICustomEntitySyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomEntitySyncedMeta} */
   
-  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomEntitySyncedMeta[K] | V {
+  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomEntitySyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -2167,10 +2167,10 @@ export class Entity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
   public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: K): ICustomEntityStreamSyncedMeta[K];
+  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: K): shared.ICustomEntityStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomEntityStreamSyncedMeta} */
   
-  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomEntityStreamSyncedMeta[K] | V {
+  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomEntityStreamSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -2290,11 +2290,11 @@ export class Player extends Entity {
     /**
      * Position the player is currently aiming at.
      */
-  public readonly aimPos: Vector3;
+  public readonly aimPos: shared.Vector3;
     /**
      * Rotation of the head of the player.
      */
-  public readonly headRot: Vector3;
+  public readonly headRot: shared.Vector3;
     /**
      * Curent seat the player is sitting in.
      * If player is not in any vehicle it is equal to `0`.
@@ -2310,7 +2310,7 @@ export class Player extends Entity {
     /**
      * The current aim offset of the player.
      */
-  public readonly entityAimOffset: Vector3;
+  public readonly entityAimOffset: shared.Vector3;
     /**
      * Is the flashlight of the player activated.
      */
@@ -2398,12 +2398,12 @@ export class Player extends Entity {
     return null;
   }
     // normal meta
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomPlayerMeta>>(key: K, value: ICustomPlayerMeta[K]): void;
     /** @deprecated See {@link ICustomPlayerMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomPlayerMeta>, V extends any>(key: K | MetaValues<ICustomPlayerMeta>, value: InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void> | ICustomPlayerMeta[K] | InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomPlayerMeta>, V extends any>(key: K | shared.MetaValues<ICustomPlayerMeta>, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void> | ICustomPlayerMeta[K] | shared.InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -2429,10 +2429,10 @@ export class Player extends Entity {
   }
     // synced meta
   public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: K): ICustomPlayerSyncedMeta[K];
+  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: K): shared.ICustomPlayerSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerSyncedMeta} */
   
-  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerSyncedMeta[K] | V {
+  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomPlayerSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -2444,10 +2444,10 @@ export class Player extends Entity {
   }
     // stream synced meta
   public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K): ICustomPlayerStreamSyncedMeta[K];
+  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K): shared.ICustomPlayerStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerStreamSyncedMeta} */
   
-  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerStreamSyncedMeta[K] | V {
+  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomPlayerStreamSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -2460,7 +2460,7 @@ export class Player extends Entity {
 }
 export namespace Utils {
 export class Keybind {
-  public constructor(keyCode: KeyCode[], callback: () => void, eventType: "keyup" | "keydown") {
+  public constructor(keyCode: shared.KeyCode[], callback: () => void, eventType: "keyup" | "keydown") {
     // TODO: Implement constructor
   }
   
@@ -2485,15 +2485,15 @@ export class Keybind {
      * ```
      */
 export class Marker {
-  public constructor(pos: IVector3, options: IMarkerOptions) {
+  public constructor(pos: shared.IVector3, options: IMarkerOptions) {
     // TODO: Implement constructor
   }
   public type: number;
-  public pos: IVector3;
-  public dir: IVector3;
-  public rot: IVector3;
-  public scale: IVector3;
-  public color: RGBA;
+  public pos: shared.IVector3;
+  public dir: shared.IVector3;
+  public rot: shared.IVector3;
+  public scale: shared.IVector3;
+  public color: shared.RGBA;
   public bobUpAndDown: boolean;
   public faceCamera: boolean;
   public p19: number;
@@ -2511,15 +2511,15 @@ export class Marker {
 
 export class LocalPlayer extends Player {
   declare public readonly dimension: number;
-  declare public pos: Vector3;
-  declare public rot: Vector3;
+  declare public pos: shared.Vector3;
+  declare public rot: shared.Vector3;
     /**
      * Ammo of the currently held weapon.
      *
      * @returns Total ammo of the currently held weapon. 0 if no weapon is equipped.
      */
   public readonly currentAmmo: number;
-  public readonly weapons: readonly IWeapon[];
+  public readonly weapons: readonly shared.IWeapon[];
   public readonly currentWeaponData: WeaponData;
   public stamina: number;
   public maxStamina: number;
@@ -2561,12 +2561,12 @@ export class LocalPlayer extends Player {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomLocalPlayerMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomLocalPlayerMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomLocalPlayerMeta>>(key: K, value: ICustomLocalPlayerMeta[K]): void;
     /** @deprecated See {@link ICustomLocalPlayerMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomLocalPlayerMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomLocalPlayerMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomLocalPlayerMeta>, V extends any>(key: K | MetaValues<ICustomLocalPlayerMeta>, value: InterfaceValueByKey<ICustomLocalPlayerMeta, K, unknown, void> | ICustomLocalPlayerMeta[K] | InterfaceValueByKey<ICustomLocalPlayerMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomLocalPlayerMeta>, V extends any>(key: K | shared.MetaValues<ICustomLocalPlayerMeta>, value: shared.InterfaceValueByKey<ICustomLocalPlayerMeta, K, unknown, void> | ICustomLocalPlayerMeta[K] | shared.InterfaceValueByKey<ICustomLocalPlayerMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -2624,7 +2624,7 @@ export class Vehicle extends Entity {
     /**
      * Vehicle speed vector.
      */
-  public readonly speedVector: Vector3;
+  public readonly speedVector: shared.Vector3;
     /**
      * Vehicle seat count.
      */
@@ -2760,7 +2760,7 @@ export class Vehicle extends Entity {
 /**
      * Vehicle lock state.
      */
-  public readonly lockState: VehicleLockState;
+  public readonly lockState: shared.VehicleLockState;
     /**
      * Vehicle daylight state.
      */
@@ -3012,12 +3012,12 @@ export class Vehicle extends Entity {
 
   }
     // normal meta
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: K, value: ICustomVehicleMeta[K]): void;
     /** @deprecated See {@link ICustomVehicleMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomVehicleMeta>, V extends any>(key: K | MetaValues<ICustomVehicleMeta>, value: InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void> | ICustomVehicleMeta[K] | InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomVehicleMeta>, V extends any>(key: K | shared.MetaValues<ICustomVehicleMeta>, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void> | ICustomVehicleMeta[K] | shared.InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -3043,10 +3043,10 @@ export class Vehicle extends Entity {
   }
     // synced meta
   public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: K): ICustomVehicleSyncedMeta[K];
+  public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: K): shared.ICustomVehicleSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVehicleSyncedMeta} */
   
-  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVehicleSyncedMeta[K] | V {
+  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomVehicleSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -3058,10 +3058,10 @@ export class Vehicle extends Entity {
   }
     // stream synced meta
   public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: K): ICustomVehicleStreamSyncedMeta[K];
+  public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: K): shared.ICustomVehicleStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVehicleStreamSyncedMeta} */
   
-  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVehicleStreamSyncedMeta[K] | V {
+  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | shared.ICustomVehicleStreamSyncedMeta[K] | V {
     // TODO implement
     return null;
   }
@@ -3131,11 +3131,11 @@ export class WebView extends BaseObject {
     /**
      * Set and get the webview size.
      */
-  public size: Vector2;
+  public size: shared.Vector2;
     /**
      * Set and get the webview position.
      */
-  public readonly pos: Vector2;
+  public readonly pos: shared.Vector2;
     /**
      * Retrieves the webview from the pool.
      *
@@ -3294,12 +3294,12 @@ export class WebView extends BaseObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomWebViewMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomWebViewMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomWebViewMeta>>(key: K, value: ICustomWebViewMeta[K]): void;
     /** @deprecated See {@link ICustomWebViewMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomWebViewMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomWebViewMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomWebViewMeta>, V extends any>(key: K | MetaValues<ICustomWebViewMeta>, value: InterfaceValueByKey<ICustomWebViewMeta, K, unknown, void> | ICustomWebViewMeta[K] | InterfaceValueByKey<ICustomWebViewMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomWebViewMeta>, V extends any>(key: K | shared.MetaValues<ICustomWebViewMeta>, value: shared.InterfaceValueByKey<ICustomWebViewMeta, K, unknown, void> | ICustomWebViewMeta[K] | shared.InterfaceValueByKey<ICustomWebViewMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -3457,12 +3457,12 @@ export class Blip extends WorldObject {
   public static readonly all: readonly Blip[];
   public static readonly count: number;
   public readonly scriptID: number;
-  public routeColor: RGBA;
+  public routeColor: shared.RGBA;
   public alpha: number;
   public asMissionCreator: boolean;
   public bright: boolean;
   public category: number;
-  public color: number | BlipColor.White | BlipColor.Red | BlipColor.Green | BlipColor.Blue | BlipColor.LightRed | BlipColor.Violet | BlipColor.Pink | BlipColor.LightOrange | BlipColor.LightBrown | BlipColor.LightGreen | BlipColor.LightBlue | BlipColor.LightPurple | BlipColor.DarkPurple | BlipColor.Cyan | BlipColor.LightYellow | BlipColor.Organe | BlipColor.GraniteGreen | BlipColor.DarkBrown | BlipColor.LightGray | BlipColor.LightPink | BlipColor.LemonGreen | BlipColor.ForestGreen | BlipColor.ElectricBlue | BlipColor.BrightPurple | BlipColor.DarkYellow | BlipColor.PinkRed | BlipColor.Orange | BlipColor.BrilliantRose | BlipColor.Salmon | BlipColor.DarkGreen | BlipColor.BlizzardBlue | BlipColor.OracleBlue | BlipColor.Silver | BlipColor.MulberryPink | BlipColor.AltoGray | BlipColor.JellyBeanBlue | BlipColor.DarkOrange | BlipColor.Mamba | BlipColor.White | BlipColor.Red | BlipColor.Green | BlipColor.Blue | BlipColor.LightRed | BlipColor.Violet | BlipColor.Pink | BlipColor.LightOrange | BlipColor.LightBrown | BlipColor.LightGreen | BlipColor.LightBlue | BlipColor.LightPurple | BlipColor.DarkPurple | BlipColor.Cyan | BlipColor.LightYellow | BlipColor.Organe | BlipColor.GraniteGreen | BlipColor.DarkBrown | BlipColor.LightGray | BlipColor.LightPink | BlipColor.LemonGreen | BlipColor.ForestGreen | BlipColor.ElectricBlue | BlipColor.BrightPurple | BlipColor.DarkYellow | BlipColor.PinkRed | BlipColor.Orange | BlipColor.BrilliantRose | BlipColor.Salmon | BlipColor.DarkGreen | BlipColor.BlizzardBlue | BlipColor.OracleBlue | BlipColor.Silver | BlipColor.MulberryPink | BlipColor.AltoGray | BlipColor.JellyBeanBlue | BlipColor.DarkOrange | BlipColor.Mamba;
+  public color: number | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba;
   public crewIndicatorVisible: boolean;
   public display: number;
   public flashes: boolean;
@@ -3481,15 +3481,15 @@ export class Blip extends WorldObject {
   public pulse: boolean;
   public route: boolean;
   public scale: number;
-  public secondaryColor: number | RGBA;
+  public secondaryColor: number | shared.RGBA;
   public shortRange: boolean;
   public showCone: boolean;
   public shrinked: boolean;
-  public size: Vector2;
-  public sprite: BlipSprite;
+  public size: shared.Vector2;
+  public sprite: shared.BlipSprite;
   public tickVisible: boolean;
   public visible: boolean;
-  public blipType: BlipType;
+  public blipType: shared.BlipType;
   public isFriendly: boolean;
   public isHiddenOnLegend: boolean;
   public isMinimalOnEdge: boolean;
@@ -3555,12 +3555,12 @@ export class Blip extends WorldObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomBlipMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomBlipMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomBlipMeta>>(key: K, value: ICustomBlipMeta[K]): void;
     /** @deprecated See {@link ICustomBlipMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomBlipMeta>, V extends any>(key: K | MetaValues<ICustomBlipMeta>, value: InterfaceValueByKey<ICustomBlipMeta, K, unknown, void> | ICustomBlipMeta[K] | InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomBlipMeta>, V extends any>(key: K | shared.MetaValues<ICustomBlipMeta>, value: shared.InterfaceValueByKey<ICustomBlipMeta, K, unknown, void> | ICustomBlipMeta[K] | shared.InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -3600,7 +3600,7 @@ export class HandlingData {
   public brakeBiasRear: number;
   public brakeForce: number;
   public camberStiffnesss: number;
-  public centreOfMassOffset: Vector3;
+  public centreOfMassOffset: shared.Vector3;
   public clutchChangeRateScaleDownShift: number;
   public clutchChangeRateScaleUpShift: number;
   public collisionDamageMult: number;
@@ -3614,7 +3614,7 @@ export class HandlingData {
   public engineDamageMult: number;
   public handBrakeForce: number;
   public handlingFlags: number;
-  public inertiaMultiplier: Vector3;
+  public inertiaMultiplier: shared.Vector3;
   public initialDragCoeff: number;
   public initialDriveForce: number;
   public initialDriveGears: number;
@@ -3873,7 +3873,7 @@ export class Voice {
     /**
      * Returns the keycode of the voice activation key.
      */
-  public static readonly activationKey: KeyCode;
+  public static readonly activationKey: shared.KeyCode;
   public static readonly voiceControlsEnabled: boolean;
     /**
      * @remarks This function requires [Extended Voice API](https://docs.altv.mp/articles/permissions.html) permission from the user.
@@ -4125,11 +4125,11 @@ export class Profiler {
 }
 
 export class RmlElement extends BaseObject {
-  public readonly relativeOffset: Vector2;
-  public readonly absoluteOffset: Vector2;
+  public readonly relativeOffset: shared.Vector2;
+  public readonly absoluteOffset: shared.Vector2;
   public readonly baseline: number;
   public readonly zIndex: number;
-  public readonly containingBlock: Vector2;
+  public readonly containingBlock: shared.Vector2;
   public readonly focusedElement: RmlElement;
   public readonly tagName: string;
   public rmlId: string;
@@ -4236,12 +4236,12 @@ export class RmlElement extends BaseObject {
     return [];
   }
   
-  public setOffset(element: RmlElement, offset: IVector2, fixed: boolean): void {
+  public setOffset(element: RmlElement, offset: shared.IVector2, fixed: boolean): void {
     // TODO implement
 
   }
   
-  public isPointWithinElement(point: IVector2): boolean {
+  public isPointWithinElement(point: shared.IVector2): boolean {
     // TODO implement
     return false;
   }
@@ -4418,12 +4418,12 @@ export class FocusData {
     // TODO: Implement constructor
   }
   public static readonly isFocusOverriden: boolean;
-  public static readonly focusOverridePos: Vector3;
-  public static readonly focusOverrideOffset: Vector3;
+  public static readonly focusOverridePos: shared.Vector3;
+  public static readonly focusOverrideOffset: shared.Vector3;
   public static readonly focusOverrideEntity: Entity;
-  public overrideFocus(pos: Vector3, offset: Vector3): void;
+  public overrideFocus(pos: shared.Vector3, offset: shared.Vector3): void;
   
-  public static overrideFocus(pos: Vector3 | Entity, offset: Vector3): void {
+  public static overrideFocus(pos: shared.Vector3 | Entity, offset: shared.Vector3): void {
     // TODO implement
 
   }
@@ -4466,7 +4466,7 @@ export class WeaponData {
 }
 
 export class LocalObject extends Object {
-  public constructor(model: string | number, pos: Vector3, rot: Vector3, noOffset: boolean, dynamic: boolean, useStreaming: boolean, streamingDistance: number) {
+  public constructor(model: string | number, pos: shared.Vector3, rot: shared.Vector3, noOffset: boolean, dynamic: boolean, useStreaming: boolean, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
@@ -4485,8 +4485,8 @@ export class LocalObject extends Object {
      */
   public static readonly allWorld: readonly LocalObject[];
   declare public static readonly count: number;
-  declare public pos: Vector3;
-  declare public rot: Vector3;
+  declare public pos: shared.Vector3;
+  declare public rot: shared.Vector3;
   public static get model(): number {
         // TODO Implement
             return 0;;
@@ -4534,9 +4534,9 @@ export class LocalObject extends Object {
      * @param collision Whether the object and the entity should collide with each other.
      * @param fixedRot Whether the rotation of the object is fixed or follows that of the entity.
      */
-  public attachToEntity(entity: Entity, boneIndex: number, offset: Vector3, rot: Vector3, useSoftPinning: boolean, collision: boolean, fixedRot: boolean): void;
+  public attachToEntity(entity: Entity, boneIndex: number, offset: shared.Vector3, rot: shared.Vector3, useSoftPinning: boolean, collision: boolean, fixedRot: boolean): void;
   
-  public attachToEntity(entity: Entity | number, boneIndex: number, offset: Vector3, rot: Vector3, useSoftPinning: boolean, collision: boolean, fixedRot: boolean): void {
+  public attachToEntity(entity: Entity | number, boneIndex: number, offset: shared.Vector3, rot: shared.Vector3, useSoftPinning: boolean, collision: boolean, fixedRot: boolean): void {
     // TODO implement
 
   }
@@ -4575,7 +4575,7 @@ export class LocalObject extends Object {
 }
 
 export class WeaponObject extends LocalObject {
-  public constructor(weaponHash: string | number, pos: Vector3, rot: Vector3, modelHash: string | number, numAmmo: number, createDefaultComponents: boolean, scale: number, useStreaming: boolean, streamingDistance: number) {
+  public constructor(weaponHash: string | number, pos: shared.Vector3, rot: shared.Vector3, modelHash: string | number, numAmmo: number, createDefaultComponents: boolean, scale: number, useStreaming: boolean, streamingDistance: number) {
     let noOffset = false;
     let model = 0;
     let dynamic = false;
@@ -4682,10 +4682,10 @@ export class Ped extends Entity {
     return null;
   }
     // normal meta
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPedMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomPedMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomPedMeta>>(key: K, value: ICustomPedMeta[K]): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomPedMeta>>(key: K | MetaValues<ICustomPedMeta>, value: InterfaceValueByKey<ICustomPedMeta, K, unknown, void> | ICustomPedMeta[K]): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomPedMeta>>(key: K | shared.MetaValues<ICustomPedMeta>, value: shared.InterfaceValueByKey<ICustomPedMeta, K, unknown, void> | ICustomPedMeta[K]): void {
     // TODO implement
 
   }
@@ -4710,7 +4710,7 @@ export class Ped extends Entity {
     // synced meta
   public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
   
-  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPedSyncedMeta>>(key: Exclude<K, never>): unknown | ICustomPedSyncedMeta[K] {
+  public getSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPedSyncedMeta>>(key: Exclude<K, never>): unknown | shared.ICustomPedSyncedMeta[K] {
     // TODO implement
     return null;
   }
@@ -4723,7 +4723,7 @@ export class Ped extends Entity {
     // stream synced meta
   public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
   
-  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPedStreamSyncedMeta>>(key: Exclude<K, never>): unknown | ICustomPedStreamSyncedMeta[K] {
+  public getStreamSyncedMeta<K extends string | shared.ExtractStringKeys<shared.ICustomPedStreamSyncedMeta>>(key: Exclude<K, never>): unknown | shared.ICustomPedStreamSyncedMeta[K] {
     // TODO implement
     return null;
   }
@@ -4847,17 +4847,17 @@ export class AudioCategory {
 }
 
 export class Marker extends WorldObject {
-  public constructor(type: MarkerType, position: Vector3, color: RGBA, useStreaming: true, streamingDistance: number) {
+  public constructor(type: shared.MarkerType, position: shared.Vector3, color: shared.RGBA, useStreaming: true, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
   public static readonly all: readonly Marker[];
   public visible: boolean;
-  public markerType: MarkerType;
-  public color: RGBA;
-  public scale: Vector3;
-  public rot: Vector3;
-  public dir: Vector3;
+  public markerType: shared.MarkerType;
+  public color: shared.RGBA;
+  public scale: shared.Vector3;
+  public rot: shared.Vector3;
+  public dir: shared.Vector3;
   public readonly isGlobal: boolean;
   public readonly target: Player;
   public readonly streamingDistance: number;
@@ -4880,18 +4880,18 @@ export class Marker extends WorldObject {
 
 export class Colshape extends WorldObject {
   public static readonly all: readonly Colshape[];
-  public readonly colshapeType: ColShapeType;
+  public readonly colshapeType: shared.ColShapeType;
     /**
      * Whether this colshape should only trigger its enter/leave events for players or all entities.
      */
   public playersOnly: boolean;
   public readonly radius: number;
   public readonly height: number;
-  public readonly min: Vector2 | Vector3;
-  public readonly max: Vector2 | Vector3;
+  public readonly min: shared.Vector2 | shared.Vector3;
+  public readonly max: shared.Vector2 | shared.Vector3;
   public readonly minZ: number;
   public readonly maxZ: number;
-  public readonly points: readonly Vector2[];
+  public readonly points: readonly shared.Vector2[];
     /**
      * Retrieves the colshape from the pool.
      *
@@ -4910,7 +4910,7 @@ export class Colshape extends WorldObject {
     return false;
   }
   
-  public isPointIn(position: IVector3): boolean {
+  public isPointIn(position: shared.IVector3): boolean {
     // TODO implement
     return false;
   }
@@ -4934,12 +4934,12 @@ export class Colshape extends WorldObject {
     // TODO implement
     return null;
   }
-  public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void>): void;
+  public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void>): void;
   public setMeta<K extends shared.ExtractStringKeys<ICustomColshapeMeta>>(key: K, value: ICustomColshapeMeta[K]): void;
     /** @deprecated See {@link ICustomColshapeMeta} */
-  public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void;
+  public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void;
   
-  public setMeta<K extends string | shared.ExtractStringKeys<ICustomColshapeMeta>, V extends any>(key: K | MetaValues<ICustomColshapeMeta>, value: InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void> | ICustomColshapeMeta[K] | InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void {
+  public setMeta<K extends string | shared.ExtractStringKeys<ICustomColshapeMeta>, V extends any>(key: K | shared.MetaValues<ICustomColshapeMeta>, value: shared.InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void> | ICustomColshapeMeta[K] | shared.InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void {
     // TODO implement
 
   }
@@ -4981,28 +4981,28 @@ export class ColshapeRectangle extends Colshape {
 }
 
 export class ColshapePolygon extends Colshape {
-  public constructor(minZ: number, maxZ: number, points: IVector2[]) {
+  public constructor(minZ: number, maxZ: number, points: shared.IVector2[]) {
     super();
     // TODO: Implement constructor
   }
 }
 
 export class TextLabel extends WorldObject {
-  public constructor(text: string, fontName: string, fontSize: number, scale: number, pos: IVector3, rot: IVector3, color: RGBA, outlineWidth: number, outlineColor: RGBA, useStreaming: boolean, streamingDistance: number) {
+  public constructor(text: string, fontName: string, fontSize: number, scale: number, pos: shared.IVector3, rot: shared.IVector3, color: shared.RGBA, outlineWidth: number, outlineColor: shared.RGBA, useStreaming: boolean, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
   public static readonly all: readonly TextLabel[];
   public visible: boolean;
-  public color: RGBA;
-  public outlineColor: RGBA;
+  public color: shared.RGBA;
+  public outlineColor: shared.RGBA;
   public outlineWidth: number;
   public font: string;
   public fontSize: number;
   public scale: number;
   public align: TextLabelAlignment;
   public text: string;
-  public rot: Vector3;
+  public rot: shared.Vector3;
   public readonly isGlobal: boolean;
   public readonly target: Player;
   public readonly isStreamedIn: boolean;
@@ -5022,7 +5022,7 @@ export class TextLabel extends WorldObject {
 }
 
 export class LocalVehicle extends Vehicle {
-  public constructor(model: string | number, dimension: number, pos: IVector3, rot: IVector3, useStreaming: true, streamingDistance: number) {
+  public constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
@@ -5030,7 +5030,7 @@ export class LocalVehicle extends Vehicle {
         // TODO Implement
             return 0;;
       }
-  declare public rot: Vector3;
+  declare public rot: shared.Vector3;
   public readonly streamingDistance: number;
   declare public visible: boolean;
   declare public readonly scriptID: number;
@@ -5062,7 +5062,7 @@ export class LocalVehicle extends Vehicle {
     /**
      * Vehicle speed vector.
      */
-  declare public readonly speedVector: Vector3;
+  declare public readonly speedVector: shared.Vector3;
     /**
      * Vehicle engine state.
      */
@@ -5070,7 +5070,7 @@ export class LocalVehicle extends Vehicle {
     /**
      * Vehicle lock state.
      */
-  declare public readonly lockState: VehicleLockState;
+  declare public readonly lockState: shared.VehicleLockState;
     /**
      * The vehicle's petrol tank health.
      */
@@ -5260,7 +5260,7 @@ export class LocalVehicle extends Vehicle {
 }
 
 export class LocalPed extends Ped {
-  public constructor(model: string | number, dimension: number, pos: IVector3, rot: IVector3, useStreaming: true, streamingDistance: number) {
+  public constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number) {
     super();
     // TODO: Implement constructor
   }
@@ -5268,7 +5268,7 @@ export class LocalPed extends Ped {
         // TODO Implement
             return 0;;
       }
-  declare public rot: Vector3;
+  declare public rot: shared.Vector3;
   public readonly streamingDistance: number;
   declare public visible: boolean;
   declare public readonly scriptID: number;
@@ -5320,8 +5320,8 @@ export class Interior {
     // TODO: Implement constructor
   }
   public readonly id: number;
-  public readonly pos: Vector3;
-  public readonly rot: Vector3;
+  public readonly pos: shared.Vector3;
+  public readonly rot: shared.Vector3;
   public readonly roomCount: number;
   public readonly portalCount: number;
   public readonly entitiesExtents: IAABB;
@@ -5400,12 +5400,12 @@ export class InteriorPortal {
   public roomTo: number;
   public flag: number;
   
-  public getCornerPos(cornerIndex: number): Vector3 {
+  public getCornerPos(cornerIndex: number): shared.Vector3 {
     // TODO implement
     return null;
   }
   
-  public setCornerPos(cornerIndex: number, value: Vector3): void {
+  public setCornerPos(cornerIndex: number, value: shared.Vector3): void {
     // TODO implement
 
   }
@@ -5425,12 +5425,12 @@ export class InteriorPortal {
 
   }
   
-  public getEntityPos(entityIndex: number): Vector3 {
+  public getEntityPos(entityIndex: number): shared.Vector3 {
     // TODO implement
     return null;
   }
   
-  public getEntityRot(entityIndex: number): Vector3 {
+  public getEntityRot(entityIndex: number): shared.Vector3 {
     // TODO implement
     return null;
   }
