@@ -1,26 +1,6 @@
 // Stub für index.d.ts
 
-export {
-  log,
-  logWarning,
-  logError,
-  logDebug,
-  setTimeout,
-  setInterval,
-  nextTick,
-  clearTimeout,
-  clearInterval,
-  clearNextTick,
-  hash,
-  version,
-  branch,
-  sdkVersion,
-  debug,
-  File,
-  RGBA,
-  Vector3,
-  Vector2,
-} from "alt-client";
+export { log, logWarning, logError, logDebug, setTimeout, setInterval, nextTick, clearTimeout, clearInterval, clearNextTick, hash, version, branch, sdkVersion, debug, File, RGBA, Vector3, Vector2 } from 'alt-client';
 
 export function getSharedArrayBuffer(id: number): SharedArrayBuffer;
 /**
@@ -31,8 +11,8 @@ export function getSharedArrayBuffer(id: number): SharedArrayBuffer;
  * @returns The shared array buffer instance.
  */
 export function getSharedArrayBuffer(id: number): SharedArrayBuffer {
-  // TODO Implement
-  return new SharedArrayBuffer(0);
+    // TODO Implement
+    return new SharedArrayBuffer(0);
 }
 
 export function emit(eventName: string, ...args: any[]): void;
@@ -43,7 +23,7 @@ export function emit(eventName: string, ...args: any[]): void;
  * @param args Rest parameters for emit to send.
  */
 export function emit(eventName: string, args: any[]): void {
-  // TODO Implement
+    // TODO Implement
 }
 
 export function on(eventName: string, listener: (...args: any[]) => void): void;
@@ -53,34 +33,22 @@ export function on(eventName: string, listener: (...args: any[]) => void): void;
  * @param eventName Name of the event.
  * @param listener Listener that should be added.
  */
-export function on(
-  eventName: string,
-  listener: (...args: any[]) => void
-): void {
-  // TODO Implement
+export function on(eventName: string, listener: (...args: any[]) => void): void {
+    // TODO Implement
 }
 
-export function once(
-  eventName: string,
-  listener: (...args: any[]) => void
-): void;
+export function once(eventName: string, listener: (...args: any[]) => void): void;
 /**
  * Subscribes to a custom client event with the specified listener, which only triggers once.
  *
  * @param eventName Name of the event.
  * @param listener Listener that should be added.
  */
-export function once(
-  eventName: string,
-  listener: (...args: any[]) => void
-): void {
-  // TODO Implement
+export function once(eventName: string, listener: (...args: any[]) => void): void {
+    // TODO Implement
 }
 
-export function off(
-  eventName: string,
-  listener: (...args: any[]) => void
-): void;
+export function off(eventName: string, listener: (...args: any[]) => void): void;
 /**
  * Unsubscribes from client event handler with specified listener.
  *
@@ -89,9 +57,6 @@ export function off(
  * @param eventName Name of the event.
  * @param listener Listener that should be removed.
  */
-export function off(
-  eventName: string,
-  listener: (...args: any[]) => void
-): void {
-  // TODO Implement
+export function off(eventName: string, listener: (...args: any[]) => void): void {
+    // TODO Implement
 }

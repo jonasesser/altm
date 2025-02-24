@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "prettier": "^3.5.2"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 220,
+    "singleQuote": true,
+    "semi": true,
+    "arrowParens": "always",
+    "trailingComma": "all"
+  }
+}
