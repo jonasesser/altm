@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "module": "CommonJS",
+      "target": "ESNext",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "paths": {
+        "altv-shared": ["./stubs/shared/index.stub.ts"],
+        "altv-client": ["./stubs/client/index.stub.ts"],
+        "altv-server": ["./stubs/server/index.stub.ts"],
+
+      }
+    }
+  }
+  
