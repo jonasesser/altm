@@ -1791,7 +1791,8 @@ export class WorldObject extends BaseObject {
 }
 
 export class VirtualEntity extends WorldObject {
-    public constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>) {
+    constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>);
+    public constructor(group?: VirtualEntityGroup, position?: shared.Vector3, streamingDistance?: number, data?: Record<string, any>) {
         super();
         // TODO: Implement constructor
     }
@@ -1845,7 +1846,8 @@ export class VirtualEntity extends WorldObject {
 }
 
 export class Audio extends BaseObject {
-    public constructor(source: string, volume: number, radio: boolean, clearCache: boolean) {
+    constructor(source: string, volume: number, radio: boolean, clearCache: boolean);
+    public constructor(source?: string, volume?: number, radio?: boolean, clearCache?: boolean) {
         super();
         // TODO: Implement constructor
     }
@@ -3122,7 +3124,18 @@ export class Vehicle extends Entity {
 }
 
 export class WebView extends BaseObject {
-    public constructor(params: IWebViewParams) {
+    constructor(url: string, isOverlay: boolean);
+    constructor(url: string, pos: shared.IVector2);
+    constructor(url: string, pos: shared.IVector2, size: shared.IVector2);
+    constructor(url: string, isOverlay: boolean, pos: shared.IVector2, size: shared.IVector2);
+    constructor(url: string, drawableHash: number, targetTexture: string);
+    constructor(params: IWebViewParams);
+    public constructor(
+        urlOrParams?: string | IWebViewParams,         
+        posOrTargetTexture?: shared.IVector2 | string | boolean | number, 
+        isOverlayOrDrawableHash?: string | boolean | number | shared.IVector2, 
+        size?: shared.IVector2
+    ) {
         super();
         // TODO: Implement constructor
     }
@@ -4899,7 +4912,9 @@ export class AudioCategory {
 }
 
 export class Marker extends WorldObject {
-    public constructor(type: shared.MarkerType, position: shared.Vector3, color: shared.RGBA, useStreaming: true, streamingDistance: number) {
+    constructor(type: shared.MarkerType, position: shared.Vector3, color: shared.RGBA);
+    constructor(type: shared.MarkerType, position: shared.Vector3, color: shared.RGBA, useStreaming: true, streamingDistance: number);
+    public constructor(type?: shared.MarkerType, position?: shared.Vector3, color?: shared.RGBA, useStreaming?: true, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -5044,18 +5059,20 @@ export class ColshapePolygon extends Colshape {
 }
 
 export class TextLabel extends WorldObject {
+    constructor(text: string, fontName: string, fontSize: number, scale: number, pos: shared.IVector3, rot: shared.IVector3, color: shared.RGBA, outlineWidth: number, outlineColor: shared.RGBA, useStreaming: boolean, streamingDistance: number);
+    constructor(text: string, fontName: string, fontSize: number, scale: number, pos: shared.IVector3, rot: shared.IVector3, color: shared.RGBA, outlineWidth: number, outlineColor: shared.RGBA, useStreaming: boolean, streamingDistance: number);
     public constructor(
-        text: string,
-        fontName: string,
-        fontSize: number,
-        scale: number,
-        pos: shared.IVector3,
-        rot: shared.IVector3,
-        color: shared.RGBA,
-        outlineWidth: number,
-        outlineColor: shared.RGBA,
-        useStreaming: boolean,
-        streamingDistance: number,
+        text?: string,
+        fontName?: string,
+        fontSize?: number,
+        scale?: number,
+        pos?: shared.IVector3,
+        rot?: shared.IVector3,
+        color?: shared.RGBA,
+        outlineWidth?: number,
+        outlineColor?: shared.RGBA,
+        useStreaming?: boolean,
+        streamingDistance?: number,
     ) {
         super();
         // TODO: Implement constructor
@@ -5090,7 +5107,9 @@ export class TextLabel extends WorldObject {
 }
 
 export class LocalVehicle extends Vehicle {
-    public constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number) {
+    constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3);
+    constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number);
+    public constructor(model?: string | number, dimension?: number, pos?: shared.IVector3, rot?: shared.IVector3, useStreaming?: true, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -5322,7 +5341,9 @@ export class LocalVehicle extends Vehicle {
 }
 
 export class LocalPed extends Ped {
-    public constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number) {
+    constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3);
+    constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number);
+    public constructor(model?: string | number, dimension?: number, pos?: shared.IVector3, rot?: shared.IVector3, useStreaming?: true, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -5497,8 +5518,133 @@ export class InteriorPortal {
 }
 
 export namespace Utils {
+    export function requestModel(model: string | number, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function requestAnimDict(animDict: string, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function requestAnimSet(animSet: string, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function requestClipSet(clipSet: string, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function requestCutscene(cutsceneName: string, flags: string | number, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function drawText2dThisFrame(
+        text: string,
+        pos2d: shared.IVector2,
+        font: GameFont,
+        scale: number,
+        color: shared.RGBA,
+        outline: boolean,
+        dropShadow: boolean,
+        textAlign: TextAlign,
+    ): void {
+        // TODO Implement
+    }
+
+    export function drawText2d(
+        text: string,
+        pos2d: shared.IVector2,
+        font: GameFont,
+        scale: number,
+        color: shared.RGBA,
+        outline: boolean,
+        dropShadow: boolean,
+        textAlign: TextAlign,
+    ): shared.Utils.EveryTick {
+        // TODO Implement
+        return null;
+    }
+
+    export function drawText3dThisFrame(
+        text: string,
+        pos3d: shared.IVector3,
+        font: GameFont,
+        scale: number,
+        color: shared.RGBA,
+        outline: boolean,
+        dropShadow: boolean,
+        textAlign: TextAlign,
+    ): void {
+        // TODO Implement
+    }
+
+    export function drawText3d(
+        text: string,
+        pos3d: shared.IVector3,
+        font: GameFont,
+        scale: number,
+        color: shared.RGBA,
+        outline: boolean,
+        dropShadow: boolean,
+        textAlign: TextAlign,
+    ): shared.Utils.EveryTick {
+        // TODO Implement
+        return null;
+    }
+
+    export function loadMapArea(pos: shared.IVector3, radius: number, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function registerPedheadshotBase64(ped: number | Player): Promise<string> {
+        // TODO Implement
+        return null;
+    }
+
+    export function registerPedheadshot3Base64(ped: number | Player): Promise<string> {
+        // TODO Implement
+        return null;
+    }
+
+    export function registerPedheadshotTransparentBase64(ped: number | Player): Promise<string> {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestPlayer(options: { pos?: shared.IVector3; range?: number }): Player {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestVehicle(options: { pos?: shared.IVector3; range?: number }): Vehicle {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestObject(options: { pos?: shared.IVector3; range?: number }): Object {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestWorldObject(options: { pos?: shared.IVector3; range?: number }): Object {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestVirtualEntity(options: { pos?: shared.IVector3; range?: number }): VirtualEntity {
+        // TODO Implement
+        return null;
+    }
+
     export class Keybind {
-        public constructor(keyCode: shared.KeyCode[], callback: () => void, eventType: 'keyup' | 'keydown') {
+        constructor(keyCode: shared.KeyCode | shared.KeyCode[], callback: () => void, eventType: 'keyup' | 'keydown');
+        public constructor(keyCode?: shared.KeyCode | shared.KeyCode[], callback?: () => void, eventType?: 'keyup' | 'keydown') {
             // TODO: Implement constructor
         }
 
@@ -5522,9 +5668,11 @@ export namespace Utils {
      * ```
      */
     export class Marker {
-        public constructor(pos: shared.IVector3, options: IMarkerOptions) {
+        constructor(pos: shared.IVector3, options: IMarkerOptions);
+        public constructor(pos?: shared.IVector3, options?: IMarkerOptions) {
             // TODO: Implement constructor
         }
+
         public type: number;
         public pos: shared.IVector3;
         public dir: shared.IVector3;

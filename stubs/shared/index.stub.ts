@@ -2328,7 +2328,10 @@ export function getNetTime(): number {
 }
 
 export class Vector3 {
-    public constructor(value: number) {
+    constructor(x: number, y: number, z: number);
+    constructor(arr: [number, number, number]);
+    constructor(obj: IVector3);
+    public constructor(x?: number | [number, number, number] | IVector3, y?: number, z?: number) {
         // TODO: Implement constructor
     }
     public readonly x: number;
@@ -2584,9 +2587,13 @@ export class Vector3 {
 }
 
 export class Vector2 {
-    public constructor(value: number) {
+    constructor(x: number, y: number);
+    constructor(arr: [number, number]);
+    constructor(obj: IVector2);
+    public constructor(x?: number | [number, number] | IVector2, y?: number) {
         // TODO: Implement constructor
     }
+  
     public readonly x: number;
     public readonly y: number;
     public static get length(): number {
@@ -2815,9 +2822,13 @@ export class Vector2 {
 }
 
 export class Quaternion {
-    public constructor(value: number) {
+    constructor(x: number, y: number, z: number, w: number);
+    constructor(arr: [number, number, number, number]);
+    constructor(obj: IQuaternion);
+    public constructor(x?: number | [number, number, number, number] | IQuaternion, y?: number, z?: number, w?: number) {
         // TODO: Implement constructor
     }
+  
     public readonly x: number;
     public readonly y: number;
     public readonly z: number;
@@ -2851,9 +2862,12 @@ export class Quaternion {
 }
 
 export class RGBA {
-    public constructor(rgba: { r: number; g: number; b: number; a?: number }) {
+    constructor(r: number, g: number, b: number, a: number);
+    constructor(array: [r: number, g: number, b: number, a?: number]);
+    public constructor(r?: number | [number, number, number, number?], g?: number, b?: number, a?: number) {
         // TODO: Implement constructor
     }
+  
     public static readonly red: RGBA;
     public static readonly green: RGBA;
     public static readonly blue: RGBA;
@@ -3083,10 +3097,31 @@ export class Utils {
 }
 
 export namespace Utils {
+    export function wait(timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function waitFor(callback: () => boolean, timeout: number): Promise<void> {
+        // TODO Implement
+        return null;
+    }
+
+    export function inspect(value: unknown, options: import('alt-shared').IInspectOptions): string {
+        // TODO Implement
+        return '';
+    }
+
+    export function assert(assertion: unknown, message: string): void {
+        // TODO Implement
+    }
+
     export class Timer {
-        public constructor(callback: () => void, ms: number, once: boolean) {
+       public constructor() {
             // TODO: Implement constructor
+            
         }
+
         public readonly id: number;
 
         public destroy(): void {
@@ -3094,32 +3129,37 @@ export namespace Utils {
         }
     }
     export class Timeout extends Timer {
-        public constructor(callback: () => void, ms: number) {
-            super(callback, ms, false);
+       public constructor() {
+            super();
             // TODO: Implement constructor
+            
         }
     }
     export class Interval extends Timer {
-        public constructor(callback: () => void, ms: number) {
-            super(callback, ms, false);
+        public constructor() {
+            super();
             // TODO: Implement constructor
+            
         }
     }
     export class NextTick extends Timer {
-        public constructor(callback: () => void) {
-            super(callback, 0, false);
+       public constructor() {
+            super();
             // TODO: Implement constructor
+            
         }
     }
     export class EveryTick extends Timer {
-        public constructor(callback: () => void) {
-            super(callback, 0, false);
+       public constructor() {
+            super();
             // TODO: Implement constructor
+            
         }
     }
     export class ConsoleCommand {
-        public constructor(name: string, callback: (...args: string[]) => void) {
+       public constructor() {
             // TODO: Implement constructor
+            
         }
 
         public destroy(): void {

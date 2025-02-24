@@ -1379,7 +1379,8 @@ export class WorldObject extends BaseObject {
 }
 
 export class VirtualEntityGroup extends BaseObject {
-    public constructor(maxEntitiesInStream: number) {
+    constructor(maxEntitiesInStream: number);
+    public constructor(maxEntitiesInStream?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -1393,7 +1394,8 @@ export class VirtualEntityGroup extends BaseObject {
 }
 
 export class VirtualEntity extends WorldObject {
-    public constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>) {
+    constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>);
+    public constructor(group?: VirtualEntityGroup, position?: shared.Vector3, streamingDistance?: number, data?: Record<string, any>) {
         super();
         // TODO: Implement constructor
     }
@@ -2585,10 +2587,32 @@ export class Player extends Entity {
 }
 
 export class Vehicle extends Entity {
-    public constructor(model: string | number, pos: shared.IVector3, rot: shared.IVector3, streamingDistance: number) {
+    constructor(
+        model: string | number,
+        x: number, y: number, z: number,
+        rx: number, ry: number, rz: number,
+        streamingDistance: number
+    );
+    constructor(
+        model: string | number,
+        pos: shared.IVector3,
+        rot: shared.IVector3,
+        streamingDistance: number
+    );
+    constructor(
+        model: string | number,
+        xOrPos: number | shared.IVector3,
+        yOrRot?: number | shared.IVector3,
+        z?: number,
+        rx?: number,
+        ry?: number,
+        rz?: number,
+        streamingDistance?: number
+    ) {
         super();
-        // TODO: Implement constructor
+        
     }
+    
     /**
      * Array with all vehicles.
      *
@@ -4059,24 +4083,55 @@ export class Blip extends WorldObject {
 }
 
 export class AreaBlip extends Blip {
-    public constructor(x: number, y: number, z: number, width: number, height: number, global: boolean) {
+    constructor(x: number, y: number, z: number, width: number, height: number, global: boolean);
+    public constructor(x?: number, y?: number, z?: number, width?: number, height?: number, global?: boolean) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class RadiusBlip extends Blip {
-    public constructor(x: number, y: number, z: number, radius: number, global: boolean) {
+    constructor(x: number, y: number, z: number, radius: number, global: boolean);
+    public constructor(x?: number, y?: number, z?: number, radius?: number, global?: boolean) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class PointBlip extends Blip {
-    public constructor(entity: Entity, global: boolean) {
+    constructor(x: number, y: number, z: number, global: boolean);
+    constructor(pos: shared.Vector3, global: boolean);
+    constructor(entity: Entity, global: boolean);
+    public constructor(
+        xOrPosOrEntity?: number | shared.Vector3 | Entity,
+        yOrGlobal?: number | boolean,
+        z?: number,
+        global?: boolean
+    ) {
         super();
-        // TODO: Implement constructor
+
+        if (typeof xOrPosOrEntity === "number" && typeof yOrGlobal === "number" && typeof z === "number") {
+            // First overload: (x, y, z, global)
+            const x = xOrPosOrEntity;
+            const y = yOrGlobal;
+            const globalFlag = global!;
+            
+            // TODO: Implement initialization using (x, y, z, globalFlag)
+        } else if (xOrPosOrEntity instanceof shared.Vector3) {
+            // Second overload: (pos, global)
+            const pos = xOrPosOrEntity;
+            const globalFlag = yOrGlobal as boolean;
+
+            // TODO: Implement initialization using (pos, globalFlag)
+        } else if (xOrPosOrEntity instanceof Entity) {
+            // Third overload: (entity, global)
+            const entity = xOrPosOrEntity;
+            const globalFlag = yOrGlobal as boolean;
+
+            // TODO: Implement initialization using (entity, globalFlag)
+        }
     }
+
 }
 
 export class Colshape extends WorldObject {
@@ -4152,52 +4207,73 @@ export class Colshape extends WorldObject {
 }
 
 export class ColshapeCylinder extends Colshape {
-    public constructor(x: number, y: number, z: number, radius: number, height: number) {
+    constructor(x: number, y: number, z: number, radius: number, height: number);
+    public constructor(x?: number, y?: number, z?: number, radius?: number, height?: number) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class ColshapeSphere extends Colshape {
-    public constructor(x: number, y: number, z: number, radius: number) {
+    constructor(x: number, y: number, z: number, radius: number);
+    public constructor(x?: number, y?: number, z?: number, radius?: number) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class ColshapeCircle extends Colshape {
-    public constructor(x: number, y: number, radius: number) {
+    constructor(x: number, y: number, radius: number);
+    public constructor(x?: number, y?: number, radius?: number) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class ColshapeCuboid extends Colshape {
-    public constructor(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number) {
+    constructor(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number);
+    public constructor(x1?: number, y1?: number, z1?: number, x2?: number, y2?: number, z2?: number) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class ColshapeRectangle extends Colshape {
-    public constructor(x1: number, y1: number, x2: number, y2: number) {
+    constructor(x1: number, y1: number, x2: number, y2: number);
+    public constructor(x1?: number, y1?: number, x2?: number, y2?: number) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class ColshapePolygon extends Colshape {
-    public constructor(minZ: number, maxZ: number, points: shared.IVector2[]) {
+    constructor(minZ: number, maxZ: number, points: shared.IVector2[]);
+    public constructor(minZ?: number, maxZ?: number, points?: shared.IVector2[]) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class Checkpoint extends Colshape {
-    public constructor(type: shared.CheckpointType, pos: shared.IVector3, radius: number, height: number, color: shared.RGBA, streamingDistance: number) {
+    constructor(type: shared.CheckpointType, x: number, y: number, z: number, radius: number, height: number, r: number, g: number, b: number, a: number, streamingDistance: number);
+    constructor(type: shared.CheckpointType, pos: shared.IVector3, radius: number, height: number, color: shared.RGBA, streamingDistance: number);
+    public constructor(
+        type: shared.CheckpointType,
+        xOrPos: number | shared.IVector3,
+        yOrRadius: number,
+        zOrHeight: number,
+        radiusOrColor: number | shared.RGBA,
+        heightOrStreamingDistance: number,
+        rOrStreamingDistance?: number,
+        g?: number,
+        b?: number,
+        a?: number
+    ) {
         super();
-        // TODO: Implement constructor
+
+        
     }
+
     /**
      * Streaming range for the checkpoint
      */
@@ -4285,10 +4361,10 @@ export class Checkpoint extends Colshape {
         return [];
     }
 }
-export namespace Utils {}
 
 export class VoiceChannel extends BaseObject {
-    public constructor(isSpatial: boolean, maxDistance: number) {
+    constructor(isSpatial: boolean, maxDistance: number);
+    public constructor(isSpatial?: boolean, maxDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -4379,7 +4455,7 @@ export class Resource extends shared.Resource {
     }
 }
 
-export class Utils extends shared.Utils {
+export class Utils extends shared.Utils {    
     protected constructor() {
         super();
         // TODO: Implement constructor
@@ -4387,7 +4463,8 @@ export class Utils extends shared.Utils {
 }
 
 export class Ped extends Entity {
-    public constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, streamingDistance: number) {
+    constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, streamingDistance: number);
+    public constructor(model?: string | number, position?: shared.IVector3, rotation?: shared.IVector3, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -4411,7 +4488,8 @@ export class Ped extends Entity {
 }
 
 export class ServerObject extends Entity {
-    public constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, alpha: number, textureVariation: number, lodDistance: number, streamingDistance: number) {
+    constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, alpha: number, textureVariation: number, lodDistance: number, streamingDistance: number);
+    public constructor(model?: string | number, position?: shared.IVector3, rotation?: shared.IVector3, alpha?: number, textureVariation?: number, lodDistance?: number, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
@@ -4462,6 +4540,18 @@ export class Marker extends WorldObject {
 
     public static getByID(id: number): Marker {
         // TODO implement
+        return null;
+    }
+}
+
+export namespace Utils {
+    export function getClosestPlayer(options: { pos: shared.IVector3; range?: number }): import('alt-server').Player {
+        // TODO Implement
+        return null;
+    }
+
+    export function getClosestVehicle(options: { pos: shared.IVector3; range?: number }): import('alt-server').Vehicle {
+        // TODO Implement
         return null;
     }
 }
