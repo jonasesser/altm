@@ -858,8 +858,17 @@ export function offServer(listener: (eventName: string, ...args: any[]) => void)
  *
  * @param listener Listener that should be removed.
  */
-export function offServer(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
+export function offServer(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
+    if (typeof eventNameOrListener === 'function') {
+        // Fall: Listener-Variante (alle Events abbestellen)
+        const listenerFn = eventNameOrListener;
+        // TODO: Alle Events mit listenerFn abbestellen
+    } else {
+        // Fall: eventName + listener Variante
+        const eventName = eventNameOrListener;
+        // listener ist hier definiert
+        // TODO: Event eventName mit listener abbestellen
+    }
 }
 
 export function on<K extends keyof IClientEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IClientEvent, ICustomEmitEvent, K>) => void): void;
@@ -1411,9 +1420,15 @@ export function loadRmlFont(path: string, name: string, italic: boolean, bold: b
 
 export function worldToScreen(x: number, y: number, z: number): shared.Vector3;
 export function worldToScreen(value: shared.IVector3): shared.Vector3;
-export function worldToScreen(value: shared.IVector3): shared.Vector3 {
-    // TODO Implement
-    return null;
+export function worldToScreen(xOrValue: number | shared.IVector3, y?: number, z?: number): shared.Vector3 {
+    if (typeof xOrValue === 'number') {
+        // Fall: Drei separate Zahlen wurden übergeben
+        // Hier kannst du die Umrechnung der Weltkoordinaten zu Bildschirmkoordinaten implementieren.
+        return { x: xOrValue, y: y as number, z: z as number } as shared.Vector3;
+    } else {
+        // Fall: Ein einzelnes Objekt vom Typ shared.IVector3 wurde übergeben.
+        return { x: xOrValue.x, y: xOrValue.y, z: xOrValue.z } as shared.Vector3;
+    }
 }
 
 export function screenToWorld(x: number, y: number): shared.Vector3;
@@ -1630,8 +1645,19 @@ export function setMinimapComponentPosition(name: string, alignX: string, alignY
  * @param sizeX Same as sizeX field in fontend.xml.
  * @param sizeY Same as sizeY field in fontend.xml.
  */
-export function setMinimapComponentPosition(name: string, alignX: string, alignY: string, posX: number, posY: number, sizeX: number, sizeY: number): void {
-    // TODO Implement
+export function setMinimapComponentPosition(name: string, alignX: string, alignY: string, posOrPosX: shared.IVector2 | number, sizeOrPosY: shared.IVector2 | number, sizeX?: number, sizeY?: number): void {
+    if (typeof posOrPosX === 'number') {
+        // Numerische Variante:
+        const posX = posOrPosX;
+        const posY = sizeOrPosY as number;
+        // Hier können sizeX und sizeY als Zahlen verwendet werden.
+        // TODO: Numerische Variante implementieren
+    } else {
+        // Vektor-Variante:
+        const pos = posOrPosX as shared.IVector2;
+        const size = sizeOrPosY as shared.IVector2;
+        // TODO: Vektor-Variante implementieren
+    }
 }
 
 export function resetMinimapComponentPosition(name: string): void;
@@ -1661,9 +1687,16 @@ export function loadDefaultIpls(): void {
 
 export function isPointOnScreen(x: number, y: number, z: number): boolean;
 export function isPointOnScreen(value: shared.IVector3): boolean;
-export function isPointOnScreen(value: shared.IVector3): boolean {
-    // TODO Implement
-    return false;
+export function isPointOnScreen(xOrValue: number | shared.IVector3, y?: number, z?: number): boolean {
+    if (typeof xOrValue === "number") {
+        // Fall: Es wurden drei Zahlen übergeben.
+        // y und z sind hier definiert.
+        return false; // TODO: Logik für numerische Variante implementieren.
+    } else {
+        // Fall: Es wurde ein shared.IVector3 übergeben.
+        // Zugriff auf xOrValue.x, xOrValue.y, xOrValue.z.
+        return false; // TODO: Logik für Vektor-Variante implementieren.
+    }
 }
 
 export function getPedBonePos(ped: number, boneId: number): shared.Vector3;
@@ -1709,22 +1742,28 @@ export class BaseObject extends shared.BaseObject {
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
     public getMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: K): ICustomBaseObjectMeta[K];
     /** @deprecated See {@link ICustomBaseObjectMeta} */
-
-    public getMeta<K extends string | shared.ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomBaseObjectMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getMeta<K extends string>(
+        key: K
+      ): K extends shared.ExtractStringKeys<ICustomBaseObjectMeta> ? ICustomBaseObjectMeta[K] : unknown {
+          // TODO implementieren
+          return null as any;
+      }
+      
+    
     public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>): void;
     public setMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: K, value: ICustomBaseObjectMeta[K]): void;
     /** @deprecated See {@link ICustomBaseObjectMeta} */
     public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
 
-    public setMeta<K extends string | shared.ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(
+    public setMeta<K extends string, V>(
         key: K | shared.MetaValues<ICustomBaseObjectMeta>,
-        value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void> | ICustomBaseObjectMeta[K] | shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>,
-    ): void {
+        value: K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>
+          ? ICustomBaseObjectMeta[K] | shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>
+      ): void {
         // TODO implement
-    }
+      }
+      
 }
 
 export class VirtualEntityGroup extends BaseObject {
