@@ -1,44 +1,6 @@
 // Stub für index.d.ts
 
-import {
-    Vector3,
-    BodyPart,
-    VoiceConnectionState,
-    ModelType,
-    IVector3,
-    InterfaceValueByKey,
-    ICustomGlobalSyncedMeta,
-    ExtractStringKeys,
-    ICustomServerClientEvent,
-    ICustomClientServerRpc,
-    ICustomClientServerEvent,
-    EventParameters,
-    BaseObjectType,
-    MetaValues,
-    ICustomBaseObjectSyncedMeta,
-    ICustomVirtualEntityStreamSyncedMeta,
-    ICustomEntitySyncedMeta,
-    ICustomEntityStreamSyncedMeta,
-    IWeapon,
-    ICustomServerClientRpc,
-    RGBA,
-    ICustomPlayerLocalMeta,
-    ICustomPlayerSyncedMeta,
-    ICustomPlayerStreamSyncedMeta,
-    VehicleLockState,
-    Quaternion,
-    ICustomVehicleSyncedMeta,
-    ICustomVehicleStreamSyncedMeta,
-    BlipSprite,
-    Vector2,
-    BlipColor,
-    BlipType,
-    ColShapeType,
-    IVector2,
-    CheckpointType,
-    ICustomCheckpointStreamSyncedMeta,
-    MarkerType,
-} from 'alt-shared';
+import * as shared from 'alt-shared';
 
 export type DateTimeHour = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23;
 export type DateTimeMinute =
@@ -376,9 +338,9 @@ export interface VehicleBadgePosition {
     alpha: number;
     size: number;
     boneIndex: number;
-    offset: Vector3;
-    direction: Vector3;
-    side: Vector3;
+    offset: shared.Vector3;
+    direction: shared.Vector3;
+    side: shared.Vector3;
 }
 export interface IConnectionInfo {
     name: string;
@@ -433,7 +395,7 @@ export interface IServerEvent {
     consoleCommand: (name: string, ...args: string[]) => void;
     entityEnterColshape: (colshape: Colshape, entity: Entity) => void;
     entityLeaveColshape: (colshape: Colshape, entity: Entity) => void;
-    explosion: (source: Player, type: ExplosionType, pos: Vector3, fx: number, target: Entity) => boolean | void;
+    explosion: (source: Player, type: ExplosionType, pos: shared.Vector3, fx: number, target: Entity) => boolean | void;
     netOwnerChange: (entity: Entity, owner: Player, oldOwner: Player) => void;
     /**
      * @remarks The seat indexes start with 1 (driver seat).
@@ -467,9 +429,9 @@ export interface IServerEvent {
     vehicleAttach: (vehicle: Vehicle, attachedVehicle: Vehicle) => void;
     vehicleDestroy: (vehicle: Vehicle) => void;
     vehicleDetach: (vehicle: Vehicle, detachedVehicle: Vehicle) => void;
-    weaponDamage: (source: Player, target: Entity, weaponHash: number, damage: number, offset: Vector3, bodyPart: BodyPart, sourceEntity: Entity) => number | boolean | void;
+    weaponDamage: (source: Player, target: Entity, weaponHash: number, damage: number, offset: shared.Vector3, bodyPart: shared.BodyPart, sourceEntity: Entity) => number | boolean | void;
     startFire: (player: Player, fires: IFireInfo[]) => boolean | void;
-    startProjectile: (player: Player, pos: Vector3, dir: Vector3, ammoHash: number, weaponHash: number) => boolean | void;
+    startProjectile: (player: Player, pos: shared.Vector3, dir: shared.Vector3, ammoHash: number, weaponHash: number) => boolean | void;
     playerWeaponChange: (player: Player, oldWeapon: number, weapon: number) => void;
     vehicleDamage: (vehicle: Vehicle, attacker: Entity, bodyHealthDamage: number, additionalBodyHealthDamage: number, engineHealthDamage: number, petrolTankDamage: number, weapon: number) => void;
     localMetaChange: (player: Player, key: string, newValue: any, oldValue: any) => void;
@@ -486,7 +448,7 @@ export interface IServerEvent {
     baseObjectCreate: (baseObject: BaseObject) => void;
     baseObjectRemove: (baseObject: BaseObject) => void;
     metaChange: (target: BaseObject, key: string, value: any, oldValue: any) => void;
-    voiceConnection: (state: VoiceConnectionState) => void;
+    voiceConnection: (state: shared.VoiceConnectionState) => void;
     /**
      * @remarks You need to return true, otherwise the scene will not be synced.
      */
@@ -494,7 +456,7 @@ export interface IServerEvent {
     /**
      * @remarks You need to return true, otherwise the scene will not be synced.
      */
-    startSyncedScene: (source: Player, sceneID: number, startPos: Vector3, startRot: Vector3, animDictHash: number, entityAnimPairs: { entity: BaseObject; animHash: number }[]) => boolean | void;
+    startSyncedScene: (source: Player, sceneID: number, startPos: shared.Vector3, startRot: shared.Vector3, animDictHash: number, entityAnimPairs: { entity: BaseObject; animHash: number }[]) => boolean | void;
     /**
      * @remarks You need to return true, otherwise the scene will not be synced.
      */
@@ -510,7 +472,7 @@ export interface IServerEvent {
     /**
      * @remarks Triggers if player request creation of a object, e.g for a task which is synced.
      */
-    clientRequestObject: (player: Player, model: number, position: Vector3) => boolean | void;
+    clientRequestObject: (player: Player, model: number, position: shared.Vector3) => boolean | void;
     playerHeal: (player: Player, oldHealth: number, newHealth: number, oldArmour: number, newArmour: number) => void;
     givePedScriptedTask: (source: Player, target: Ped, task: number) => boolean | void;
     pedDamage: (ped: Ped, attacker: Entity, healthDamage: number, armourDamage: number, weapon: number) => boolean | void;
@@ -519,7 +481,7 @@ export interface IServerEvent {
 }
 export interface IVehiclePassenger {}
 export interface IFireInfo {
-    pos: Vector3;
+    pos: shared.Vector3;
     weapon: number;
 }
 export interface IVehicleNeon {
@@ -574,7 +536,7 @@ export interface IBoneInfo {
 export interface IVehicleModel {
     modelHash: number;
     title: string;
-    type: ModelType;
+    type: shared.ModelType;
     wheelsCount: number;
     hasArmoredWindows: boolean;
     primaryColor: number;
@@ -640,7 +602,7 @@ export interface IDecoration {
  *
  * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
  */
-export interface ICustomBaseObjectMeta extends ICustomBaseObjectMeta_1 {}
+export interface ICustomBaseObjectMeta extends shared.ICustomBaseObjectMeta {}
 /**
  * Extend it by interface merging for use in blip meta {@link "alt-server".Blip getMeta method}, {@link "alt-server".Blip setMeta method}, etc.
  *
@@ -758,12 +720,14 @@ export interface IServerConfig {
     };
     'csharp-module': { readonly disableDependencyDownload?: true };
 }
-export const rootDir: string;
+
+//TODO: init rootDir
+export const rootDir: string = '';
 // Do not add anything here, add to the Utils namespace instead!
 // (this class is here only for extending shared Utils class & namespace)
 export * from 'alt-shared';
 
-export function getClosestPlayer(options: { pos: IVector3; range?: number }): Player | null;
+export function getClosestPlayer(options: { pos: shared.IVector3; range?: number }): Player | null;
 /**
  * Finds the closest player (if any) from {@link Player.all alt.Player.all}.
  *
@@ -771,12 +735,12 @@ export function getClosestPlayer(options: { pos: IVector3; range?: number }): Pl
  *
  * `range` - In which range to search for the nearest vehicle. Defaults to `Infinity`.
  */
-export function getClosestPlayer(options: { pos: IVector3; range?: number }): Player {
+export function getClosestPlayer(options: { pos: shared.IVector3; range?: number }): Player {
     // TODO Implement
     return null;
 }
 
-export function getClosestVehicle(options: { pos: IVector3; range?: number }): Vehicle | null;
+export function getClosestVehicle(options: { pos: shared.IVector3; range?: number }): Vehicle | null;
 /**
  * Finds the closest vehicle (if any) from {@link Vehicle.all alt.Vehicle.all}.
  *
@@ -784,22 +748,22 @@ export function getClosestVehicle(options: { pos: IVector3; range?: number }): V
  *
  * `range` - In which range to search for the nearest vehicle. Defaults to `Infinity`.
  */
-export function getClosestVehicle(options: { pos: IVector3; range?: number }): Vehicle {
+export function getClosestVehicle(options: { pos: shared.IVector3; range?: number }): Vehicle {
     // TODO Implement
     return null;
 }
 
-export function setSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomGlobalSyncedMeta, K>): void;
-export function setSyncedMeta<K extends ExtractStringKeys<ICustomGlobalSyncedMeta>>(key: K, value: ICustomGlobalSyncedMeta[K]): void;
-export function setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomGlobalSyncedMeta, K, V>): void;
+export function setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomGlobalSyncedMeta, K>): void;
+export function setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomGlobalSyncedMeta>>(key: K, value: shared.ICustomGlobalSyncedMeta[K]): void;
+export function setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomGlobalSyncedMeta, K, V>): void;
 /** @deprecated See {@link "alt-shared".ICustomGlobalSyncedMeta} */
-export function setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomGlobalSyncedMeta, K, V, void>): void {
+export function setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomGlobalSyncedMeta, K, V, void>): void {
     // TODO Implement
 }
 
 export function deleteSyncedMeta(key: string): void;
-export function deleteSyncedMeta<K extends ExtractStringKeys<ICustomGlobalSyncedMeta>>(key: K): void;
-export function deleteSyncedMeta<K extends ExtractStringKeys<ICustomGlobalSyncedMeta>>(key: K): void {
+export function deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomGlobalSyncedMeta>>(key: K): void;
+export function deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomGlobalSyncedMeta>>(key: K): void {
     // TODO Implement
 }
 
@@ -815,56 +779,56 @@ export function emitRaw<K extends string>(eventName: Exclude<K, keyof IServerEve
     // TODO Implement
 }
 
-export function emitClient<K extends keyof ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitClient<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function emitClientRaw<K extends keyof ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitClientRaw<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function emitClientUnreliable<K extends keyof ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitClientUnreliable<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function emitAllClients<K extends keyof ICustomServerClientEvent>(eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitAllClients<K extends string>(eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitAllClients<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitAllClients<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitAllClients<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function emitAllClientsRaw<K extends keyof ICustomServerClientEvent>(eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitAllClientsRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function emitAllClientsUnreliable<K extends keyof ICustomServerClientEvent>(eventName: K, ...args: Parameters<ICustomServerClientEvent[K]>): void;
-export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, keyof ICustomServerClientEvent>, ...args: any[]): void;
+export function emitAllClientsUnreliable<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
 export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
     // TODO Implement
 }
 
-export function onRpc<K extends keyof ICustomClientServerRpc>(
+export function onRpc<K extends keyof shared.ICustomClientServerRpc>(
     rpcName: K,
-    listener: (player: Player, ...args: Parameters<ICustomClientServerRpc[K]>) => Promise<ReturnType<ICustomClientServerRpc[K]>> | ReturnType<ICustomClientServerRpc[K]>,
+    listener: (player: Player, ...args: Parameters<shared.ICustomClientServerRpc[K]>) => Promise<ReturnType<shared.ICustomClientServerRpc[K]>> | ReturnType<shared.ICustomClientServerRpc[K]>,
 ): void;
-export function onRpc<K extends string>(rpcName: Exclude<K, keyof ICustomClientServerRpc>, listener: (player: Player, ...args: any[]) => Promise<any> | any): void;
+export function onRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, listener: (player: Player, ...args: any[]) => Promise<any> | any): void;
 export function onRpc<K extends string>(rpcName: Exclude<K, never>, listener: (player: Player, ...args: any[]) => any): void {
     // TODO Implement
 }
 
-export function offRpc<K extends keyof ICustomClientServerRpc>(
+export function offRpc<K extends keyof shared.ICustomClientServerRpc>(
     rpcName: string,
-    listener: (player: Player, ...args: Parameters<ICustomClientServerRpc[K]>) => Promise<ReturnType<ICustomClientServerRpc[K]>> | ReturnType<ICustomClientServerRpc[K]>,
+    listener: (player: Player, ...args: Parameters<shared.ICustomClientServerRpc[K]>) => Promise<ReturnType<shared.ICustomClientServerRpc[K]>> | ReturnType<shared.ICustomClientServerRpc[K]>,
 ): void;
-export function offRpc<K extends string>(rpcName: Exclude<K, keyof ICustomClientServerRpc>, listener?: (player: Player, ...args: any[]) => Promise<any> | any): void;
+export function offRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, listener?: (player: Player, ...args: any[]) => Promise<any> | any): void;
 export function offRpc<K extends string>(rpcName: Exclude<K, never>, listener: (player: Player, ...args: any[]) => any): void {
     // TODO Implement
 }
@@ -895,8 +859,8 @@ export function stopServer(): void {
     // TODO Implement
 }
 
-export function offClient<K extends keyof ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<ICustomClientServerEvent[K]>) => void): void;
-export function offClient<K extends string>(eventName: Exclude<K, keyof ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
+export function offClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
+export function offClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
 export function offClient(eventName: string, listener: (player: Player, ...args: any[]) => void): void;
 export function offClient(listener: (eventName: string, ...args: any[]) => void): void;
 /**
@@ -906,30 +870,42 @@ export function offClient(listener: (eventName: string, ...args: any[]) => void)
  *
  * @param listener Listener that should be removed.
  */
-export function offClient(listener: (eventName: string, ...args: any[]) => void): void {
-    // TODO Implement
-}
+export function offClient(
+    eventNameOrListener: string | ((eventName: string, ...args: any[]) => void),
+    listener?: (player: Player, ...args: any[]) => void
+  ): void {
+    if (typeof eventNameOrListener === "function") {
+      // Global off: only a listener was provided.
+      const globalListener = eventNameOrListener;
+      // TODO: Remove globalListener from all events.
+    } else {
+      // Specific event off: eventName and listener provided.
+      const eventName = eventNameOrListener;
+      // listener is defined in this branch.
+      // TODO: Remove listener for the specific event.
+    }
+  }
 
-export function on<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
+export function on<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export function on<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
 export function on<K extends string>(eventName: Exclude<K, keyof IServerEvent>, listener: (...args: any[]) => void): void {
     // TODO Implement
 }
 
-export function once<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
+export function once<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export function once<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
 export function once<K extends string>(eventName: Exclude<K, keyof IServerEvent>, listener: (...args: any[]) => void): void {
     // TODO Implement
 }
 
-export function off<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
+export function off<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export function off<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
 export function off<K extends string>(eventName: Exclude<K, keyof IServerEvent>, listener: (...args: any[]) => void): void {
     // TODO Implement
 }
 
-export function onClient<K extends keyof ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<ICustomClientServerEvent[K]>) => void): void;
-export function onClient<K extends string>(eventName: Exclude<K, keyof ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
+export function onClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
+export function onClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
 export function onClient(listener: (eventName: string, player: Player, ...args: any[]) => void): void;
 /**
  * Subscribes to all client events with the specified listener.
@@ -942,8 +918,8 @@ export function onClient(listener: (eventName: string, player: Player, ...args: 
     // TODO Implement
 }
 
-export function onceClient<K extends keyof ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<ICustomClientServerEvent[K]>) => void): void;
-export function onceClient<K extends string>(eventName: Exclude<K, keyof ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
+export function onceClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
+export function onceClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
 export function onceClient(listener: (eventName: string, player: Player, ...args: any[]) => void): void;
 /**
  * Subscribes to all client events with the specified listener, which only triggers once.
@@ -1090,7 +1066,7 @@ export function getEntitiesInDimension(dimension: number, allowedTypes: BaseObje
     return [];
 }
 
-export function getEntitiesInRange(position: IVector3, range: number, dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
+export function getEntitiesInRange(position: shared.IVector3, range: number, dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
 /**
  * Returns all entities of the specified type (or types) at the specified position, in the given range and dimension.
  *
@@ -1118,12 +1094,12 @@ export function getEntitiesInRange(position: IVector3, range: number, dimension:
  * @param allowedTypes
  *
  */
-export function getEntitiesInRange(position: IVector3, range: number, dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[] {
+export function getEntitiesInRange(position: shared.IVector3, range: number, dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[] {
     // TODO Implement
     return [];
 }
 
-export function getClosestEntities(position: IVector3, range: number, dimension: number, limit: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
+export function getClosestEntities(position: shared.IVector3, range: number, dimension: number, limit: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
 /**
  * Returns only the closest entities of the specified type (or types) at the specified position, in the given range, dimension and limit.
  *
@@ -1160,7 +1136,7 @@ export function getClosestEntities(position: IVector3, range: number, dimension:
  * then if we pass `position` as `new alt.Vector3(0, 0, 0)` and `limit` as `1` vehicle may be returned but the player will not.
  *
  */
-export function getClosestEntities(position: IVector3, range: number, dimension: number, limit: number, allowedTypes: BaseObjectFilterType): readonly Entity[] {
+export function getClosestEntities(position: shared.IVector3, range: number, dimension: number, limit: number, allowedTypes: BaseObjectFilterType): readonly Entity[] {
     // TODO Implement
     return [];
 }
@@ -1316,45 +1292,53 @@ export class ConnectionInfo {
     }
 }
 
-export class BaseObject extends BaseObject_1 {
+export class BaseObject extends shared.BaseObject {
     /**
      * Gets the base object with the given type and id
      */
 
-    public static getByID(type: BaseObjectType, id: number): BaseObject {
+    public static getByID(type: shared.BaseObjectType, id: number): BaseObject {
         // TODO implement
         return null;
     }
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomBaseObjectMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: string | K): void {
         // TODO implement
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomBaseObjectMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomBaseObjectMeta>>(key: K): ICustomBaseObjectMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: K): ICustomBaseObjectMeta[K];
     /** @deprecated See {@link ICustomBaseObjectMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomBaseObjectMeta[K] | V {
-        // TODO implement
-        return null;
-    }
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomBaseObjectMeta>>(key: K, value: ICustomBaseObjectMeta[K]): void;
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomBaseObjectMeta>
+      ): K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>
+        ? ICustomBaseObjectMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>>(key: K, value: ICustomBaseObjectMeta[K]): void;
     /** @deprecated See {@link ICustomBaseObjectMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomBaseObjectMeta>, V extends any>(
-        key: K | MetaValues<ICustomBaseObjectMeta>,
-        value: InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void> | ICustomBaseObjectMeta[K] | InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomBaseObjectMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomBaseObjectMeta>
+          ? ICustomBaseObjectMeta[K] | shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomBaseObjectMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Removes the specified key and the data connected to that specific key.
      *
@@ -1362,7 +1346,7 @@ export class BaseObject extends BaseObject_1 {
      */
     public deleteSyncedMeta(key: string): void;
 
-    public deleteSyncedMeta<K extends ExtractStringKeys<ICustomBaseObjectSyncedMeta>>(key: string | K): void {
+    public deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomBaseObjectSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     /**
@@ -1373,17 +1357,20 @@ export class BaseObject extends BaseObject_1 {
      * @param key The key of the value to store.
      * @param value The value to store.
      */
-    public setSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectSyncedMeta, K, unknown, void>): void;
-    public setSyncedMeta<K extends ExtractStringKeys<ICustomBaseObjectSyncedMeta>>(key: K, value: ICustomBaseObjectSyncedMeta[K]): void;
+    public setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomBaseObjectSyncedMeta, K, unknown, void>): void;
+    public setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomBaseObjectSyncedMeta>>(key: K, value: shared.ICustomBaseObjectSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomBaseObjectSyncedMeta} */
-    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBaseObjectSyncedMeta, K, V, void>): void;
+    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomBaseObjectSyncedMeta, K, V, void>): void;
 
-    public setSyncedMeta<K extends string | ExtractStringKeys<ICustomBaseObjectSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomBaseObjectSyncedMeta>,
-        value: InterfaceValueByKey<ICustomBaseObjectSyncedMeta, K, unknown, void> | ICustomBaseObjectSyncedMeta[K] | InterfaceValueByKey<ICustomBaseObjectSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomBaseObjectSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomBaseObjectSyncedMeta>
+          ? shared.ICustomBaseObjectSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomBaseObjectSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomBaseObjectSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
 }
 
 export class WorldObject extends BaseObject {
@@ -1396,7 +1383,7 @@ export class WorldObject extends BaseObject {
     /**
      * Object position.
      */
-    public pos: Vector3;
+    public pos: shared.Vector3;
 }
 
 export class VirtualEntityGroup extends BaseObject {
@@ -1414,7 +1401,7 @@ export class VirtualEntityGroup extends BaseObject {
 }
 
 export class VirtualEntity extends WorldObject {
-    public constructor(group: VirtualEntityGroup, position: Vector3, streamingDistance: number, data: Record<string, any>) {
+    public constructor(group: VirtualEntityGroup, position: shared.Vector3, streamingDistance: number, data: Record<string, any>) {
         super();
         // TODO: Implement constructor
     }
@@ -1432,13 +1419,18 @@ export class VirtualEntity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
     public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getStreamSyncedMeta<K extends ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>>(key: K): ICustomVirtualEntityStreamSyncedMeta[K];
+    public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: K): shared.ICustomVirtualEntityStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVirtualEntityStreamSyncedMeta} */
 
-    public getStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVirtualEntityStreamSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVirtualEntityStreamSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>
+        ? shared.ICustomVirtualEntityStreamSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     /**
      * Determines whether contains the specified key.
      *
@@ -1447,7 +1439,7 @@ export class VirtualEntity extends WorldObject {
      */
     public hasStreamSyncedMeta(key: string): boolean;
 
-    public hasStreamSyncedMeta<K extends ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>>(key: string | K): boolean {
+    public hasStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -1464,17 +1456,20 @@ export class VirtualEntity extends WorldObject {
      * @param key The key of the value to store.
      * @param value The value to store.
      */
-    public setStreamSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVirtualEntityStreamSyncedMeta, K, unknown, void>): void;
-    public setStreamSyncedMeta<K extends ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>>(key: K, value: ICustomVirtualEntityStreamSyncedMeta[K]): void;
+    public setStreamSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVirtualEntityStreamSyncedMeta, K, unknown, void>): void;
+    public setStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: K, value: shared.ICustomVirtualEntityStreamSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomVirtualEntityStreamSyncedMeta} */
-    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVirtualEntityStreamSyncedMeta, K, V, void>): void;
+    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVirtualEntityStreamSyncedMeta, K, V, void>): void;
 
-    public setStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomVirtualEntityStreamSyncedMeta>,
-        value: InterfaceValueByKey<ICustomVirtualEntityStreamSyncedMeta, K, unknown, void> | ICustomVirtualEntityStreamSyncedMeta[K] | InterfaceValueByKey<ICustomVirtualEntityStreamSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVirtualEntityStreamSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>
+          ? shared.ICustomVirtualEntityStreamSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomVirtualEntityStreamSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomVirtualEntityStreamSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Removes the specified key and the data connected to that specific key.
      *
@@ -1482,7 +1477,7 @@ export class VirtualEntity extends WorldObject {
      */
     public deleteStreamSyncedMeta(key: string): void;
 
-    public deleteStreamSyncedMeta<K extends ExtractStringKeys<ICustomVirtualEntityStreamSyncedMeta>>(key: string | K): void {
+    public deleteStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVirtualEntityStreamSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
 }
@@ -1525,7 +1520,7 @@ export class Entity extends WorldObject {
      *
      * @remarks Values are provided in radians.
      */
-    public rot: Vector3;
+    public rot: shared.Vector3;
     /**
      * Whether the entity is visible.
      */
@@ -1538,33 +1533,36 @@ export class Entity extends WorldObject {
     public collision: boolean;
     public streamingDistance: number;
     public readonly timestamp: number;
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomEntityMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomEntityMeta>>(key: K, value: ICustomEntityMeta[K]): void;
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomEntityMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: K, value: ICustomEntityMeta[K]): void;
     /** @deprecated See {@link ICustomEntityMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomEntityMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomEntityMeta>, V extends any>(
-        key: K | MetaValues<ICustomEntityMeta>,
-        value: InterfaceValueByKey<ICustomEntityMeta, K, unknown, void> | ICustomEntityMeta[K] | InterfaceValueByKey<ICustomEntityMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomEntityMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomEntityMeta>
+          ? ICustomEntityMeta[K] | shared.InterfaceValueByKey<ICustomEntityMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomEntityMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomEntityMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: string | K): void {
         // TODO implement
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomEntityMeta>>(key: K): ICustomEntityMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: K): ICustomEntityMeta[K];
     /** @deprecated See {@link ICustomEntityMeta} */
 
-    public getMeta<K extends ExtractStringKeys<ICustomEntityMeta>>(key: K): ICustomEntityMeta[K] | unknown {
+    public getMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: K): ICustomEntityMeta[K] | unknown {
         // TODO implement
         return null;
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomEntityMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomEntityMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -1575,7 +1573,7 @@ export class Entity extends WorldObject {
      */
     public deleteSyncedMeta(key: string): void;
 
-    public deleteSyncedMeta<K extends ExtractStringKeys<ICustomEntitySyncedMeta>>(key: string | K): void {
+    public deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     /**
@@ -1585,13 +1583,18 @@ export class Entity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
     public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getSyncedMeta<K extends ExtractStringKeys<ICustomEntitySyncedMeta>>(key: K): ICustomEntitySyncedMeta[K];
+    public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: K): shared.ICustomEntitySyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomEntitySyncedMeta} */
 
-    public getSyncedMeta<K extends string | ExtractStringKeys<ICustomEntitySyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomEntitySyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomEntitySyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>
+        ? shared.ICustomEntitySyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     /**
      * Determines whether contains the specified key.
      *
@@ -1600,7 +1603,7 @@ export class Entity extends WorldObject {
      */
     public hasSyncedMeta(key: string): boolean;
 
-    public hasSyncedMeta<K extends ExtractStringKeys<ICustomEntitySyncedMeta>>(key: string | K): boolean {
+    public hasSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -1617,17 +1620,20 @@ export class Entity extends WorldObject {
      * @param key The key of the value to store.
      * @param value The value to store.
      */
-    public setSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomEntitySyncedMeta, K, unknown, void>): void;
-    public setSyncedMeta<K extends ExtractStringKeys<ICustomEntitySyncedMeta>>(key: K, value: ICustomEntitySyncedMeta[K]): void;
+    public setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomEntitySyncedMeta, K, unknown, void>): void;
+    public setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>>(key: K, value: shared.ICustomEntitySyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomEntitySyncedMeta} */
-    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomEntitySyncedMeta, K, V, void>): void;
+    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomEntitySyncedMeta, K, V, void>): void;
 
-    public setSyncedMeta<K extends string | ExtractStringKeys<ICustomEntitySyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomEntitySyncedMeta>,
-        value: InterfaceValueByKey<ICustomEntitySyncedMeta, K, unknown, void> | ICustomEntitySyncedMeta[K] | InterfaceValueByKey<ICustomEntitySyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomEntitySyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomEntitySyncedMeta>
+          ? shared.ICustomEntitySyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomEntitySyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomEntitySyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Removes the specified key and the data connected to that specific key.
      *
@@ -1635,7 +1641,7 @@ export class Entity extends WorldObject {
      */
     public deleteStreamSyncedMeta(key: string): void;
 
-    public deleteStreamSyncedMeta<K extends ExtractStringKeys<ICustomEntityStreamSyncedMeta>>(key: string | K): void {
+    public deleteStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     /**
@@ -1645,13 +1651,18 @@ export class Entity extends WorldObject {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
     public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getStreamSyncedMeta<K extends ExtractStringKeys<ICustomEntityStreamSyncedMeta>>(key: K): ICustomEntityStreamSyncedMeta[K];
+    public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: K): shared.ICustomEntityStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomEntityStreamSyncedMeta} */
 
-    public getStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomEntityStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomEntityStreamSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomEntityStreamSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>
+        ? shared.ICustomEntityStreamSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     /**
      * Determines whether contains the specified key.
      *
@@ -1660,7 +1671,7 @@ export class Entity extends WorldObject {
      */
     public hasStreamSyncedMeta(key: string): boolean;
 
-    public hasStreamSyncedMeta<K extends ExtractStringKeys<ICustomEntityStreamSyncedMeta>>(key: string | K): boolean {
+    public hasStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -1677,17 +1688,20 @@ export class Entity extends WorldObject {
      * @param key The key of the value to store.
      * @param value The value to store.
      */
-    public setStreamSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomEntityStreamSyncedMeta, K, unknown, void>): void;
-    public setStreamSyncedMeta<K extends ExtractStringKeys<ICustomEntityStreamSyncedMeta>>(key: K, value: ICustomEntityStreamSyncedMeta[K]): void;
+    public setStreamSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomEntityStreamSyncedMeta, K, unknown, void>): void;
+    public setStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>>(key: K, value: shared.ICustomEntityStreamSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomEntityStreamSyncedMeta} */
-    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomEntityStreamSyncedMeta, K, V, void>): void;
+    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomEntityStreamSyncedMeta, K, V, void>): void;
 
-    public setStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomEntityStreamSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomEntityStreamSyncedMeta>,
-        value: InterfaceValueByKey<ICustomEntityStreamSyncedMeta, K, unknown, void> | ICustomEntityStreamSyncedMeta[K] | InterfaceValueByKey<ICustomEntityStreamSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomEntityStreamSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomEntityStreamSyncedMeta>
+          ? shared.ICustomEntityStreamSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomEntityStreamSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomEntityStreamSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Changes network owner to the specified player.
      *
@@ -1731,7 +1745,7 @@ export class Entity extends WorldObject {
      * @param noFixedRotation If false the entity is attached with a fixed rotation (no bouncing). That means if the value in native was true, you have to use false in the serverside method
      */
 
-    public attachTo(entity: Entity, entityBone: string | number, ownBone: string | number, pos: IVector3, rot: IVector3, enableCollisions: boolean, noFixedRotation: boolean): void {
+    public attachTo(entity: Entity, entityBone: string | number, ownBone: string | number, pos: shared.IVector3, rot: shared.IVector3, enableCollisions: boolean, noFixedRotation: boolean): void {
         // TODO implement
     }
     /**
@@ -1766,10 +1780,10 @@ export class Player extends Entity {
     public static readonly count: number;
     public armour: number;
     public currentWeapon: number;
-    public readonly weapons: readonly IWeapon[];
+    public readonly weapons: readonly shared.IWeapon[];
     public readonly currentWeaponComponents: readonly number[];
     public readonly currentWeaponTintIndex: number;
-    public readonly entityAimOffset: Vector3;
+    public readonly entityAimOffset: shared.Vector3;
     public readonly entityAimingAt: Entity;
     public readonly flashlightActive: boolean;
     public readonly moveSpeed: number;
@@ -1795,8 +1809,8 @@ export class Player extends Entity {
      *
      * @remarks Will return {@link Vector3.zero} if the player is aiming against a entity.
      */
-    public readonly aimPos: Vector3;
-    public readonly headRot: Vector3;
+    public readonly aimPos: shared.Vector3;
+    public readonly headRot: shared.Vector3;
     public health: number;
     public readonly ip: string;
     public maxArmour: number;
@@ -1853,22 +1867,30 @@ export class Player extends Entity {
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    public emit<K extends keyof ICustomServerClientEvent>(eventName: K, args: Parameters<ICustomServerClientEvent[K]>): void;
+    public emit<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 
-    public emit<K extends keyof ICustomServerClientEvent | string>(eventName: K | Exclude<K, never>, args: Parameters<ICustomServerClientEvent[K]> | any[]): void {
-        // TODO implement
-    }
+    public emit<K extends string>(
+        eventName: K,
+        args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Emits specified event to client, but faster as {@link Player.emit}.
      *
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    public emitRaw<K extends keyof ICustomServerClientEvent>(eventName: K, args: Parameters<ICustomServerClientEvent[K]>): void;
+    public emitRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 
-    public emitRaw<K extends keyof ICustomServerClientEvent | string>(eventName: K | Exclude<K, never>, args: Parameters<ICustomServerClientEvent[K]> | any[]): void {
-        // TODO implement
-    }
+    public emitRaw<K extends string>(
+        eventName: K,
+        args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]
+      ): void {
+        // TODO implementieren
+      }
+      
     /**
      * Calls a client sided RPC with the specified arguments.
      *
@@ -1876,12 +1898,18 @@ export class Player extends Entity {
      * @param ...args Arguments to pass to the RPC
      *
      */
-    public emitRpc<K extends keyof ICustomServerClientRpc>(rpcName: K, args: Parameters<ICustomServerClientRpc[K]>): Promise<ReturnType<ICustomServerClientRpc[K]>>;
+    public emitRpc<K extends keyof shared.ICustomServerClientRpc>(rpcName: K, args: Parameters<shared.ICustomServerClientRpc[K]>): Promise<ReturnType<shared.ICustomServerClientRpc[K]>>;
 
-    public emitRpc<K extends keyof ICustomServerClientRpc | string>(rpcName: K | Exclude<K, never>, args: Parameters<ICustomServerClientRpc[K]> | any[]): Promise<ReturnType<ICustomServerClientRpc[K]>> | Promise<any> {
-        // TODO implement
-        return null;
-    }
+    public emitRpc<K extends string>(
+        rpcName: K,
+        args: K extends keyof shared.ICustomServerClientRpc ? Parameters<shared.ICustomServerClientRpc[K]> : any[]
+      ): K extends keyof shared.ICustomServerClientRpc
+        ? Promise<ReturnType<shared.ICustomServerClientRpc[K]>>
+        : Promise<any> {
+        // TODO implementieren
+        return null as any;
+      }
+      
 
     public addWeaponComponent(weaponHash: number, component: number): void {
         // TODO implement
@@ -2008,7 +2036,7 @@ export class Player extends Entity {
      * @param pos The position where the player gets spawned.
      * @param delay The delay at which the player gets spawned after calling this function. Defaults to 0.
      */
-    public spawn(pos: IVector3, delay: number): void;
+    public spawn(pos: shared.IVector3, delay: number): void;
     /**
      * Sets the model and spawns the player in the world.
      *
@@ -2016,9 +2044,36 @@ export class Player extends Entity {
      * @param pos The position where the player gets spawned.
      */
 
-    public spawn(x: number | IVector3 | string | number, y: number | IVector3, z: number, delay: number): void {
-        // TODO implement
-    }
+    public spawn(
+        xOrModelOrPos: number | string | shared.IVector3,
+        yOrDelayOrPos?: number | shared.IVector3,
+        z?: number,
+        delay?: number
+      ): void {
+        if (typeof xOrModelOrPos === "number" && typeof yOrDelayOrPos === "number" && typeof z === "number") {
+          // Case 1: spawn(x, y, z, delay?)
+          const x = xOrModelOrPos;
+          const y = yOrDelayOrPos;
+          // z is already a number
+          const d = delay ?? 0;
+          // TODO: Implement spawn using coordinates (x, y, z) with delay d
+          console.log(`Spawning player at (${x}, ${y}, ${z}) with delay ${d}`);
+        } else if (typeof xOrModelOrPos !== "number" && typeof xOrModelOrPos !== "string" && yOrDelayOrPos !== undefined && typeof yOrDelayOrPos === "number") {
+          // Case 2: spawn(pos, delay?)
+          const pos = xOrModelOrPos as shared.IVector3;
+          const d = yOrDelayOrPos;
+          // TODO: Implement spawn using position vector pos with delay d
+          console.log(`Spawning player at position ${JSON.stringify(pos)} with delay ${d}`);
+        } else if (typeof xOrModelOrPos === "string" && yOrDelayOrPos !== undefined && typeof yOrDelayOrPos !== "number") {
+          // Case 3: spawn(model, pos)
+          const model = xOrModelOrPos;
+          const pos = yOrDelayOrPos as shared.IVector3;
+          // TODO: Set the model and spawn the player at position pos
+          console.log(`Setting model "${model}" and spawning player at position ${JSON.stringify(pos)}`);
+        } else {
+          throw new Error("Invalid arguments for spawn");
+        }
+      }
 
     public despawn(): void {
         // TODO implement
@@ -2255,7 +2310,7 @@ export class Player extends Entity {
         return false;
     }
 
-    public getHeadBlendPaletteColor(id: number): RGBA {
+    public getHeadBlendPaletteColor(id: number): shared.RGBA {
         // TODO implement
         return null;
     }
@@ -2403,20 +2458,23 @@ export class Player extends Entity {
      * @param key The key of the value to store.
      * @param value The value to store.
      */
-    public setLocalMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPlayerLocalMeta, K, unknown, void>): void;
-    public setLocalMeta<K extends ExtractStringKeys<ICustomPlayerLocalMeta>>(key: K, value: ICustomPlayerLocalMeta[K]): void;
+    public setLocalMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, unknown, void>): void;
+    public setLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K, value: shared.ICustomPlayerLocalMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
-    public setLocalMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomPlayerLocalMeta, K, V, void>): void;
+    public setLocalMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, V, void>): void;
 
-    public setLocalMeta<K extends string | ExtractStringKeys<ICustomPlayerLocalMeta>, V extends any>(
-        key: K | MetaValues<ICustomPlayerLocalMeta>,
-        value: InterfaceValueByKey<ICustomPlayerLocalMeta, K, unknown, void> | ICustomPlayerLocalMeta[K] | InterfaceValueByKey<ICustomPlayerLocalMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setLocalMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerLocalMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>
+          ? shared.ICustomPlayerLocalMeta[K] | shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteLocalMeta(key: string): void;
 
-    public deleteLocalMeta<K extends ExtractStringKeys<ICustomPlayerLocalMeta>>(key: string | K): void {
+    public deleteLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: string | K): void {
         // TODO implement
     }
     /**
@@ -2426,16 +2484,21 @@ export class Player extends Entity {
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
     public getLocalMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getLocalMeta<K extends ExtractStringKeys<ICustomPlayerLocalMeta>>(key: K): ICustomPlayerLocalMeta[K];
+    public getLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K): shared.ICustomPlayerLocalMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
 
-    public getLocalMeta<K extends string | ExtractStringKeys<ICustomPlayerLocalMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerLocalMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getLocalMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerLocalMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>
+        ? shared.ICustomPlayerLocalMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasLocalMeta(key: string): boolean;
 
-    public hasLocalMeta<K extends ExtractStringKeys<ICustomPlayerLocalMeta>>(key: string | K): boolean {
+    public hasLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -2445,102 +2508,126 @@ export class Player extends Entity {
         return [];
     }
     // normal meta
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomPlayerMeta>>(key: K, value: ICustomPlayerMeta[K]): void;
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomPlayerMeta>>(key: K, value: ICustomPlayerMeta[K]): void;
     /** @deprecated See {@link ICustomPlayerMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomPlayerMeta>, V extends any>(
-        key: K | MetaValues<ICustomPlayerMeta>,
-        value: InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void> | ICustomPlayerMeta[K] | InterfaceValueByKey<ICustomPlayerMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomPlayerMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomPlayerMeta>
+          ? ICustomPlayerMeta[K] | shared.InterfaceValueByKey<ICustomPlayerMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomPlayerMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomPlayerMeta>>(key: string | K): void {
         // TODO implement
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomPlayerMeta>>(key: K): ICustomPlayerMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomPlayerMeta>>(key: K): ICustomPlayerMeta[K];
     /** @deprecated See {@link ICustomPlayerMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomPlayerMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomPlayerMeta>
+      ): K extends shared.ExtractStringKeys<ICustomPlayerMeta>
+        ? ICustomPlayerMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomPlayerMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomPlayerMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     // synced meta
-    public setSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPlayerSyncedMeta, K, unknown, void>): void;
-    public setSyncedMeta<K extends ExtractStringKeys<ICustomPlayerSyncedMeta>>(key: K, value: ICustomPlayerSyncedMeta[K]): void;
+    public setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerSyncedMeta, K, unknown, void>): void;
+    public setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: K, value: shared.ICustomPlayerSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomPlayerSyncedMeta} */
-    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomPlayerSyncedMeta, K, V, void>): void;
+    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerSyncedMeta, K, V, void>): void;
 
-    public setSyncedMeta<K extends string | ExtractStringKeys<ICustomPlayerSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomPlayerSyncedMeta>,
-        value: InterfaceValueByKey<ICustomPlayerSyncedMeta, K, unknown, void> | ICustomPlayerSyncedMeta[K] | InterfaceValueByKey<ICustomPlayerSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>
+          ? shared.ICustomPlayerSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomPlayerSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomPlayerSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteSyncedMeta(key: string): void;
 
-    public deleteSyncedMeta<K extends ExtractStringKeys<ICustomPlayerSyncedMeta>>(key: string | K): void {
+    public deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getSyncedMeta<K extends ExtractStringKeys<ICustomPlayerSyncedMeta>>(key: K): ICustomPlayerSyncedMeta[K];
+    public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: K): shared.ICustomPlayerSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerSyncedMeta} */
 
-    public getSyncedMeta<K extends string | ExtractStringKeys<ICustomPlayerSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>
+        ? shared.ICustomPlayerSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasSyncedMeta(key: string): boolean;
 
-    public hasSyncedMeta<K extends ExtractStringKeys<ICustomPlayerSyncedMeta>>(key: string | K): boolean {
+    public hasSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     // stream synced meta
-    public setStreamSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomPlayerStreamSyncedMeta, K, unknown, void>): void;
-    public setStreamSyncedMeta<K extends ExtractStringKeys<ICustomPlayerStreamSyncedMeta>>(key: K, value: ICustomPlayerStreamSyncedMeta[K]): void;
+    public setStreamSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerStreamSyncedMeta, K, unknown, void>): void;
+    public setStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K, value: shared.ICustomPlayerStreamSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomPlayerStreamSyncedMeta} */
-    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomPlayerStreamSyncedMeta, K, V, void>): void;
+    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerStreamSyncedMeta, K, V, void>): void;
 
-    public setStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomPlayerStreamSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomPlayerStreamSyncedMeta>,
-        value: InterfaceValueByKey<ICustomPlayerStreamSyncedMeta, K, unknown, void> | ICustomPlayerStreamSyncedMeta[K] | InterfaceValueByKey<ICustomPlayerStreamSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerStreamSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>
+          ? shared.ICustomPlayerStreamSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomPlayerStreamSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomPlayerStreamSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteStreamSyncedMeta(key: string): void;
 
-    public deleteStreamSyncedMeta<K extends ExtractStringKeys<ICustomPlayerStreamSyncedMeta>>(key: string | K): void {
+    public deleteStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getStreamSyncedMeta<K extends ExtractStringKeys<ICustomPlayerStreamSyncedMeta>>(key: K): ICustomPlayerStreamSyncedMeta[K];
+    public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K): shared.ICustomPlayerStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerStreamSyncedMeta} */
 
-    public getStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomPlayerStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomPlayerStreamSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomPlayerStreamSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>
+        ? shared.ICustomPlayerStreamSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasStreamSyncedMeta(key: string): boolean;
 
-    public hasStreamSyncedMeta<K extends ExtractStringKeys<ICustomPlayerStreamSyncedMeta>>(key: string | K): boolean {
+    public hasStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
 }
 
 export class Vehicle extends Entity {
-    public constructor(model: string | number, pos: IVector3, rot: IVector3, streamingDistance: number) {
+    public constructor(model: string | number, pos: shared.IVector3, rot: shared.IVector3, streamingDistance: number) {
         super();
         // TODO: Implement constructor
     }
@@ -2610,7 +2697,7 @@ export class Vehicle extends Entity {
      * console.log(`Vehicle custom primary color was set to red`);
      * ```
      */
-    public customPrimaryColor: RGBA;
+    public customPrimaryColor: shared.RGBA;
     /**
      * Gets or sets the custom secondary color as a RGBA type.
      * @example
@@ -2620,7 +2707,7 @@ export class Vehicle extends Entity {
      * console.log(`Vehicle custom secondary color was set to red`);
      * ```
      */
-    public customSecondaryColor: RGBA;
+    public customSecondaryColor: shared.RGBA;
     /**
      * Gets or sets if the vehicle instance has custom tires.
      */
@@ -2792,7 +2879,7 @@ export class Vehicle extends Entity {
     /**
      * Gets or sets the lock state of a vehicle.
      */
-    public lockState: VehicleLockState;
+    public lockState: shared.VehicleLockState;
     /**
      * Enables or disables the manual engine control.
      */
@@ -2812,7 +2899,7 @@ export class Vehicle extends Entity {
     /**
      * Gets or sets the color of the neon lights.
      */
-    public neonColor: RGBA;
+    public neonColor: shared.RGBA;
     /**
      * Gets the current state of the nightlights.
      */
@@ -2872,7 +2959,7 @@ export class Vehicle extends Entity {
     /**
      * Gets or sets the color of the tire smoke.
      */
-    public tireSmokeColor: RGBA;
+    public tireSmokeColor: shared.RGBA;
     /**
      * Gets or sets the wheel color.
      */
@@ -2908,7 +2995,7 @@ export class Vehicle extends Entity {
     /**
      * Gets the velocity vector of a vehicle.
      */
-    public readonly velocity: Vector3;
+    public readonly velocity: shared.Vector3;
     /**
      * Gets or sets the drift mode state of the vehicle.
      */
@@ -2916,7 +3003,7 @@ export class Vehicle extends Entity {
     /**
      * Gets or sets the vehicles rotation with a quaternion.
      */
-    public quaternion: Quaternion;
+    public quaternion: shared.Quaternion;
     /**
      * Gets or sets if the created train is a mission train.
      */
@@ -3711,95 +3798,119 @@ export class Vehicle extends Entity {
         // TODO implement
     }
     // normal meta
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomVehicleMeta>>(key: K, value: ICustomVehicleMeta[K]): void;
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: K, value: ICustomVehicleMeta[K]): void;
     /** @deprecated See {@link ICustomVehicleMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomVehicleMeta>, V extends any>(
-        key: K | MetaValues<ICustomVehicleMeta>,
-        value: InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void> | ICustomVehicleMeta[K] | InterfaceValueByKey<ICustomVehicleMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomVehicleMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomVehicleMeta>
+          ? ICustomVehicleMeta[K] | shared.InterfaceValueByKey<ICustomVehicleMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomVehicleMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: string | K): void {
         // TODO implement
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomVehicleMeta>>(key: K): ICustomVehicleMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: K): ICustomVehicleMeta[K];
     /** @deprecated See {@link ICustomVehicleMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomVehicleMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVehicleMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomVehicleMeta>
+      ): K extends shared.ExtractStringKeys<ICustomVehicleMeta>
+        ? ICustomVehicleMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomVehicleMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     // synced meta
-    public setSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVehicleSyncedMeta, K, unknown, void>): void;
-    public setSyncedMeta<K extends ExtractStringKeys<ICustomVehicleSyncedMeta>>(key: K, value: ICustomVehicleSyncedMeta[K]): void;
+    public setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVehicleSyncedMeta, K, unknown, void>): void;
+    public setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: K, value: shared.ICustomVehicleSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomVehicleSyncedMeta} */
-    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVehicleSyncedMeta, K, V, void>): void;
+    public setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVehicleSyncedMeta, K, V, void>): void;
 
-    public setSyncedMeta<K extends string | ExtractStringKeys<ICustomVehicleSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomVehicleSyncedMeta>,
-        value: InterfaceValueByKey<ICustomVehicleSyncedMeta, K, unknown, void> | ICustomVehicleSyncedMeta[K] | InterfaceValueByKey<ICustomVehicleSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVehicleSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>
+          ? shared.ICustomVehicleSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomVehicleSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomVehicleSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteSyncedMeta(key: string): void;
 
-    public deleteSyncedMeta<K extends ExtractStringKeys<ICustomVehicleSyncedMeta>>(key: string | K): void {
+    public deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     public getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getSyncedMeta<K extends ExtractStringKeys<ICustomVehicleSyncedMeta>>(key: K): ICustomVehicleSyncedMeta[K];
+    public getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: K): shared.ICustomVehicleSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVehicleSyncedMeta} */
 
-    public getSyncedMeta<K extends string | ExtractStringKeys<ICustomVehicleSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVehicleSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVehicleSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>
+        ? shared.ICustomVehicleSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasSyncedMeta(key: string): boolean;
 
-    public hasSyncedMeta<K extends ExtractStringKeys<ICustomVehicleSyncedMeta>>(key: string | K): boolean {
+    public hasSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     // stream synced meta
-    public setStreamSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVehicleStreamSyncedMeta, K, unknown, void>): void;
-    public setStreamSyncedMeta<K extends ExtractStringKeys<ICustomVehicleStreamSyncedMeta>>(key: K, value: ICustomVehicleStreamSyncedMeta[K]): void;
+    public setStreamSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVehicleStreamSyncedMeta, K, unknown, void>): void;
+    public setStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: K, value: shared.ICustomVehicleStreamSyncedMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomVehicleStreamSyncedMeta} */
-    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVehicleStreamSyncedMeta, K, V, void>): void;
+    public setStreamSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomVehicleStreamSyncedMeta, K, V, void>): void;
 
-    public setStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomVehicleStreamSyncedMeta>, V extends any>(
-        key: K | MetaValues<ICustomVehicleStreamSyncedMeta>,
-        value: InterfaceValueByKey<ICustomVehicleStreamSyncedMeta, K, unknown, void> | ICustomVehicleStreamSyncedMeta[K] | InterfaceValueByKey<ICustomVehicleStreamSyncedMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVehicleStreamSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>
+          ? shared.ICustomVehicleStreamSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomVehicleStreamSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomVehicleStreamSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteStreamSyncedMeta(key: string): void;
 
-    public deleteStreamSyncedMeta<K extends ExtractStringKeys<ICustomVehicleStreamSyncedMeta>>(key: string | K): void {
+    public deleteStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getStreamSyncedMeta<K extends ExtractStringKeys<ICustomVehicleStreamSyncedMeta>>(key: K): ICustomVehicleStreamSyncedMeta[K];
+    public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: K): shared.ICustomVehicleStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomVehicleStreamSyncedMeta} */
 
-    public getStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomVehicleStreamSyncedMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVehicleStreamSyncedMeta[K] | V {
-        // TODO implement
-        return null;
-    }
+    public getStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomVehicleStreamSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>
+        ? shared.ICustomVehicleStreamSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasStreamSyncedMeta(key: string): boolean;
 
-    public hasStreamSyncedMeta<K extends ExtractStringKeys<ICustomVehicleStreamSyncedMeta>>(key: string | K): boolean {
+    public hasStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomVehicleStreamSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -3822,92 +3933,92 @@ export class Blip extends WorldObject {
      */
     public static readonly all: readonly Blip[];
     public static readonly count: number;
-    public routeColor: RGBA;
-    public sprite: BlipSprite;
+    public routeColor: shared.RGBA;
+    public sprite: shared.BlipSprite;
     /**
      * @remarks Does't properly work for areablips currently.
      */
-    public size: Vector2;
+    public size: shared.Vector2;
     public scale: number;
     public color:
         | number
-        | BlipColor.White
-        | BlipColor.Red
-        | BlipColor.Green
-        | BlipColor.Blue
-        | BlipColor.LightRed
-        | BlipColor.Violet
-        | BlipColor.Pink
-        | BlipColor.LightOrange
-        | BlipColor.LightBrown
-        | BlipColor.LightGreen
-        | BlipColor.LightBlue
-        | BlipColor.LightPurple
-        | BlipColor.DarkPurple
-        | BlipColor.Cyan
-        | BlipColor.LightYellow
-        | BlipColor.Organe
-        | BlipColor.GraniteGreen
-        | BlipColor.DarkBrown
-        | BlipColor.LightGray
-        | BlipColor.LightPink
-        | BlipColor.LemonGreen
-        | BlipColor.ForestGreen
-        | BlipColor.ElectricBlue
-        | BlipColor.BrightPurple
-        | BlipColor.DarkYellow
-        | BlipColor.PinkRed
-        | BlipColor.Orange
-        | BlipColor.BrilliantRose
-        | BlipColor.Salmon
-        | BlipColor.DarkGreen
-        | BlipColor.BlizzardBlue
-        | BlipColor.OracleBlue
-        | BlipColor.Silver
-        | BlipColor.MulberryPink
-        | BlipColor.AltoGray
-        | BlipColor.JellyBeanBlue
-        | BlipColor.DarkOrange
-        | BlipColor.Mamba
-        | BlipColor.White
-        | BlipColor.Red
-        | BlipColor.Green
-        | BlipColor.Blue
-        | BlipColor.LightRed
-        | BlipColor.Violet
-        | BlipColor.Pink
-        | BlipColor.LightOrange
-        | BlipColor.LightBrown
-        | BlipColor.LightGreen
-        | BlipColor.LightBlue
-        | BlipColor.LightPurple
-        | BlipColor.DarkPurple
-        | BlipColor.Cyan
-        | BlipColor.LightYellow
-        | BlipColor.Organe
-        | BlipColor.GraniteGreen
-        | BlipColor.DarkBrown
-        | BlipColor.LightGray
-        | BlipColor.LightPink
-        | BlipColor.LemonGreen
-        | BlipColor.ForestGreen
-        | BlipColor.ElectricBlue
-        | BlipColor.BrightPurple
-        | BlipColor.DarkYellow
-        | BlipColor.PinkRed
-        | BlipColor.Orange
-        | BlipColor.BrilliantRose
-        | BlipColor.Salmon
-        | BlipColor.DarkGreen
-        | BlipColor.BlizzardBlue
-        | BlipColor.OracleBlue
-        | BlipColor.Silver
-        | BlipColor.MulberryPink
-        | BlipColor.AltoGray
-        | BlipColor.JellyBeanBlue
-        | BlipColor.DarkOrange
-        | BlipColor.Mamba;
-    public secondaryColor: number | RGBA;
+        | shared.BlipColor.White
+        | shared.BlipColor.Red
+        | shared.BlipColor.Green
+        | shared.BlipColor.Blue
+        | shared.BlipColor.LightRed
+        | shared.BlipColor.Violet
+        | shared.BlipColor.Pink
+        | shared.BlipColor.LightOrange
+        | shared.BlipColor.LightBrown
+        | shared.BlipColor.LightGreen
+        | shared.BlipColor.LightBlue
+        | shared.BlipColor.LightPurple
+        | shared.BlipColor.DarkPurple
+        | shared.BlipColor.Cyan
+        | shared.BlipColor.LightYellow
+        | shared.BlipColor.Organe
+        | shared.BlipColor.GraniteGreen
+        | shared.BlipColor.DarkBrown
+        | shared.BlipColor.LightGray
+        | shared.BlipColor.LightPink
+        | shared.BlipColor.LemonGreen
+        | shared.BlipColor.ForestGreen
+        | shared.BlipColor.ElectricBlue
+        | shared.BlipColor.BrightPurple
+        | shared.BlipColor.DarkYellow
+        | shared.BlipColor.PinkRed
+        | shared.BlipColor.Orange
+        | shared.BlipColor.BrilliantRose
+        | shared.BlipColor.Salmon
+        | shared.BlipColor.DarkGreen
+        | shared.BlipColor.BlizzardBlue
+        | shared.BlipColor.OracleBlue
+        | shared.BlipColor.Silver
+        | shared.BlipColor.MulberryPink
+        | shared.BlipColor.AltoGray
+        | shared.BlipColor.JellyBeanBlue
+        | shared.BlipColor.DarkOrange
+        | shared.BlipColor.Mamba
+        | shared.BlipColor.White
+        | shared.BlipColor.Red
+        | shared.BlipColor.Green
+        | shared.BlipColor.Blue
+        | shared.BlipColor.LightRed
+        | shared.BlipColor.Violet
+        | shared.BlipColor.Pink
+        | shared.BlipColor.LightOrange
+        | shared.BlipColor.LightBrown
+        | shared.BlipColor.LightGreen
+        | shared.BlipColor.LightBlue
+        | shared.BlipColor.LightPurple
+        | shared.BlipColor.DarkPurple
+        | shared.BlipColor.Cyan
+        | shared.BlipColor.LightYellow
+        | shared.BlipColor.Organe
+        | shared.BlipColor.GraniteGreen
+        | shared.BlipColor.DarkBrown
+        | shared.BlipColor.LightGray
+        | shared.BlipColor.LightPink
+        | shared.BlipColor.LemonGreen
+        | shared.BlipColor.ForestGreen
+        | shared.BlipColor.ElectricBlue
+        | shared.BlipColor.BrightPurple
+        | shared.BlipColor.DarkYellow
+        | shared.BlipColor.PinkRed
+        | shared.BlipColor.Orange
+        | shared.BlipColor.BrilliantRose
+        | shared.BlipColor.Salmon
+        | shared.BlipColor.DarkGreen
+        | shared.BlipColor.BlizzardBlue
+        | shared.BlipColor.OracleBlue
+        | shared.BlipColor.Silver
+        | shared.BlipColor.MulberryPink
+        | shared.BlipColor.AltoGray
+        | shared.BlipColor.JellyBeanBlue
+        | shared.BlipColor.DarkOrange
+        | shared.BlipColor.Mamba;
+    public secondaryColor: number | shared.RGBA;
     public alpha: number;
     public flashTimer: number;
     public flashInterval: number;
@@ -3935,7 +4046,7 @@ export class Blip extends WorldObject {
     public shrinked: boolean;
     public attachedTo: Entity;
     public visible: boolean;
-    public blipType: BlipType;
+    public blipType: shared.BlipType;
     public isFriendly: boolean;
     public readonly isAttached: boolean;
     public isGlobal: boolean;
@@ -3966,34 +4077,42 @@ export class Blip extends WorldObject {
     }
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomBlipMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomBlipMeta>>(key: string | K): void {
         // TODO implement
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomBlipMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomBlipMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomBlipMeta>>(key: K): ICustomBlipMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomBlipMeta>>(key: K): ICustomBlipMeta[K];
     /** @deprecated See {@link ICustomBlipMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomBlipMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomBlipMeta[K] | V {
-        // TODO implement
-        return null;
-    }
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomBlipMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomBlipMeta>>(key: K, value: ICustomBlipMeta[K]): void;
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomBlipMeta>
+      ): K extends shared.ExtractStringKeys<ICustomBlipMeta>
+        ? ICustomBlipMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomBlipMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomBlipMeta>>(key: K, value: ICustomBlipMeta[K]): void;
     /** @deprecated See {@link ICustomBlipMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomBlipMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomBlipMeta>, V extends any>(
-        key: K | MetaValues<ICustomBlipMeta>,
-        value: InterfaceValueByKey<ICustomBlipMeta, K, unknown, void> | ICustomBlipMeta[K] | InterfaceValueByKey<ICustomBlipMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomBlipMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomBlipMeta>
+          ? ICustomBlipMeta[K] | shared.InterfaceValueByKey<ICustomBlipMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomBlipMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
 }
 
 export class AreaBlip extends Blip {
@@ -4019,18 +4138,18 @@ export class PointBlip extends Blip {
 
 export class Colshape extends WorldObject {
     public static readonly all: readonly Colshape[];
-    public readonly colshapeType: ColShapeType;
+    public readonly colshapeType: shared.ColShapeType;
     /**
      * Whether this colshape should only trigger its enter/leave events for players or all entities.
      */
     public playersOnly: boolean;
     public readonly radius: number;
     public readonly height: number;
-    public readonly min: Vector2 | Vector3;
-    public readonly max: Vector2 | Vector3;
+    public readonly min: shared.Vector2 | shared.Vector3;
+    public readonly max: shared.Vector2 | shared.Vector3;
     public readonly minZ: number;
     public readonly maxZ: number;
-    public readonly points: readonly Vector2[];
+    public readonly points: readonly shared.Vector2[];
     /**
      * Retrieves the colshape from the pool.
      *
@@ -4050,40 +4169,48 @@ export class Colshape extends WorldObject {
         return false;
     }
 
-    public isPointIn(position: IVector3): boolean {
+    public isPointIn(position: shared.IVector3): boolean {
         // TODO implement
         return false;
     }
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomColshapeMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomColshapeMeta>>(key: string | K): void {
         // TODO implement
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomColshapeMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomColshapeMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomColshapeMeta>>(key: K): ICustomColshapeMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomColshapeMeta>>(key: K): ICustomColshapeMeta[K];
     /** @deprecated See {@link ICustomColshapeMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomColshapeMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomColshapeMeta[K] | V {
-        // TODO implement
-        return null;
-    }
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomColshapeMeta>>(key: K, value: ICustomColshapeMeta[K]): void;
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomColshapeMeta>
+      ): K extends shared.ExtractStringKeys<ICustomColshapeMeta>
+        ? ICustomColshapeMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomColshapeMeta>>(key: K, value: ICustomColshapeMeta[K]): void;
     /** @deprecated See {@link ICustomColshapeMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomColshapeMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomColshapeMeta>, V extends any>(
-        key: K | MetaValues<ICustomColshapeMeta>,
-        value: InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void> | ICustomColshapeMeta[K] | InterfaceValueByKey<ICustomColshapeMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomColshapeMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomColshapeMeta>
+          ? ICustomColshapeMeta[K] | shared.InterfaceValueByKey<ICustomColshapeMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomColshapeMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
 }
 
 export class ColshapeCylinder extends Colshape {
@@ -4122,14 +4249,14 @@ export class ColshapeRectangle extends Colshape {
 }
 
 export class ColshapePolygon extends Colshape {
-    public constructor(minZ: number, maxZ: number, points: IVector2[]) {
+    public constructor(minZ: number, maxZ: number, points: shared.IVector2[]) {
         super();
         // TODO: Implement constructor
     }
 }
 
 export class Checkpoint extends Colshape {
-    public constructor(type: CheckpointType, pos: IVector3, radius: number, height: number, color: RGBA, streamingDistance: number) {
+    public constructor(type: shared.CheckpointType, pos: shared.IVector3, radius: number, height: number, color: shared.RGBA, streamingDistance: number) {
         super();
         // TODO: Implement constructor
     }
@@ -4154,53 +4281,69 @@ export class Checkpoint extends Colshape {
     }
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomCheckpointMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomCheckpointMeta>>(key: string | K): void {
         // TODO implement
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomCheckpointMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomCheckpointMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomCheckpointMeta>>(key: Exclude<K, never>): unknown | ICustomCheckpointMeta[K] {
-        // TODO implement
-        return null;
-    }
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomCheckpointMeta>>(key: K, value: ICustomCheckpointMeta[K]): void;
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomCheckpointMeta>
+      ): K extends shared.ExtractStringKeys<ICustomCheckpointMeta>
+        ? ICustomCheckpointMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomCheckpointMeta>>(key: K, value: ICustomCheckpointMeta[K]): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomCheckpointMeta>>(
-        key: K | MetaValues<ICustomCheckpointMeta>,
-        value: InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void> | ICustomCheckpointMeta[K],
-    ): void {
-        // TODO implement
-    }
-    public setStreamSyncedMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomCheckpointStreamSyncedMeta, K, unknown, void>): void;
-    public setStreamSyncedMeta<K extends ExtractStringKeys<ICustomCheckpointStreamSyncedMeta>>(key: K, value: ICustomCheckpointStreamSyncedMeta[K]): void;
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomCheckpointMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomCheckpointMeta>
+          ? ICustomCheckpointMeta[K] | shared.InterfaceValueByKey<ICustomCheckpointMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomCheckpointMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
+    public setStreamSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomCheckpointStreamSyncedMeta, K, unknown, void>): void;
+    public setStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomCheckpointStreamSyncedMeta>>(key: K, value: shared.ICustomCheckpointStreamSyncedMeta[K]): void;
 
-    public setStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomCheckpointStreamSyncedMeta>>(
-        key: K | MetaValues<ICustomCheckpointStreamSyncedMeta>,
-        value: InterfaceValueByKey<ICustomCheckpointStreamSyncedMeta, K, unknown, void> | ICustomCheckpointStreamSyncedMeta[K],
-    ): void {
-        // TODO implement
-    }
+    public setStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomCheckpointStreamSyncedMeta>,
+        value: K extends shared.ExtractStringKeys<shared.ICustomCheckpointStreamSyncedMeta>
+          ? shared.ICustomCheckpointStreamSyncedMeta[K] | shared.InterfaceValueByKey<shared.ICustomCheckpointStreamSyncedMeta, K, V, void>
+          : shared.InterfaceValueByKey<shared.ICustomCheckpointStreamSyncedMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
     public deleteStreamSyncedMeta(key: string): void;
 
-    public deleteStreamSyncedMeta<K extends ExtractStringKeys<ICustomCheckpointStreamSyncedMeta>>(key: string | K): void {
+    public deleteStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomCheckpointStreamSyncedMeta>>(key: string | K): void {
         // TODO implement
     }
     public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
 
-    public getStreamSyncedMeta<K extends string | ExtractStringKeys<ICustomCheckpointStreamSyncedMeta>>(key: Exclude<K, never>): unknown | ICustomCheckpointStreamSyncedMeta[K] {
-        // TODO implement
-        return null;
-    }
+    public getStreamSyncedMeta<K extends string, V>(
+        key: K | shared.MetaValues<shared.ICustomCheckpointStreamSyncedMeta>
+      ): K extends shared.ExtractStringKeys<shared.ICustomCheckpointStreamSyncedMeta>
+        ? shared.ICustomCheckpointStreamSyncedMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
     public hasStreamSyncedMeta(key: string): boolean;
 
-    public hasStreamSyncedMeta<K extends ExtractStringKeys<ICustomCheckpointStreamSyncedMeta>>(key: string | K): boolean {
+    public hasStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomCheckpointStreamSyncedMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
@@ -4260,37 +4403,45 @@ export class VoiceChannel extends BaseObject {
     }
     public deleteMeta(key: string): void;
 
-    public deleteMeta<K extends ExtractStringKeys<ICustomVoiceChannelMeta>>(key: string | K): void {
+    public deleteMeta<K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>>(key: string | K): void {
         // TODO implement
     }
     public hasMeta(key: string): boolean;
 
-    public hasMeta<K extends ExtractStringKeys<ICustomVoiceChannelMeta>>(key: string | K): boolean {
+    public hasMeta<K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>>(key: string | K): boolean {
         // TODO implement
         return false;
     }
     public getMeta<K extends string>(key: Exclude<K, never>): unknown;
-    public getMeta<K extends ExtractStringKeys<ICustomVoiceChannelMeta>>(key: K): ICustomVoiceChannelMeta[K];
+    public getMeta<K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>>(key: K): ICustomVoiceChannelMeta[K];
     /** @deprecated See {@link ICustomVoiceChannelMeta} */
 
-    public getMeta<K extends string | ExtractStringKeys<ICustomVoiceChannelMeta>, V extends any>(key: Exclude<K, never> | string): unknown | ICustomVoiceChannelMeta[K] | V {
-        // TODO implement
-        return null;
-    }
-    public setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomVoiceChannelMeta, K, unknown, void>): void;
-    public setMeta<K extends ExtractStringKeys<ICustomVoiceChannelMeta>>(key: K, value: ICustomVoiceChannelMeta[K]): void;
+    public getMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomVoiceChannelMeta>
+      ): K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>
+        ? ICustomVoiceChannelMeta[K] | V
+        : unknown {
+        // TODO implementieren
+        return null as any;
+      }
+      
+    public setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomVoiceChannelMeta, K, unknown, void>): void;
+    public setMeta<K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>>(key: K, value: ICustomVoiceChannelMeta[K]): void;
     /** @deprecated See {@link ICustomVoiceChannelMeta} */
-    public setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomVoiceChannelMeta, K, V, void>): void;
+    public setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomVoiceChannelMeta, K, V, void>): void;
 
-    public setMeta<K extends string | ExtractStringKeys<ICustomVoiceChannelMeta>, V extends any>(
-        key: K | MetaValues<ICustomVoiceChannelMeta>,
-        value: InterfaceValueByKey<ICustomVoiceChannelMeta, K, unknown, void> | ICustomVoiceChannelMeta[K] | InterfaceValueByKey<ICustomVoiceChannelMeta, K, V, void>,
-    ): void {
-        // TODO implement
-    }
+    public setMeta<K extends string, V>(
+        key: K | shared.MetaValues<ICustomVoiceChannelMeta>,
+        value: K extends shared.ExtractStringKeys<ICustomVoiceChannelMeta>
+          ? ICustomVoiceChannelMeta[K] | shared.InterfaceValueByKey<ICustomVoiceChannelMeta, K, V, void>
+          : shared.InterfaceValueByKey<ICustomVoiceChannelMeta, K, unknown, void>
+      ): void {
+        // TODO implementieren
+      }
+      
 }
 
-export class Resource extends Resource_1 {
+export class Resource extends shared.Resource {
     public readonly path: string;
     declare public static readonly all: readonly Resource[];
     declare public static readonly current: Resource;
@@ -4301,7 +4452,7 @@ export class Resource extends Resource_1 {
     }
 }
 
-export class Utils extends Utils_1 {
+export class Utils extends shared.Utils {
     protected constructor() {
         super();
         // TODO: Implement constructor
@@ -4309,7 +4460,7 @@ export class Utils extends Utils_1 {
 }
 
 export class Ped extends Entity {
-    public constructor(model: string | number, position: IVector3, rotation: IVector3, streamingDistance: number) {
+    public constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, streamingDistance: number) {
         super();
         // TODO: Implement constructor
     }
@@ -4333,11 +4484,11 @@ export class Ped extends Entity {
 }
 
 export class ServerObject extends Entity {
-    public constructor(model: string | number, position: IVector3, rotation: IVector3, alpha: number, textureVariation: number, lodDistance: number, streamingDistance: number) {
+    public constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, alpha: number, textureVariation: number, lodDistance: number, streamingDistance: number) {
         super();
         // TODO: Implement constructor
     }
-    declare public static readonly all: readonly Object[];
+    declare public static readonly all: readonly ServerObject[];
     public static readonly count: number;
     /** Object transparency, values are between 0 and 255. (0 being fully transparent) */
     public alpha: number;
@@ -4354,24 +4505,24 @@ export class ServerObject extends Entity {
         // TODO implement
     }
 
-    public static getByID(id: number): Object {
+    public static getByID(id: number): ServerObject {
         // TODO implement
         return null;
     }
 }
 
 export class Marker extends WorldObject {
-    public constructor(type: MarkerType, position: Vector3, color: RGBA) {
+    public constructor(type: shared.MarkerType, position: shared.Vector3, color: shared.RGBA) {
         super();
         // TODO: Implement constructor
     }
     public static readonly all: readonly Marker[];
     public visible: boolean;
-    public markerType: MarkerType;
-    public color: RGBA;
-    public scale: Vector3;
-    public rot: Vector3;
-    public dir: Vector3;
+    public markerType: shared.MarkerType;
+    public color: shared.RGBA;
+    public scale: shared.Vector3;
+    public rot: shared.Vector3;
+    public dir: shared.Vector3;
     public readonly isGlobal: boolean;
     public readonly target: Player;
     public faceCamera: boolean;
