@@ -3,15 +3,17 @@
     "target": "es6",
     "module": "commonjs",
     "lib": ["es6"],
+    "outDir": "dist",
+    "rootDir": "src",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "baseUrl": "./",
-    "typeRoots": ["./"],
-    "types": [],
     "noEmit": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "esModuleInterop": true
   },
-  "files": ["./shared/index.d.ts", "./client/index.d.ts", "./server/index.d.ts"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

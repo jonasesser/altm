@@ -1,8 +1,9 @@
 {
-  "dependencies": {
-    "@citizenfx/client": "^2.0.12966-1",
-    "@citizenfx/server": "^2.0.12966-1",
-    "prettier": "^3.5.2"
+  "name": "altm",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.5.2",
+    "typescript": "^5.7.3"
   },
   "prettier": {
     "tabWidth": 4,
@@ -11,5 +12,15 @@
     "semi": true,
     "arrowParens": "always",
     "trailingComma": "all"
+  },
+  "pnpm": {
+    "overrides": {
+      "shaed": "link:C:\\Users\\admin\\AppData\\Local\\pnpm\\global\\5\\node_modules\\@altm\\shaed",
+      "shared": "link:C:\\Users\\admin\\AppData\\Local\\pnpm\\global\\5\\node_modules\\@altm\\shared"
+    }
+  },
+  "dependencies": {
+    "shaed": "link:C:\\Users\\admin\\AppData\\Local\\pnpm\\global\\5\\node_modules\\@altm\\shaed",
+    "shared": "link:C:\\Users\\admin\\AppData\\Local\\pnpm\\global\\5\\node_modules\\@altm\\shared"
   }
 }

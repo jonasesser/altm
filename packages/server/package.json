@@ -1,0 +1,41 @@
+{
+  "name": "@altm/server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "tsc",
+    "preversion": "pnpm run test",
+    "release": "pnpm version --no-git-tag-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonasesser/altm.git"
+  },
+  "keywords": [
+    "altmp",
+    "altv",
+    "server",
+    "node-module",
+    "js-module",
+    "gta",
+    "gta5",
+    "gtav",
+    "fivem",
+    "five"
+  ],
+  "author": "DevPanda & Jonas Esser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonasesser/altm/issues"
+  },
+  "homepage": "https://github.com/jonasesser/altm#readme",
+  "dependencies": {
+    "@altm/shared": "^0.0.1"
+  },
+  "devDependencies": {
+    "@citizenfx/server": "^2.0.12966-1",
+    "typescript": "^5.7.3"
+  }
+}
