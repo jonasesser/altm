@@ -1,5 +1,4 @@
-import * as shared from 'alt-shared';
-export * from 'alt-shared';
+import * as shared from "alt-shared";
 export declare enum Locale {
     Arabic = "ar",
     Belarusian = "by",
@@ -200,11 +199,11 @@ export interface IDiscordUser {
     avatar: string;
 }
 /**
- * Vehicle handling, which affects how vehicle responds and reacts to the inputs of a driver.
- * This handling applies to particular vehicle instance, as opposed to the {@link HandlingData}.
- *
- * @remarks Changes will be reflected only on a particular instance of the vehicle. On creation, model handling will be used as a base and changed properties will be added on top of it.
- */
+   * Vehicle handling, which affects how vehicle responds and reacts to the inputs of a driver.
+   * This handling applies to particular vehicle instance, as opposed to the {@link HandlingData}.
+   *
+   * @remarks Changes will be reflected only on a particular instance of the vehicle. On creation, model handling will be used as a base and changed properties will be added on top of it.
+   */
 export interface IVehicleHandling {
     handlingNameHash: number;
     acceleration: number;
@@ -289,27 +288,27 @@ export interface IHeapStats {
     peakMallocedMemory: number;
 }
 /**
- * Follows Chrome DevTools cpuprofile format.
- * See [Chrome DevTools protocol docs](https://chromedevtools.github.io/devtools-protocol/tot/Profiler/#type-Profile) for more details.
- *
- * In order to analyze resulting Profile - serialize this class as JSON and put to a .cpuprofile file.
- * It will be available to use in DevTools on "Performance" tab, or in Visual Studio Code.
- *
- * @example
- * ```js
- * // server
- * alt.onClient("saveProfile", (player, name, content) => {
- *     fs.writeFileSync("./" + name + ".cpuprofile", content);
- * });
- *
- * // client
- * alt.Profile.startProfiling("test");
- * // do some stuff
- * const profile = alt.Profile.stopProfiling("test");
- * const content = JSON.stringify(profile);
- * alt.emitServer("saveProfile", "test", content);
- * ```
- */
+   * Follows Chrome DevTools cpuprofile format.
+   * See [Chrome DevTools protocol docs](https://chromedevtools.github.io/devtools-protocol/tot/Profiler/#type-Profile) for more details.
+   *
+   * In order to analyze resulting Profile - serialize this class as JSON and put to a .cpuprofile file.
+   * It will be available to use in DevTools on "Performance" tab, or in Visual Studio Code.
+   *
+   * @example
+   * ```js
+   * // server
+   * alt.onClient("saveProfile", (player, name, content) => {
+   *     fs.writeFileSync("./" + name + ".cpuprofile", content);
+   * });
+   *
+   * // client
+   * alt.Profile.startProfiling("test");
+   * // do some stuff
+   * const profile = alt.Profile.stopProfiling("test");
+   * const content = JSON.stringify(profile);
+   * alt.emitServer("saveProfile", "test", content);
+   * ```
+   */
 export interface IProfile {
     /**
      * The list of profile nodes. First item is the root node.
@@ -320,7 +319,6 @@ export interface IProfile {
      */
     startTime: number;
     /**
-     *
      * Profiling end timestamp in microseconds.
      */
     endTime: number;
@@ -392,97 +390,97 @@ export interface IProfileTickInfo {
     ticks: number;
 }
 /**
- * Extend it by interface merging for use in baseobject meta {@link "alt-client".BaseObject getMeta method}, {@link "alt-client".BaseObject setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in baseobject meta {@link "alt-client".BaseObject getMeta method}, {@link "alt-client".BaseObject setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBaseObjectMeta extends shared.ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in blip meta {@link "alt-client".Blip getMeta method}, {@link "alt-client".Blip setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in blip meta {@link "alt-client".Blip getMeta method}, {@link "alt-client".Blip setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBlipMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by merging interfaces for use in checkpoint meta {@link "alt-client".Checkpoint getMeta method}, {@link "alt-client".Checkpoint setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in checkpoint meta {@link "alt-client".Checkpoint getMeta method}, {@link "alt-client".Checkpoint setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomCheckpointMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomColshapeMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by merging interfaces for use in webview meta {@link "alt-client".WebView getMeta method}, {@link "alt-client".WebView setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in webview meta {@link "alt-client".WebView getMeta method}, {@link "alt-client".WebView setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomWebViewMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by merging interfaces for use in audio meta {@link "alt-client".Audio getMeta method}, {@link "alt-client".Audio setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in audio meta {@link "alt-client".Audio getMeta method}, {@link "alt-client".Audio setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomAudioMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in entity meta {@link "alt-client".Entity getMeta method}, {@link "alt-client".Entity setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in entity meta {@link "alt-client".Entity getMeta method}, {@link "alt-client".Entity setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomEntityMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by merging interfaces for use in player meta {@link "alt-client".Player getMeta method}, {@link "alt-client".Player setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in player meta {@link "alt-client".Player getMeta method}, {@link "alt-client".Player setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomPlayerMeta extends ICustomEntityMeta {
 }
 /**
- * Extend it by merging interfaces for use in local player meta {@link "alt-client".LocalPlayer getMeta method}, {@link "alt-client".LocalPlayer setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in local player meta {@link "alt-client".LocalPlayer getMeta method}, {@link "alt-client".LocalPlayer setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomLocalPlayerMeta extends ICustomPlayerMeta {
 }
 /**
- * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Vehicle getMeta method}, {@link "alt-client".Vehicle setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Vehicle getMeta method}, {@link "alt-client".Vehicle setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomVehicleMeta extends ICustomEntityMeta {
 }
 /**
- * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Ped getMeta method}, {@link "alt-client".Ped setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in vehicle meta {@link "alt-client".Ped getMeta method}, {@link "alt-client".Ped setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomPedMeta extends ICustomEntityMeta {
 }
 /**
- * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomEmitEvent {
- *        myEvent: (arg1: string, arg2: { key: string, value: number })
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomEmitEvent
- */
+   * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-client' {
+   *    interface ICustomEmitEvent {
+   *        myEvent: (arg1: string, arg2: { key: string, value: number })
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomEmitEvent
+   */
 export interface ICustomEmitEvent {
 }
 export interface IMarkerOptions {
@@ -517,8 +515,8 @@ export interface ISyncInfo {
     propertyUpdateTicks: number[][];
 }
 /**
- * Axis-Aligned Bounding Box.
- */
+   * Axis-Aligned Bounding Box.
+   */
 export interface IAABB {
     min: number;
     max: number;
@@ -548,6 +546,7 @@ export interface ICookie {
     priority: CookiePriority;
     expires: number;
 }
+export * from "alt-shared";
 export declare function addGxtText(key: string | number, value: string): void;
 export declare function beginScaleformMovieMethodMinimap(methodName: string): boolean;
 export declare function emit<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
@@ -826,13 +825,13 @@ export declare class Audio extends BaseObject {
     pause(): void;
     reset(): void;
     seek(time: number): void;
-    on(event: 'inited', callback: () => void): void;
-    on(event: 'streamStarted', callback: () => void): void;
-    on(event: 'streamEnded', callback: () => void): void;
-    on(event: 'streamPaused', callback: () => void): void;
-    on(event: 'streamReset', callback: () => void): void;
-    on(event: 'streamSeek', callback: (time: number) => void): void;
-    on(event: 'volumeChange', callback: (vol: number) => void): void;
+    on(event: "inited", callback: () => void): void;
+    on(event: "streamStarted", callback: () => void): void;
+    on(event: "streamEnded", callback: () => void): void;
+    on(event: "streamPaused", callback: () => void): void;
+    on(event: "streamReset", callback: () => void): void;
+    on(event: "streamSeek", callback: (time: number) => void): void;
+    on(event: "volumeChange", callback: (vol: number) => void): void;
     deleteMeta(key: string): void;
     hasMeta(key: string): boolean;
     getMeta<K extends string>(key: Exclude<K, never>): unknown;
@@ -843,7 +842,7 @@ export declare class Audio extends BaseObject {
     setMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<ICustomAudioMeta, K, V, void>): void;
 }
 export declare class AudioOutput extends BaseObject {
-    protected constructor();
+    constructor();
     static readonly all: readonly AudioOutput[];
     static readonly count: number;
     muted: boolean;
@@ -1053,8 +1052,8 @@ export declare class Player extends Entity {
      * Is the player currently jumping.
      */
     /**
-     * Is the player currently in ragdoll.
-     */
+         * Is the player currently in ragdoll.
+         */
     readonly isInRagdoll: boolean;
     /**
      * Is the player currently aiming.
@@ -1069,8 +1068,8 @@ export declare class Player extends Entity {
      * Is the player currently shooting with a weapon.
      */
     /**
-     * Is the player currently reloading their weapon.
-     */
+         * Is the player currently reloading their weapon.
+         */
     readonly isReloading: boolean;
     readonly isEnteringVehicle: boolean;
     readonly isLeavingVehicle: boolean;
@@ -1142,8 +1141,8 @@ export declare class Player extends Entity {
      * Has the player superjump enabled.
      */
     /**
-     * Is the player currently crouching.
-     */
+         * Is the player currently crouching.
+         */
     readonly isCrouching: boolean;
     /**
      * Is the player currently stealthy.
@@ -1190,9 +1189,80 @@ export declare class Player extends Entity {
     getSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
     getSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerSyncedMeta>>(key: K): shared.ICustomPlayerSyncedMeta[K];
     hasSyncedMeta(key: string): boolean;
-    getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): any;
+    getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
     getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K): shared.ICustomPlayerStreamSyncedMeta[K];
     hasStreamSyncedMeta(key: string): boolean;
+}
+export declare namespace Utils {
+    function requestModel(model: string | number, timeout?: number): Promise<void>;
+    function requestAnimDict(animDict: string, timeout?: number): Promise<void>;
+    function requestAnimSet(animSet: string, timeout?: number): Promise<void>;
+    function requestClipSet(clipSet: string, timeout?: number): Promise<void>;
+    function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void>;
+    function drawText2dThisFrame(text: string, pos2d?: import("alt-shared").IVector2, font?: import("alt-client").GameFont, scale?: number, color?: import("alt-shared").RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: import("alt-client").TextAlign): void;
+    function drawText2d(text: string, pos2d?: import("alt-shared").IVector2, font?: import("alt-client").GameFont, scale?: number, color?: import("alt-shared").RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: import("alt-client").TextAlign): import("alt-shared").Utils.EveryTick;
+    function drawText3dThisFrame(text: string, pos3d: import("alt-shared").IVector3, font?: import("alt-client").GameFont, scale?: number, color?: import("alt-shared").RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: import("alt-client").TextAlign): void;
+    function drawText3d(text: string, pos3d: import("alt-shared").IVector3, font?: import("alt-client").GameFont, scale?: number, color?: import("alt-shared").RGBA, outline?: boolean, dropShadow?: boolean, textAlign?: import("alt-client").TextAlign): import("alt-shared").Utils.EveryTick;
+    function loadMapArea(pos: import("alt-shared").IVector3, radius?: number, timeout?: number): Promise<void>;
+    function registerPedheadshotBase64(ped: number | import("alt-client").Player): Promise<string>;
+    function registerPedheadshot3Base64(ped: number | import("alt-client").Player): Promise<string>;
+    function registerPedheadshotTransparentBase64(ped: number | import("alt-client").Player): Promise<string>;
+    function getClosestPlayer(options?: {
+        pos?: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-client").Player;
+    function getClosestVehicle(options?: {
+        pos?: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-client").Vehicle;
+    function getClosestObject(options?: {
+        pos?: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-client").Object;
+    function getClosestWorldObject(options?: {
+        pos?: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-client").Object;
+    function getClosestVirtualEntity(options?: {
+        pos?: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-client").VirtualEntity;
+    class Keybind {
+        constructor(keyCode: shared.KeyCode | shared.KeyCode[], callback: () => void, eventType: "keyup" | "keydown");
+        destroy(): void;
+    }
+    /**
+         * A marker class whose instances do not need to be created in every tick.
+         *
+         * @example
+         * ```js
+         * // Creates marker at local player pos with default options
+         * const defaultMarker = new alt.Utils.Marker(alt.Player.local.pos);
+         *
+         * // Creates default marker at 0, 0, 72 with red color
+         * const redMarker = new alt.Utils.Marker(new alt.Vector3(0, 0, 72), { color: alt.RGBA.red });
+         *
+         * // Later you can change the color, scale, etc.
+         * redMarker.scale = new alt.Vector3(3.0); // Makes marker bigger
+         * ```
+         */
+    class Marker {
+        constructor(pos: shared.IVector3, options: IMarkerOptions);
+        type: number;
+        pos: shared.IVector3;
+        dir: shared.IVector3;
+        rot: shared.IVector3;
+        scale: shared.IVector3;
+        color: shared.RGBA;
+        bobUpAndDown: boolean;
+        faceCamera: boolean;
+        p19: number;
+        rotate: boolean;
+        textureDict: string;
+        textureName: string;
+        drawOnEnts: boolean;
+        destroy(): void;
+    }
 }
 export declare class LocalPlayer extends Player {
     readonly dimension: number;
@@ -1281,144 +1351,144 @@ export declare class Vehicle extends Entity {
      * Vehicle velocity vector.
      */
     /**
-     * Vehicle wheels count.
-     */
+         * Vehicle wheels count.
+         */
     readonly wheelsCount: number;
     /**
      * Is the vehicle destroyed.
      */
     /**
-     * Available modkits for the vehicle.
-     */
+         * Available modkits for the vehicle.
+         */
     /**
-     * Current vehicle modkit.
-     */
+         * Current vehicle modkit.
+         */
     /**
-     * Vehicle primary color.
-     */
+         * Vehicle primary color.
+         */
     /**
-     * Custom (RGB) vehicle primary color.
-     */
+         * Custom (RGB) vehicle primary color.
+         */
     /**
-     * Vehicle secondary color.
-     */
+         * Vehicle secondary color.
+         */
     /**
-     * Custom (RGB) vehicle secondary color.
-     */
+         * Custom (RGB) vehicle secondary color.
+         */
     /**
-     * Vehicle pearl color.
-     */
+         * Vehicle pearl color.
+         */
     /**
-     * Vehicle wheel color.
-     */
+         * Vehicle wheel color.
+         */
     /**
-     * Vehicle interior color.
-     */
+         * Vehicle interior color.
+         */
     /**
-     * Vehicle dashboard color.
-     */
+         * Vehicle dashboard color.
+         */
     /**
-     * Vehicle tire smoke color.
-     */
+         * Vehicle tire smoke color.
+         */
     /**
-     * Vehicle wheel type.
-     */
+         * Vehicle wheel type.
+         */
     /**
-     * Vehicle front wheels variation.
-     */
+         * Vehicle front wheels variation.
+         */
     /**
-     * Vehicle rear wheels variation.
-     */
+         * Vehicle rear wheels variation.
+         */
     /**
-     * Are custom tires active.
-     */
+         * Are custom tires active.
+         */
     /**
-     * Vehicle darkness.
-     */
+         * Vehicle darkness.
+         */
     /**
-     * Vehicle number plate type index.
-     */
+         * Vehicle number plate type index.
+         */
     /**
-     * Vehicle number plate text.
-     */
+         * Vehicle number plate text.
+         */
     /**
-     * Vehicle window tint.
-     */
+         * Vehicle window tint.
+         */
     /**
-     * Vehicle dirt level.
-     */
+         * Vehicle dirt level.
+         */
     /**
-     * Vehicle neon.
-     */
+         * Vehicle neon.
+         */
     /**
-     * Vehicle neon color.
-     */
+         * Vehicle neon color.
+         */
     /**
-     * Vehicle livery.
-     */
+         * Vehicle livery.
+         */
     /**
-     * Vehicle roof livery.
-     */
+         * Vehicle roof livery.
+         */
     /**
-     * Vehicle engine state.
-     */
+         * Vehicle engine state.
+         */
     readonly engineOn: boolean;
     /**
      * Vehicle handbrake state.
      */
     /**
-     * Vehicle headlight color.
-     */
+         * Vehicle headlight color.
+         */
     /**
-     * Vehicle active radio station.
-     */
+         * Vehicle active radio station.
+         */
     /**
-     * Vehicle siren state.
-     */
+         * Vehicle siren state.
+         */
     /**
-     * Vehicle lock state.
-     */
+         * Vehicle lock state.
+         */
     readonly lockState: shared.VehicleLockState;
     /**
      * Vehicle daylight state.
      */
     /**
-     * Vehicle nightlight state.
-     */
+         * Vehicle nightlight state.
+         */
     /**
-     * Vehicle roof state.
-     */
+         * Vehicle roof state.
+         */
     /**
-     * Vehicle flamethrower state.
-     */
+         * Vehicle flamethrower state.
+         */
     /**
-     * Vehicle lights multiplier.
-     */
+         * Vehicle lights multiplier.
+         */
     /**
-     * The vehicle's engine health.
-     */
+         * The vehicle's engine health.
+         */
     /**
-     * The vehicle's petrol tank health.
-     */
+         * The vehicle's petrol tank health.
+         */
     readonly petrolTankHealth: number;
     /**
      * Vehicle repairs count.
      */
     /**
-     * The vehicle's body health.
-     */
+         * The vehicle's body health.
+         */
     /**
-     * The vehicle's additional body health.
-     */
+         * The vehicle's additional body health.
+         */
     /**
-     * Does the vehicle currently have the bulletproof windows?
-     */
+         * Does the vehicle currently have the bulletproof windows?
+         */
     /**
-     * Determines whether the vehicle's engine should be turned on/off automatically.
-     */
+         * Determines whether the vehicle's engine should be turned on/off automatically.
+         */
     /**
-     * The vehicle's engine temperature.
-     */
+         * The vehicle's engine temperature.
+         */
     engineTemperature: number;
     /**
      * The vehicle's fuel level.
@@ -1624,7 +1694,7 @@ export declare class WebView extends BaseObject {
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    emit(eventName: string, ...args: any[]): void;
+    emit(eventName: string, args: any[]): void;
     /**
      * Unsubscribes from WebView event handler with specified listener.
      *
@@ -1633,7 +1703,7 @@ export declare class WebView extends BaseObject {
      * @param eventName Name of the event.
      * @param listener Listener that should be removed.
      */
-    off(eventName: string, listener: (...args: any[]) => void): void;
+    off(eventName: string, listener: ((...args: any[]) => void)): void;
     /**
      * Subscribes to WebView event handler with specified listener.
      *
@@ -1647,7 +1717,7 @@ export declare class WebView extends BaseObject {
      * @param eventName Name of the event.
      * @param listener Listener that should be added.
      */
-    once(eventName: string, listener: (...args: any[]) => void): void;
+    once(eventName: string, listener: ((...args: any[]) => void)): void;
     /**
      * Focuses the webview so it can be interacted with.
      */
@@ -1739,7 +1809,7 @@ export declare class Worker {
      *
      * @remarks This can be called before the worker is started.
      */
-    emit(eventName: string, ...args: any[]): void;
+    emit(eventName: string, args: any[]): void;
     /**
      * Listens to an event emitted by the worker.
      *
@@ -1748,7 +1818,7 @@ export declare class Worker {
      * @param eventName The event to listen for.
      * @param callback The callback to call when the event is received.
      */
-    on(eventName: string, callback: (...args: any[]) => void): void;
+    on(eventName: string, callback: ((...args: any[]) => void)): void;
     /**
      * Listens to an event emitted by the worker once.
      *
@@ -1757,7 +1827,7 @@ export declare class Worker {
      * @param eventName The event to listen for.
      * @param callback The callback to call when the event is received.
      */
-    once(eventName: string, callback: (...args: any[]) => void): void;
+    once(eventName: string, callback: ((...args: any[]) => void)): void;
     /**
      * Pauses execution of the worker.
      *
@@ -1779,7 +1849,7 @@ export declare class Worker {
      * @param eventName Name of the event.
      * @param listener Listener that should be removed.
      */
-    off(eventName: string, listener: (...args: any[]) => void): void;
+    off(eventName: string, listener: ((...args: any[]) => void)): void;
 }
 export declare class Blip extends WorldObject {
     /**
@@ -1804,7 +1874,7 @@ export declare class Blip extends WorldObject {
     asMissionCreator: boolean;
     bright: boolean;
     category: number;
-    color: number | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba;
+    color: number | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba;
     crewIndicatorVisible: boolean;
     display: number;
     flashes: boolean;
@@ -1880,7 +1950,7 @@ export declare class PointBlip extends Blip {
     constructor(x: number, y: number, z: number);
 }
 export declare class HandlingData {
-    protected constructor();
+    constructor();
     readonly handlingNameHash: number;
     acceleration: number;
     antiRollBarBiasFront: number;
@@ -1971,7 +2041,7 @@ export declare class MapZoomData {
     reset(): void;
 }
 export declare class LocalStorage {
-    protected constructor();
+    constructor();
     /**
      * Gets the value from the specified key in the local storage.
      */
@@ -2016,12 +2086,12 @@ export declare class MemoryBuffer {
     free(): boolean;
 }
 export declare class Discord {
-    protected constructor();
+    constructor();
     static readonly currentUser: IDiscordUser;
     static requestOAuth2Token(appId: string): Promise<string>;
 }
 export declare class Voice {
-    protected constructor();
+    constructor();
     /**
      * Determines whether the microphone input is currently disabled.
      */
@@ -2042,6 +2112,12 @@ export declare class Voice {
      * Determines if the voice activation is enabled.
      */
     static get activityInputEnabled(): boolean;
+    /**
+     * Determines if the voice activation is enabled.
+     *
+     *  @remarks This setter requires [Extended Voice API](https://docs.altv.mp/articles/permissions.html) permission from the user.
+     */
+    static set activityInputEnabled(value: boolean);
     /**
      * Returns the keycode of the voice activation key.
      */
@@ -2076,10 +2152,10 @@ export declare class WebSocketClient extends BaseObject {
      *
      */
     static getByID(id: number): WebSocketClient;
-    on(eventName: 'open', listener: () => void): void;
-    on(eventName: 'close', listener: (code: number, reason: string) => void): void;
-    on(eventName: 'message', listener: (message: string) => void): void;
-    off(eventName: string, listener: (...args: any[]) => void): void;
+    on(eventName: "open", listener: () => void): void;
+    on(eventName: "close", listener: (code: number, reason: string) => void): void;
+    on(eventName: "message", listener: (message: string) => void): void;
+    off(eventName: string, listener: ((...args: any[]) => void)): void;
     /**
      * Starts the websocket connection.
      */
@@ -2143,7 +2219,7 @@ export declare class HttpClient extends BaseObject {
     patch(url: string, body: string): Promise<IHttpResponse>;
 }
 export declare class Profiler {
-    protected constructor();
+    constructor();
     static readonly heapStats: IHeapStats;
     /** Sampling interval in microseconds. Defaults to 100. */
     static samplingInterval: number;
@@ -2207,8 +2283,8 @@ export declare class RmlElement extends BaseObject {
     readonly ownerDocument: RmlDocument;
     readonly childNodes: readonly RmlElement[];
     style: Record<string, string>;
-    on(eventName: string, func: (senderElement: RmlElement, ...args: any[]) => void): void;
-    off(eventName: string, func: (...args: any[]) => void): void;
+    on(eventName: string, func: ((senderElement: RmlElement, ...args: any[]) => void)): void;
+    off(eventName: string, func: ((...args: any[]) => void)): void;
     getEventListeners(eventName: string): readonly ((senderElement: RmlElement, ...args: any[]) => void)[];
     appendChild(child: RmlElement): void;
     insertBefore(child: RmlElement, adjacent: RmlElement): void;
@@ -2262,26 +2338,27 @@ export declare class RmlDocument extends RmlElement {
      *
      */
     static getByID(id: number): RmlDocument;
-    show(isModal?: boolean, focused?: boolean): void;
+    show(isModal: boolean, focused: boolean): void;
     hide(): void;
     update(): void;
     createElement(tag: string): RmlElement;
     createTextNode(text: string): RmlElement;
 }
 export declare class Utils extends shared.Utils {
-    protected constructor();
+    constructor();
 }
 export declare class FocusData {
-    protected constructor();
+    constructor();
     static readonly isFocusOverriden: boolean;
     static readonly focusOverridePos: shared.Vector3;
     static readonly focusOverrideOffset: shared.Vector3;
     static readonly focusOverrideEntity: Entity;
-    static overrideFocus(pos: shared.Vector3, offset: shared.Vector3): void;
+    overrideFocus(pos: shared.Vector3, offset?: shared.Vector3): void;
+    static overrideFocus(pos: shared.Vector3 | Entity, offset: shared.Vector3): void;
     static clearFocus(): void;
 }
 export declare class WeaponData {
-    protected constructor();
+    constructor();
     readonly modelHash: number;
     readonly nameHash: number;
     recoilShakeAmplitude: number;
@@ -2337,7 +2414,8 @@ export declare class LocalObject extends Object {
     static readonly count: number;
     pos: shared.Vector3;
     rot: shared.Vector3;
-    static get model(): number;
+    get model(): number;
+    set model(value: string | number);
     /** Object transparency, values are between 0 and 255. (0 being fully transparent) */
     alpha: number;
     readonly dynamic: boolean;
@@ -2373,7 +2451,7 @@ export declare class LocalObject extends Object {
      * @param collision Whether the object and the entity should collide with each other.
      * @param fixedRot Whether the rotation of the object is fixed or follows that of the entity.
      */
-    attachToEntity(entity: Entity, boneIndex: number, offset: shared.Vector3, rot: shared.Vector3, useSoftPinning: boolean, collision: boolean, fixedRot: boolean): void;
+    attachToEntity(entity: Entity, boneIndex: number, offset: shared.Vector3, rot: shared.Vector3, useSoftPinning?: boolean, collision?: boolean, fixedRot?: boolean): void;
     /**
      * Detaches the object from the current attached entity.
      *
@@ -2385,7 +2463,7 @@ export declare class LocalObject extends Object {
     placeOnGroundProperly(): void;
     activatePhysics(): void;
     /** Waits asynchronously until the object spawns. */
-    waitForSpawn(timeout?: number): Promise<void>;
+    waitForSpawn(timeout: number): Promise<void>;
 }
 export declare class WeaponObject extends LocalObject {
     constructor(weaponHash: string | number, pos: shared.Vector3, rot: shared.Vector3, modelHash: string | number, numAmmo: number, createDefaultComponents: boolean, scale: number, useStreaming: boolean, streamingDistance: number);
@@ -2449,10 +2527,10 @@ export declare class Ped extends Entity {
 export declare class AudioFilter extends BaseObject {
     constructor(filterName: string);
     get audioCategory(): number;
-    set audioCategory(value: number);
+    set audioCategory(value: string | number);
     readonly hash: number;
     addRotateEffect(fRate: number, priority: number): number;
-    addVolumeEffect(fVolume: number, priority: number, channel?: number): number;
+    addVolumeEffect(fVolume: number, priority: number, channel: number): number;
     addPeakeqEffect(lBand: number, fBandwidth: number, fQ: number, fCenter: number, fGain: number, priority: number): number;
     addDampEffect(fTarget: number, fQuiet: number, fRate: number, fGain: number, fDelay: number, priority: number): number;
     addAutowahEffect(fDryMix: number, fWetMix: number, fFeedback: number, fRate: number, fRange: number, fFreq: number, priority: number): number;
@@ -2467,7 +2545,7 @@ export declare class AudioFilter extends BaseObject {
     removeEffect(hfxHandler: number): boolean;
 }
 export declare class AudioCategory {
-    protected constructor();
+    constructor();
     readonly name: string;
     volume: number;
     distanceRolloffScale: number;
@@ -2593,7 +2671,8 @@ export declare class TextLabel extends WorldObject {
 export declare class LocalVehicle extends Vehicle {
     constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3);
     constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number);
-    static get model(): number;
+    get model(): number;
+    set model(value: string | number);
     rot: shared.Vector3;
     readonly streamingDistance: number;
     visible: boolean;
@@ -2675,7 +2754,7 @@ export declare class LocalVehicle extends Vehicle {
      */
     static getByScriptID(scriptID: number): LocalVehicle;
     /** Waits asynchronously until the vehicle spawns. */
-    waitForSpawn(timeout?: number): Promise<void>;
+    waitForSpawn(timeout: number): Promise<void>;
     /**
      * Gets the camber angle of the specified wheel.
      *
@@ -2761,7 +2840,8 @@ export declare class LocalVehicle extends Vehicle {
 export declare class LocalPed extends Ped {
     constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3);
     constructor(model: string | number, dimension: number, pos: shared.IVector3, rot: shared.IVector3, useStreaming: true, streamingDistance: number);
-    static get model(): number;
+    get model(): number;
+    set model(value: string | number);
     rot: shared.Vector3;
     readonly streamingDistance: number;
     visible: boolean;
@@ -2782,14 +2862,14 @@ export declare class LocalPed extends Ped {
      */
     static getByScriptID(scriptID: number): LocalPed;
     /** Waits asynchronously until the ped spawns. */
-    waitForSpawn(timeout?: number): Promise<void>;
+    waitForSpawn(timeout: number): Promise<void>;
 }
 export declare class Font extends BaseObject {
-    protected constructor();
+    constructor();
     static register(path: string): Font;
 }
 export declare class Interior {
-    protected constructor();
+    constructor();
     readonly id: number;
     readonly pos: shared.Vector3;
     readonly rot: shared.Vector3;
@@ -2832,7 +2912,7 @@ export declare class Interior {
     getPortalByIndex(index: number): InteriorPortal;
 }
 export declare class InteriorRoom {
-    protected constructor();
+    constructor();
     readonly index: number;
     readonly name: string;
     readonly nameHash: number;
@@ -2841,7 +2921,7 @@ export declare class InteriorRoom {
     extents: IAABB;
 }
 export declare class InteriorPortal {
-    protected constructor();
+    constructor();
     readonly index: number;
     readonly cornerCount: number;
     readonly entityCount: number;
@@ -2856,97 +2936,4 @@ export declare class InteriorPortal {
     getEntityPos(entityIndex: number): shared.Vector3;
     getEntityRot(entityIndex: number): shared.Vector3;
 }
-export declare namespace Utils {
-    function requestModel(model: string | number, timeout?: number): Promise<void>;
-    function requestAnimDict(animDict: string, timeout?: number): Promise<void>;
-    function requestAnimSet(animSet: string, timeout?: number): Promise<void>;
-    function requestClipSet(clipSet: string, timeout?: number): Promise<void>;
-    function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void>;
-    function drawText2dThisFrame(text: string, pos2d: shared.IVector2, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void;
-    function drawText2d(text: string, pos2d: shared.IVector2, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick;
-    function drawText3dThisFrame(text: string, pos3d: shared.IVector3, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): void;
-    function drawText3d(text: string, pos3d: shared.IVector3, font: GameFont, scale: number, color: shared.RGBA, outline: boolean, dropShadow: boolean, textAlign: TextAlign): shared.Utils.EveryTick;
-    function loadMapArea(pos: shared.IVector3, radius: number, timeout?: number): Promise<void>;
-    function registerPedheadshotBase64(ped: number | Player): Promise<string>;
-    function registerPedheadshot3Base64(ped: number | Player): Promise<string>;
-    function registerPedheadshotTransparentBase64(ped: number | Player): Promise<string>;
-    function getClosestPlayer(options: {
-        pos?: shared.IVector3;
-        range?: number;
-    }): Player;
-    function getClosestVehicle(options: {
-        pos?: shared.IVector3;
-        range?: number;
-    }): Vehicle;
-    function getClosestObject(options: {
-        pos?: shared.IVector3;
-        range?: number;
-    }): Object;
-    function getClosestWorldObject(options: {
-        pos?: shared.IVector3;
-        range?: number;
-    }): Object;
-    function getClosestVirtualEntity(options: {
-        pos?: shared.IVector3;
-        range?: number;
-    }): VirtualEntity;
-    class Keybind {
-        constructor(keyCode: shared.KeyCode | shared.KeyCode[], callback: () => void, eventType: 'keyup' | 'keydown');
-        destroy(): void;
-    }
-    /**
-     * A marker class whose instances do not need to be created in every tick.
-     *
-     * @example
-     * ```js
-     * // Creates marker at local player pos with default options
-     * const defaultMarker = new alt.Utils.Marker(alt.Player.local.pos);
-     *
-     * // Creates default marker at 0, 0, 72 with red color
-     * const redMarker = new alt.Utils.Marker(new alt.Vector3(0, 0, 72), { color: alt.RGBA.red });
-     *
-     * // Later you can change the color, scale, etc.
-     * redMarker.scale = new alt.Vector3(3.0); // Makes marker bigger
-     * ```
-     */
-    class Marker {
-        constructor(pos: shared.IVector3, options: IMarkerOptions);
-        type: number;
-        pos: shared.IVector3;
-        dir: shared.IVector3;
-        rot: shared.IVector3;
-        scale: shared.IVector3;
-        color: shared.RGBA;
-        bobUpAndDown: boolean;
-        faceCamera: boolean;
-        p19: number;
-        rotate: boolean;
-        textureDict: string;
-        textureName: string;
-        drawOnEnts: boolean;
-        destroy(): void;
-    }
-}
-declare const _default: {
-    WeaponObject: typeof WeaponObject;
-    Ped: typeof Ped;
-    AudioFilter: typeof AudioFilter;
-    AudioCategory: typeof AudioCategory;
-    Marker: typeof Marker;
-    Colshape: typeof Colshape;
-    ColshapeCylinder: typeof ColshapeCylinder;
-    ColshapeSphere: typeof ColshapeSphere;
-    ColshapeCircle: typeof ColshapeCircle;
-    ColshapeCuboid: typeof ColshapeCuboid;
-    ColshapeRectangle: typeof ColshapeRectangle;
-    ColshapePolygon: typeof ColshapePolygon;
-    TextLabel: typeof TextLabel;
-    LocalVehicle: typeof LocalVehicle;
-    LocalPed: typeof LocalPed;
-    Font: typeof Font;
-    Interior: typeof Interior;
-    InteriorRoom: typeof InteriorRoom;
-    InteriorPortal: typeof InteriorPortal;
-    Utils: typeof Utils;
-};
-export default _default;
+export * from 'alt-shared';

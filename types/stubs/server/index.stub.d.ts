@@ -1,4 +1,4 @@
-import * as shared from 'alt-shared';
+import * as shared from "alt-shared";
 export type DateTimeHour = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23;
 export type DateTimeMinute = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59;
 export type DateTimeSecond = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59;
@@ -478,81 +478,81 @@ export interface IDecoration {
     count: number;
 }
 /**
- * Extend it by interface merging for use in baseobject meta {@link "alt-server".BaseObject getMeta method}, {@link "alt-server".BaseObject setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in baseobject meta {@link "alt-server".BaseObject getMeta method}, {@link "alt-server".BaseObject setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBaseObjectMeta extends shared.ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in blip meta {@link "alt-server".Blip getMeta method}, {@link "alt-server".Blip setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in blip meta {@link "alt-server".Blip getMeta method}, {@link "alt-server".Blip setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBlipMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomColshapeMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in checkpoint meta {@link "alt-server".Checkpoint getMeta method}, {@link "alt-server".Checkpoint setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in checkpoint meta {@link "alt-server".Checkpoint getMeta method}, {@link "alt-server".Checkpoint setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomCheckpointMeta extends ICustomColshapeMeta {
 }
 /**
- * Extend it by interface merging for use in voice channel meta {@link "alt-server".VoiceChannel getMeta method}, {@link "alt-server".VoiceChannel setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in voice channel meta {@link "alt-server".VoiceChannel getMeta method}, {@link "alt-server".VoiceChannel setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomVoiceChannelMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in entity meta {@link "alt-server".Entity getMeta method}, {@link "alt-server".Entity setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in entity meta {@link "alt-server".Entity getMeta method}, {@link "alt-server".Entity setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomEntityMeta extends ICustomBaseObjectMeta {
 }
 /**
- * Extend it by merging interfaces for use in player meta {@link "alt-server".Player getMeta method}, {@link "alt-server".Player setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in player meta {@link "alt-server".Player getMeta method}, {@link "alt-server".Player setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomPlayerMeta extends ICustomEntityMeta {
 }
 /**
- * Extend it by merging interfaces for use in vehicle meta {@link "alt-server".Vehicle getMeta method}, {@link "alt-server".Vehicle setMeta method}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by merging interfaces for use in vehicle meta {@link "alt-server".Vehicle getMeta method}, {@link "alt-server".Vehicle setMeta method}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomVehicleMeta extends ICustomEntityMeta {
 }
 /**
- * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
- *
- * @example
- * ```ts
- * declare module 'alt-server' {
- *    interface ICustomEmitEvent {
- *        myEvent: (arg1: string, arg2: { key: string, value: number })
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomEmitEvent
- */
+   * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-server' {
+   *    interface ICustomEmitEvent {
+   *        myEvent: (arg1: string, arg2: { key: string, value: number })
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomEmitEvent
+   */
 export interface ICustomEmitEvent {
 }
 /**
- * Documentation: https://docs.altv.mp/articles/configs/server.html
- */
+   * Documentation: https://docs.altv.mp/articles/configs/server.html
+   */
 export interface IServerConfig {
     resources: readonly string[];
     modules: readonly string[];
@@ -601,21 +601,21 @@ export interface IServerConfig {
         readonly port?: number;
         readonly host?: string;
     };
-    'js-module': {
-        readonly 'source-maps'?: boolean;
-        readonly 'heap-profiler'?: boolean;
+    "js-module": {
+        readonly "source-maps"?: boolean;
+        readonly "heap-profiler"?: boolean;
         readonly profiler?: boolean;
-        readonly 'global-fetch'?: boolean;
-        readonly 'global-webcrypto'?: boolean;
-        readonly 'network-imports'?: boolean;
-        readonly 'extra-cli-args'?: readonly string[];
+        readonly "global-fetch"?: boolean;
+        readonly "global-webcrypto"?: boolean;
+        readonly "network-imports"?: boolean;
+        readonly "extra-cli-args"?: readonly string[];
     };
-    'csharp-module': {
+    "csharp-module": {
         readonly disableDependencyDownload?: true;
     };
 }
 export declare const rootDir: string;
-export * from 'alt-shared';
+export * from "alt-shared";
 export declare function getClosestPlayer(options: {
     pos: shared.IVector3;
     range?: number;
@@ -841,7 +841,8 @@ export declare class Entity extends WorldObject {
     /**
      * Entity model hash.
      */
-    model: number | string;
+    get model(): number;
+    set model(value: string | number);
     /**
      * Entity rotation.
      *
@@ -1012,8 +1013,8 @@ export declare class Player extends Entity {
     readonly isAiming: boolean;
     readonly isDead: boolean;
     /**
-     * The player's state of weapon reloading.
-     */
+         * The player's state of weapon reloading.
+         */
     readonly isReloading: boolean;
     readonly isEnteringVehicle: boolean;
     readonly isLeavingVehicle: boolean;
@@ -1082,17 +1083,14 @@ export declare class Player extends Entity {
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    emit<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args?: Parameters<shared.ICustomServerClientEvent[K]>): void;
-    emit<K extends string>(eventName: K, args?: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void;
-    emit(eventName: string, ...args: any[]): void;
+    emit<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
     /**
      * Emits specified event to client, but faster as {@link Player.emit}.
      *
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    emitRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args: Parameters<shared.ICustomServerClientEvent[K]>): void;
-    emitRaw<K extends string>(eventName: K, args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void;
+    emitRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
     /**
      * Calls a client sided RPC with the specified arguments.
      *
@@ -1100,7 +1098,7 @@ export declare class Player extends Entity {
      * @param ...args Arguments to pass to the RPC
      *
      */
-    emitRpc<K extends keyof shared.ICustomServerClientRpc>(rpcName: K, args?: Parameters<shared.ICustomServerClientRpc[K]>): Promise<ReturnType<shared.ICustomServerClientRpc[K]>>;
+    emitRpc<K extends keyof shared.ICustomServerClientRpc>(rpcName: K, ...args: Parameters<shared.ICustomServerClientRpc[K]>): Promise<ReturnType<shared.ICustomServerClientRpc[K]>>;
     addWeaponComponent(weaponHash: number, component: number): void;
     hasWeaponComponent(weaponModel: string | number, component: string | number): boolean;
     /**
@@ -1145,7 +1143,7 @@ export declare class Player extends Entity {
     /**
      * Removes every weapon from the player.
      */
-    removeAllWeapons(removeAllAmmo?: boolean): void;
+    removeAllWeapons(removeAllAmmo: boolean): void;
     /**
      * Removes the specified weapon from the player.
      *
@@ -1172,7 +1170,7 @@ export declare class Player extends Entity {
      * @param z The z position where the player gets spawned.
      * @param delay The delay at which the player gets spawned after calling this function. Defaults to 0.
      */
-    spawn(x: number, y: number, z: number, delay: number): void;
+    spawn(x: number, y: number, z: number, delay?: number): void;
     /**
      * Spawns the player in the world.
      *
@@ -1181,7 +1179,7 @@ export declare class Player extends Entity {
      * @param pos The position where the player gets spawned.
      * @param delay The delay at which the player gets spawned after calling this function. Defaults to 0.
      */
-    spawn(pos: shared.IVector3, delay: number): void;
+    spawn(pos: shared.IVector3, delay?: number): void;
     despawn(): void;
     /**
      * Gets the specified clothing component.
@@ -1367,11 +1365,11 @@ export declare class Player extends Entity {
     getAmmoMax100(ammoHash: string | number): number;
     setAmmoMax100(ammoHash: string | number, ammoMax: number): void;
     /**
-     * Stores the given value with the specified key.
-     *
-     * @param key The key of the value to store.
-     * @param value The value to store.
-     */
+         * Stores the given value with the specified key.
+         *
+         * @param key The key of the value to store.
+         * @param value The value to store.
+         */
     setLocalMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, unknown, void>): void;
     setLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K, value: shared.ICustomPlayerLocalMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
@@ -1383,11 +1381,8 @@ export declare class Player extends Entity {
      * @param key The key of the value to get.
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
-    getLocalMeta<K extends string>(key: Exclude<K, never>): any;
+    getLocalMeta<K extends string>(key: Exclude<K, never>): unknown;
     getLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K): shared.ICustomPlayerLocalMeta[K];
-    /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
-    getLocalMeta<K extends string, V>(key: K | shared.MetaValues<shared.ICustomPlayerLocalMeta>): K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta> ? shared.ICustomPlayerLocalMeta[K] | V : any;
-    getLocalMeta(key: string): any;
     hasLocalMeta(key: string): boolean;
     getLocalMetaKeys(): readonly string[];
     setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomPlayerMeta, K, unknown, void>): void;
@@ -1416,8 +1411,8 @@ export declare class Player extends Entity {
     hasStreamSyncedMeta(key: string): boolean;
 }
 export declare class Vehicle extends Entity {
-    constructor(model: string | number, x: number, y: number, z: number, rx: number, ry: number, rz: number, streamingDistance?: number);
-    constructor(model: string | number, pos: shared.IVector3, rot: shared.IVector3, streamingDistance?: number);
+    constructor(model: string | number, x: number, y: number, z: number, rx: number, ry: number, rz: number, streamingDistance: number);
+    constructor(model: string | number, pos: shared.IVector3, rot: shared.IVector3, streamingDistance: number);
     /**
      * Array with all vehicles.
      *
@@ -1448,7 +1443,7 @@ export declare class Vehicle extends Entity {
      * ```
      * @remarks Vehicle doesn't provide a setter.
      */
-    static get model(): number;
+    get model(): number;
     /**
      * Gets or sets the active radio station.
      *
@@ -2378,7 +2373,7 @@ export declare class Blip extends WorldObject {
      */
     size: shared.Vector2;
     scale: number;
-    color: number | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba;
+    color: number | shared.BlipColor.White | shared.BlipColor.Red | shared.BlipColor.Green | shared.BlipColor.Blue | shared.BlipColor.LightRed | shared.BlipColor.Violet | shared.BlipColor.Pink | shared.BlipColor.LightOrange | shared.BlipColor.LightBrown | shared.BlipColor.LightGreen | shared.BlipColor.LightBlue | shared.BlipColor.LightPurple | shared.BlipColor.DarkPurple | shared.BlipColor.Cyan | shared.BlipColor.LightYellow | shared.BlipColor.Organe | shared.BlipColor.GraniteGreen | shared.BlipColor.DarkBrown | shared.BlipColor.LightGray | shared.BlipColor.LightPink | shared.BlipColor.LemonGreen | shared.BlipColor.ForestGreen | shared.BlipColor.ElectricBlue | shared.BlipColor.BrightPurple | shared.BlipColor.DarkYellow | shared.BlipColor.PinkRed | shared.BlipColor.Orange | shared.BlipColor.BrilliantRose | shared.BlipColor.Salmon | shared.BlipColor.DarkGreen | shared.BlipColor.BlizzardBlue | shared.BlipColor.OracleBlue | shared.BlipColor.Silver | shared.BlipColor.MulberryPink | shared.BlipColor.AltoGray | shared.BlipColor.JellyBeanBlue | shared.BlipColor.DarkOrange | shared.BlipColor.Mamba;
     secondaryColor: number | shared.RGBA;
     alpha: number;
     flashTimer: number;
@@ -2524,6 +2519,16 @@ export declare class Checkpoint extends Colshape {
     hasStreamSyncedMeta(key: string): boolean;
     getStreamSyncedMetaKeys(): readonly string[];
 }
+export declare namespace Utils {
+    function getClosestPlayer(options: {
+        pos: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-server").Player;
+    function getClosestVehicle(options: {
+        pos: import("alt-shared").IVector3;
+        range?: number;
+    }): import("alt-server").Vehicle;
+}
 export declare class VoiceChannel extends BaseObject {
     constructor(isSpatial: boolean, maxDistance: number);
     readonly maxDistance: number;
@@ -2563,7 +2568,7 @@ export declare class Resource extends shared.Resource {
     static getByName(name: string): Resource;
 }
 export declare class Utils extends shared.Utils {
-    protected constructor();
+    constructor();
 }
 export declare class Ped extends Entity {
     constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, streamingDistance: number);
@@ -2615,18 +2620,4 @@ export declare class Marker extends WorldObject {
      */
     static getByID(id: number): Marker;
 }
-export declare namespace Utils {
-    function getClosestPlayer(options: {
-        pos: shared.IVector3;
-        range?: number;
-    }): import('alt-server').Player;
-    function getClosestVehicle(options: {
-        pos: shared.IVector3;
-        range?: number;
-    }): import('alt-server').Vehicle;
-}
 export * from "alt-shared";
-declare const _default: {
-    getMaxStreamingObjects: typeof getMaxStreamingObjects;
-};
-export default _default;

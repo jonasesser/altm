@@ -1261,18 +1261,18 @@ export declare enum KeyCode {
     Shift = 16,
     Alt = 18,
     Ctrl = 17,
-    '-' = 189,
-    '=' = 187,
-    ',' = 188,
-    ';' = 186,
-    '.' = 190,
-    '/' = 191,
-    '`' = 192,
-    '~' = 192,
+    "-" = 189,
+    "=" = 187,
+    "," = 188,
+    ";" = 186,
+    "." = 190,
+    "/" = 191,
+    "`" = 192,
+    "~" = 192,
     "'" = 222,
-    '[' = 219,
-    ']' = 221,
-    '\\' = 220,
+    "[" = 219,
+    "]" = 221,
+    "\\" = 220,
     KpMultiply = 106,
     KpAdd = 107,
     KpSubtract = 109,
@@ -1654,23 +1654,23 @@ export declare enum VoiceConnectionState {
     Connected = 2
 }
 /**
- * Documentation: https://docs.altv.mp/articles/configs/resource.html
- */
+   * Documentation: https://docs.altv.mp/articles/configs/resource.html
+   */
 export interface IResourceConfig {
     type: string;
     deps: readonly string[];
     main: string;
-    'client-main': string;
-    'client-type': string;
-    'client-files': readonly string[];
-    'required-permissions': readonly Permission[];
-    'optional-permissions': readonly Permission[];
+    "client-main": string;
+    "client-type": string;
+    "client-files": readonly string[];
+    "required-permissions": readonly Permission[];
+    "optional-permissions": readonly Permission[];
 }
-export type InterfaceValueByKey<TInterface, TKey, VDefault = unknown, VReplace = void> = TKey extends keyof TInterface ? (VReplace extends void ? TInterface[TKey] : VReplace) : VDefault;
-export type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
+export type InterfaceValueByKey<TInterface, TKey, VDefault = unknown, VReplace = void> = (TKey extends keyof TInterface ? (VReplace extends void ? TInterface[TKey] : VReplace) : VDefault);
+type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
     [K in keyof TInterface as Extract<K, string>]: TInterface[K];
 };
-export type EventParameters<TAltInterface extends Record<any, any>, TCustomInterface extends Record<any, any>, TEventName extends keyof TAltInterface | keyof TCustomInterface> = Parameters<TEventName extends keyof TAltInterface ? TAltInterface[TEventName] : TEventName extends keyof TCustomInterface ? TCustomInterface[TEventName] : never>;
+export type EventParameters<TAltInterface extends Record<any, any>, TCustomInterface extends Record<any, any>, TEventName extends keyof TAltInterface | keyof TCustomInterface> = (Parameters<TEventName extends keyof TAltInterface ? TAltInterface[TEventName] : (TEventName extends keyof TCustomInterface ? TCustomInterface[TEventName] : never)>);
 export type MetaValues<TInterface> = Partial<TInterface> & Record<string, unknown>;
 export interface IVector2 {
     x: number;
@@ -1707,188 +1707,188 @@ export declare enum VehicleLockState {
     LockedCanBeDamaged = 7
 }
 /**
- * Extend it by interface merging for use in global meta {@link getMeta alt.getMeta}, {@link setMeta alt.setMeta}, etc.
- *
- * @example
- * ```
- * declare module "alt-shared" {
- *   // extending interface by interface merging
- *   export interface ICustomGlobalMeta {
- *     numberExample: number
- *     stringExample: string
- *   }
- * }
- *
- * const value = alt.getMeta("numberExample") // return value: number | undefined
- * alt.setMeta("stringExample", "value") // key: "stringExample", value: string
- * ```
- */
+   * Extend it by interface merging for use in global meta {@link getMeta alt.getMeta}, {@link setMeta alt.setMeta}, etc.
+   *
+   * @example
+   * ```
+   * declare module "alt-shared" {
+   *   // extending interface by interface merging
+   *   export interface ICustomGlobalMeta {
+   *     numberExample: number
+   *     stringExample: string
+   *   }
+   * }
+   *
+   * const value = alt.getMeta("numberExample") // return value: number | undefined
+   * alt.setMeta("stringExample", "value") // key: "stringExample", value: string
+   * ```
+   */
 export interface ICustomGlobalMeta {
 }
 /**
- * Extend it by interface merging for use in global synced meta {@link getSyncedMeta alt.getSyncedMeta}, {@link setSyncedMeta alt.setSyncedMeta}, etc.
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in global synced meta {@link getSyncedMeta alt.getSyncedMeta}, {@link setSyncedMeta alt.setSyncedMeta}, etc.
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomGlobalSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in baseobject meta {@link BaseObject#getMeta}, {@link BaseObject#setMeta}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in baseobject meta {@link BaseObject#getMeta}, {@link BaseObject#setMeta}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBaseObjectMeta {
 }
 /**
- * Extend it by interface merging for use in baseobject synced meta {@link BaseObject#getSyncedMeta}, {@link BaseObject#hasSyncedMeta}, etc.
- *
- * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
- */
+   * Extend it by interface merging for use in baseobject synced meta {@link BaseObject#getSyncedMeta}, {@link BaseObject#hasSyncedMeta}, etc.
+   *
+   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+   */
 export interface ICustomBaseObjectSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in entity synced meta (class `Entity` on client & server, e.g. `entity.getSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in entity synced meta (class `Entity` on client & server, e.g. `entity.getSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomEntitySyncedMeta extends ICustomBaseObjectSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in entity stream synced meta (class `Entity` on client & server, e.g. `entity.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in entity stream synced meta (class `Entity` on client & server, e.g. `entity.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomEntityStreamSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in player synced meta (class `Player` on client & server, e.g. `player.getSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in player synced meta (class `Player` on client & server, e.g. `player.getSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomPlayerSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
- * Extend it by interface merging for use in player stream synced meta (class `Player` on client & server, e.g. `player.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in player stream synced meta (class `Player` on client & server, e.g. `player.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomPlayerStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in player local meta (class `Player` on client & server, e.g. `player.getLocalMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in player local meta (class `Player` on client & server, e.g. `player.getLocalMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomPlayerLocalMeta {
 }
 /**
- * Extend it by interface merging for use in vehicle synced meta (class `Vehicle` on client & server, e.g. `vehicle.getSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in vehicle synced meta (class `Vehicle` on client & server, e.g. `vehicle.getSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomVehicleSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
- * Extend it by interface merging for use in vehicle stream synced meta (class `Vehicle` on client & server, e.g. `vehicle.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in vehicle stream synced meta (class `Vehicle` on client & server, e.g. `vehicle.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomVehicleStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in virtual entity stream synced meta (class `VirtualEntity` on client & server, e.g. `entity.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in virtual entity stream synced meta (class `VirtualEntity` on client & server, e.g. `entity.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomVirtualEntityStreamSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in ped synced meta (class `Ped` on client & server, e.g. `ped.getSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in ped synced meta (class `Ped` on client & server, e.g. `ped.getSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomPedSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
- * Extend it by interface merging for use in ped stream synced meta (class `Ped` on client & server, e.g. `ped.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in ped stream synced meta (class `Ped` on client & server, e.g. `ped.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomPedStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
- * Extend it by interface merging for use in checkpoint stream synced meta (class `Checkpoint` on client & server, e.g. `checkpoint.getStreamSyncedMeta`)
- *
- * @remarks See {@link ICustomGlobalMeta} for an example of use
- */
+   * Extend it by interface merging for use in checkpoint stream synced meta (class `Checkpoint` on client & server, e.g. `checkpoint.getStreamSyncedMeta`)
+   *
+   * @remarks See {@link ICustomGlobalMeta} for an example of use
+   */
 export interface ICustomCheckpointStreamSyncedMeta {
 }
 /**
- * Extend `alt.emitServer` and `alt.onServer` auto-completion by merging interfaces.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomServerClientEvent {
- *        myEvent: (arg1: string, arg2: { key: string, value: number })
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomServerClientEvent
- */
+   * Extend `alt.emitServer` and `alt.onServer` auto-completion by merging interfaces.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-client' {
+   *    interface ICustomServerClientEvent {
+   *        myEvent: (arg1: string, arg2: { key: string, value: number })
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomServerClientEvent
+   */
 export interface ICustomServerClientEvent {
 }
 /**
- * Extend `alt.onClient` and `alt.emitServer` auto-completion by merging interfaces.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomClientServerEvent {
- *        myEvent: (arg1: string, arg2: { key: string, value: number })
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomClientServerEvent
- */
+   * Extend `alt.onClient` and `alt.emitServer` auto-completion by merging interfaces.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-client' {
+   *    interface ICustomClientServerEvent {
+   *        myEvent: (arg1: string, arg2: { key: string, value: number })
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomClientServerEvent
+   */
 export interface ICustomClientServerEvent {
 }
 /**
- * Extend `player.emitRpc` and `alt.onRpc` auto-completion by merging interfaces.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomServerClientRpc {
- *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomServerClientRpc
- */
+   * Extend `player.emitRpc` and `alt.onRpc` auto-completion by merging interfaces.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-client' {
+   *    interface ICustomServerClientRpc {
+   *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomServerClientRpc
+   */
 export interface ICustomServerClientRpc {
 }
 /**
- * Extend `alt.onRpc` and `alt.emitRpc` auto-completion by merging interfaces.
- *
- * @example
- * ```ts
- * declare module 'alt-client' {
- *    interface ICustomClientServerRpc {
- *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
- *    }
- * }
- * ```
- *
- * @export
- * @interface ICustomClientServerRpc
- */
+   * Extend `alt.onRpc` and `alt.emitRpc` auto-completion by merging interfaces.
+   *
+   * @example
+   * ```ts
+   * declare module 'alt-client' {
+   *    interface ICustomClientServerRpc {
+   *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
+   *    }
+   * }
+   * ```
+   *
+   * @export
+   * @interface ICustomClientServerRpc
+   */
 export interface ICustomClientServerRpc {
 }
 export interface IInspectOptions {
@@ -1900,7 +1900,7 @@ export interface IInspectOptions {
      * the getter function.
      * @default `false`
      */
-    getters: boolean | 'get' | 'set';
+    getters: boolean | "get" | "set";
     showHidden: boolean;
     /**
      * @default 2
@@ -1996,10 +1996,11 @@ export declare class Vector3 {
     constructor(x: number, y: number, z: number);
     constructor(arr: [number, number, number]);
     constructor(obj: IVector3);
+    constructor(value: number);
     readonly x: number;
     readonly y: number;
     readonly z: number;
-    static get length(): number;
+    get length(): number;
     /** (0, 0, 0) vector */
     static readonly zero: Vector3;
     /** (1, 1, 1) vector */
@@ -2144,9 +2145,10 @@ export declare class Vector2 {
     constructor(x: number, y: number);
     constructor(arr: [number, number]);
     constructor(obj: IVector2);
+    constructor(value: number);
     readonly x: number;
     readonly y: number;
-    static get length(): number;
+    get length(): number;
     /** (0, 0) vector */
     static readonly zero: Vector2;
     /** (1, 1) vector */
@@ -2275,6 +2277,7 @@ export declare class Quaternion {
     constructor(x: number, y: number, z: number, w: number);
     constructor(arr: [number, number, number, number]);
     constructor(obj: IQuaternion);
+    constructor(value: number);
     readonly x: number;
     readonly y: number;
     readonly z: number;
@@ -2295,8 +2298,14 @@ export declare class Quaternion {
     toString(): string;
 }
 export declare class RGBA {
-    constructor(r: number, g: number, b: number, a?: number);
+    constructor(r: number, g: number, b: number, a: number);
     constructor(array: [r: number, g: number, b: number, a?: number]);
+    constructor(rgba: {
+        r: number;
+        g: number;
+        b: number;
+        a?: number;
+    });
     static readonly red: RGBA;
     static readonly green: RGBA;
     static readonly blue: RGBA;
@@ -2318,7 +2327,7 @@ export declare class RGBA {
     toString(): string;
 }
 export declare class File {
-    protected constructor();
+    constructor();
     /**
      * Determines whether file exists with the specified filename.
      *
@@ -2332,10 +2341,44 @@ export declare class File {
      * @param filename The name of the file.
      * @param encoding The encoding of the file. If not specified, it defaults to "utf-8".
      */
-    static read(filename: string, encoding: FileEncoding.Utf8 | FileEncoding.Utf16 | 'utf-8' | 'utf-16'): string;
+    read(filename: string, encoding?: FileEncoding.Utf8 | FileEncoding.Utf16 | "utf-8" | "utf-16"): string;
+    /**
+     * Reads content of the file.
+     *
+     * @param filename The name of the file.
+     * @param encoding The encoding of the file.
+     */
+    static read(filename: string, encoding: FileEncoding.Utf8 | FileEncoding.Utf16 | "utf-8" | "utf-16" | FileEncoding.Binary | "binary"): string | ArrayBuffer;
+}
+export declare namespace Utils {
+    function wait(timeout: number): Promise<void>;
+    function waitFor(callback: () => boolean, timeout?: number): Promise<void>;
+    function inspect(value: unknown, options?: import("alt-shared").IInspectOptions): string;
+    function assert(assertion: unknown, message?: string): void;
+    class Timer {
+        constructor(callback: () => void, ms: number, once: boolean);
+        readonly id: number;
+        destroy(): void;
+    }
+    class Timeout extends Timer {
+        constructor(callback: () => void, ms: number);
+    }
+    class Interval extends Timer {
+        constructor(callback: () => void, ms: number);
+    }
+    class NextTick extends Timer {
+        constructor(callback: () => void);
+    }
+    class EveryTick extends Timer {
+        constructor(callback: () => void);
+    }
+    class ConsoleCommand {
+        constructor(name: string, callback: (...args: string[]) => void);
+        destroy(): void;
+    }
 }
 export declare class BaseObject {
-    protected constructor();
+    constructor();
     /**
      * Type of the object.
      */
@@ -2409,7 +2452,7 @@ export declare class BaseObject {
     getSyncedMetaKeys(): readonly string[];
 }
 export declare class Resource {
-    protected constructor();
+    constructor();
     readonly isStarted: boolean;
     readonly type: string;
     readonly name: string;
@@ -2426,74 +2469,6 @@ export declare class Resource {
     static getByName(name: string): Resource;
 }
 export declare class Utils {
-    protected constructor();
+    constructor();
 }
-export declare namespace Utils {
-    function wait(timeout: number): Promise<void>;
-    function waitFor(callback: () => boolean, timeout?: number): Promise<void>;
-    function inspect(value: unknown, options: IInspectOptions): string;
-    function assert(assertion: unknown, message: string): void;
-    class Timer {
-        constructor();
-        readonly id: number;
-        destroy(): void;
-    }
-    class Timeout extends Timer {
-        constructor();
-    }
-    class Interval extends Timer {
-        constructor();
-    }
-    class NextTick extends Timer {
-        constructor();
-    }
-    class EveryTick extends Timer {
-        constructor();
-    }
-    class ConsoleCommand {
-        constructor();
-        destroy(): void;
-    }
-}
-declare const _default: {
-    clearEveryTick: typeof clearEveryTick;
-    clearInterval: typeof clearInterval;
-    clearNextTick: typeof clearNextTick;
-    clearTimeout: typeof clearTimeout;
-    clearTimer: typeof clearTimer;
-    emit: typeof emit;
-    emitRaw: typeof emitRaw;
-    everyTick: typeof everyTick;
-    hash: typeof hash;
-    hasResource: typeof hasResource;
-    log: typeof log;
-    logError: typeof logError;
-    logWarning: typeof logWarning;
-    logDebug: typeof logDebug;
-    nextTick: typeof nextTick;
-    on: typeof on;
-    once: typeof once;
-    off: typeof off;
-    setInterval: typeof setInterval;
-    setTimeout: typeof setTimeout;
-    getAllResources: typeof getAllResources;
-    time: typeof time;
-    timeEnd: typeof timeEnd;
-    wait: typeof wait;
-    waitFor: typeof waitFor;
-    inspect: typeof inspect;
-    assert: typeof assert;
-    getEventListeners: typeof getEventListeners;
-    stringToSHA256: typeof stringToSHA256;
-    getVoiceConnectionState: typeof getVoiceConnectionState;
-    getNetTime: typeof getNetTime;
-    Vector3: typeof Vector3;
-    Vector2: typeof Vector2;
-    Quaternion: typeof Quaternion;
-    RGBA: typeof RGBA;
-    File: typeof File;
-    BaseObject: typeof BaseObject;
-    Resource: typeof Resource;
-    Utils: typeof Utils;
-};
-export default _default;
+export {};

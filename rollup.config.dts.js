@@ -58,7 +58,8 @@ export default dtsFiles.map(inputFile => {
             .replace(/\bdeclare\s+class\b/g, "export class")
             .replace(/\bdeclare\s+enum\b/g, "export enum")
             .replace(/\bdeclare\s+type\b/g, "export type")
-            .replace(/\bdeclare\s+interface\b/g, "export interface");
+            .replace(/\bdeclare\s+interface\b/g, "export interface")
+            .replace(/\bdeclare\s+namespace\b/g, "export namespace");
 
           // Stelle sicher, dass `declare module` um den Code gelegt wird
           return `declare module "${declareModuleName}" {\n${modifiedCode}\n}`;
