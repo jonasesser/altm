@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "tsc",
-    "preversion": "pnpm run test",
+    "build": "tsc",
+    "preversion": "pnpm run build",
     "release": "pnpm version --no-git-tag-version"
   },
   "repository": {

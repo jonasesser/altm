@@ -9,20 +9,20 @@ export class BaseObject {
     /**
      * Type of the object.
      */
-    public readonly type: BaseObjectType;
+    public readonly type: BaseObjectType | undefined;
     /**
      * Object usability.
      *
      * @returns False if object is no longer usable.
      */
-    public readonly valid: boolean;
-    public readonly id: number;
+    public readonly valid: boolean | undefined;
+    public readonly id: number | undefined;
     /**
      * Returns the ref count of the entity.
      *
      * @remarks It's only available in debug-mode.
      */
-    public readonly refCount: number;
+    public readonly refCount: number | undefined;
     /**
      * Removes the object from the world.
      */

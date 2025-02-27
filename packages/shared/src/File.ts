@@ -1,4 +1,4 @@
-import { FileEncoding } from './types/File';
+import { FileEncoding } from './types';
 
 export class File {
     protected constructor() {
@@ -31,6 +31,6 @@ export class File {
 
     public static read(filename: string, encoding: FileEncoding.Utf8 | FileEncoding.Utf16 | 'utf-8' | 'utf-16' | FileEncoding.Binary | 'binary'): string | ArrayBuffer {
         // TODO implement
-        return null;
+        return "null";
     }
 }

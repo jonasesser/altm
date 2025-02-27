@@ -29,6 +29,7 @@ export function on(listener: (eventName: string, ...args: any[]) => void): void;
  *
  * @remarks Listener will be only called for user-created events.
  *
+ * @param eventNameOrListener
  * @param listener Listener that should be added.
  */
 export function on(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
@@ -51,6 +52,7 @@ export function once(listener: (eventName: string, ...args: any[]) => void): voi
  *
  * @remarks Listener will be only called for user-created events.
  *
+ * @param eventNameOrListener
  * @param listener Listener that should be added.
  */
 export function once(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
@@ -73,6 +75,7 @@ export function off(listener: (eventName: string, ...args: any[]) => void): void
  *
  * @remarks Listener should be of the same reference as when event was subscribed to.
  *
+ * @param eventNameOrListener
  * @param listener Listener that should be removed.
  */
 export function off(eventNameOrListener: string | ((eventName: string, ...args: any[]) => void), listener?: (...args: any[]) => void): void {
@@ -88,7 +91,6 @@ export function off(eventNameOrListener: string | ((eventName: string, ...args: 
     }
 }
 
-export function getEventListeners(eventName: string | null): readonly ((...args: any[]) => void)[];
 /**
  * Gets all the listeners for the specified local event.
  *

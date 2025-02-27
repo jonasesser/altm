@@ -1,6 +1,6 @@
-import { EntityType } from '../../../client/stubs/index.stub';
 import { Vector3, Vector2 } from '../math';
 import { RGBA } from '../RGBA';
+import { EntityType } from '../types/Generel';
 
 export { LiteEvent } from './LiteEvent';
 export { clamp, getRandomInt } from './Math';
@@ -42,7 +42,7 @@ export namespace Utils {
                 let result;
                 try {
                     result = callback();
-                } catch (e) {
+                } catch (e: any) {
                     const promiseError = new Error(`Failed to wait for callback, error: ${e.message}`);
                     promiseError.stack = e.stack;
                     reject(promiseError);
@@ -62,9 +62,9 @@ export namespace Utils {
     }
 
     export class Timer extends BaseUtility {
-        #id: CitizenTimer = null;
+        private _id: CitizenTimer | null = null;
 
-        constructor(callback, ms, once) {
+        constructor(callback: () => void, ms: number, once: boolean = true) {
             super();
 
             const handler = () => {
@@ -77,17 +77,17 @@ export namespace Utils {
             };
 
             if (once)
-                this.#id = setTimeout(handler, ms);
+                this._id = setTimeout(handler, ms);
             else
-                this.#id = setInterval(handler, ms);
+                this._id = setInterval(handler, ms);
         }
 
         get id() {
-            return this.#id;
+            return this._id;
         }
 
         #clearId() {
-            this.#id = null;
+            this._id = null;
         }
 
         destroy() {
@@ -98,73 +98,76 @@ export namespace Utils {
     }
 
     export class Timeout extends Timer {
-        constructor(callback, ms) {
+        constructor(callback: () => void, ms: number) {
             super(callback, ms, true);
         }
     }
 
     export class NextTick extends Timer {
-        constructor(callback) {
+        constructor(callback: () => void) {
             super(callback, 0, true);
         }
     }
 
     export class Interval extends Timer {
-        constructor(callback, ms) {
+        constructor(callback: () => void, ms: number) {
             super(callback, ms, false);
         }
     }
 
     export class EveryTick extends Timer {
-        constructor(callback) {
+        constructor(callback: () => void) {
             super(callback, 0, false);
         }
     }
 
     export class ConsoleCommand extends BaseUtility {
-        static #handlers: Map<string, Set<(...args: string[]) => void>> = null;
+        private static handlers: Map<string, Set<(...args: string[]) => void>> | null = null;
 
         static #init() {
-            if (ConsoleCommand.#handlers) return;
-            ConsoleCommand.#handlers = new Map();
+            if (ConsoleCommand.handlers) return;
+            ConsoleCommand.handlers = new Map();
 
-            on("consoleCommand", (name, ...args) => {
-                ConsoleCommand.#handlers
-                    .get(name)
-                    ?.forEach(h => h(...args));
-            });
+            //TODO: add event handler
+            // on("consoleCommand", (name, ...args) => {
+            //     ConsoleCommand.#handlers
+            //         .get(name)
+            //         ?.forEach(h => h(...args));
+            // });
         }
 
-        static #addHandler(instance) {
-            const handlers = ConsoleCommand.#handlers.get(instance.#name) ?? new Set();
-            handlers.add(instance.#handler);
-            ConsoleCommand.#handlers.set(instance.#name, handlers);
+        static #addHandler(instance: ConsoleCommand) {
+            if (!ConsoleCommand.handlers) return;
+            const handlers = ConsoleCommand.handlers.get(instance.name) ?? new Set();
+            handlers.add(instance.handler);
+            ConsoleCommand.handlers.set(instance.name, handlers);
         }
 
-        static #removeHandler(instance) {
-            ConsoleCommand.#handlers
-                .get(instance.#name)
-                ?.delete(instance.#handler);
+        static #removeHandler(instance: ConsoleCommand) {
+            if (!ConsoleCommand.handlers) return;
+            ConsoleCommand.handlers
+                .get(instance.name)
+                ?.delete(instance.handler);
         }
 
-        #name = "";
-        #handler = () => {};
+        public name: string = "";
+        public handler: () => void = () => {};
 
-        constructor(name, handler) {
+        constructor(name: string, handler: () => void) {
             assert(typeof name === "string", "Expected a string as first argument");
             assert(typeof handler === "function", "Expected a function as second argument");
 
             super();
 
-            this.#name = name;
-            this.#handler = handler;
+            this.name = name;
+            this.handler = handler;
 
             ConsoleCommand.#init();
             ConsoleCommand.#addHandler(this);
         }
 
         destroy() {
-            assert(super._tryDestroy(), `ConsoleCommand '${this.#name}' already destroyed`);
+            assert(super._tryDestroy(), `ConsoleCommand '${this.name}' already destroyed`);
 
             ConsoleCommand.#removeHandler(this);
         }
@@ -205,16 +208,16 @@ export namespace Utils {
         assert(!isNaN(val), message)
     }
 
-    export function getClosestEntityFromPool(poolName: EntityType, options: { pos: Vector3, alive: boolean, range?: number }): number {
-        const { pos, alive, range = Infinity } = options;
+    export function getClosestEntityFromPool(poolName: EntityType, options: { pos: Vector3, range?: number }): number | null {
+        const { pos, range = Infinity } = options;
         assertVector3(pos, "Expected Vector3 as pos option");
         assertNotNaN(range, "Expected a number as range option");
 
-        let closestEntity = null;
+        let closestEntity: number | null = null;
         let closestDistance = Infinity;
         const entities: number[] = GetGamePool(poolName);
         for (const entity of entities) {
-            const distance = pos.distanceTo(new Vector3(GetEntityCoords(entity, alive)));
+            const distance = pos.distanceTo(new Vector3(GetEntityCoords(entity)));
             if (distance > range || distance > closestDistance) continue;
 
             closestEntity = entity;

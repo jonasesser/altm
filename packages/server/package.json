@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "tsc",
-    "preversion": "pnpm run test",
+    "build": "tsc",
+    "preversion": "pnpm run build",
     "release": "pnpm version --no-git-tag-version"
   },
   "repository": {
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/jonasesser/altm#readme",
   "dependencies": {
-    "@altm/shared": "^0.0.1"
+    "@altm/shared": "workspace:*"
   },
   "devDependencies": {
     "@citizenfx/server": "^2.0.12966-1",

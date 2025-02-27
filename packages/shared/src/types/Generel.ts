@@ -512,3 +512,11 @@ export interface IResource {
     name: string;
     type: string;
 }
+
+export enum EntityType {
+    Ped = "CPed",
+    Vehicle = "CVehicle",
+    NetObject = "CNetObject",
+    Object = "CObject",
+    Pickups = "CPickups"
+}
