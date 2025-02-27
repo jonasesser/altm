@@ -1,6 +1,8 @@
+// @ts-nocheck
 // Stub für index.d.ts
 
 import * as shared from 'alt-shared';
+export * from 'alt-shared';
 
 export enum Locale {
     Arabic = 'ar',
@@ -323,6 +325,7 @@ export interface IProfile {
      */
     startTime: number;
     /**
+     * 
      * Profiling end timestamp in microseconds.
      */
     endTime: number;
@@ -557,7 +560,7 @@ export interface ICookie {
 // }
 // Do not add anything here, add to the Utils namespace instead!
 // (this class is here only for extending shared Utils class & namespace)
-export * from 'alt-shared';
+
 
 export function addGxtText(key: string | number, value: string): void;
 /**
@@ -583,37 +586,37 @@ export function beginScaleformMovieMethodMinimap(methodName: string): boolean {
 
 export function emit<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export function emit<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emit<K extends string>(eventName: Exclude<K, keyof IClientEvent>, args: any[]): void {
+export function emit<K extends string>(eventName: Exclude<K, keyof IClientEvent>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitRaw<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export function emitRaw<K extends string>(eventName: Exclude<K, keyof IClientEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emitRaw<K extends string>(eventName: Exclude<K, keyof IClientEvent>, args: any[]): void {
+export function emitRaw<K extends string>(eventName: Exclude<K, keyof IClientEvent>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitServer<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
 export function emitServer<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServer<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitServer<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitServerRaw<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
 export function emitServerRaw<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServerRaw<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitServerRaw<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitServerUnreliable<K extends keyof shared.ICustomClientServerEvent>(eventName: K, ...args: Parameters<shared.ICustomClientServerEvent[K]>): void;
 export function emitServerUnreliable<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, ...args: any[]): void;
-export function emitServerUnreliable<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitServerUnreliable<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitRpc<K extends keyof shared.ICustomClientServerRpc>(rpcName: K, ...args: Parameters<shared.ICustomClientServerRpc[K]>): Promise<ReturnType<shared.ICustomClientServerRpc[K]>>;
 export function emitRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, ...args: any[]): Promise<any>;
-export function emitRpc<K extends string>(rpcName: Exclude<K, never>, args: any[]): Promise<any> {
+export function emitRpc<K extends string>(rpcName: Exclude<K, never>, ...args: any[]): Promise<any> {
     // TODO Implement
     return null;
 }
@@ -1456,31 +1459,31 @@ export function requestModel(model: string | number, timeout?: number): Promise<
  *
  * @remarks If you can't load a specific model with this method, use {@link loadModelAsync} instead.
  */
-export function requestModel(model: string | number, timeout: number): Promise<void> {
+export function requestModel(model: string | number, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
 export function requestAnimDict(animDict: string, timeout?: number): Promise<void>;
-export function requestAnimDict(animDict: string, timeout: number): Promise<void> {
+export function requestAnimDict(animDict: string, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
 export function requestAnimSet(animSet: string, timeout?: number): Promise<void>;
-export function requestAnimSet(animSet: string, timeout: number): Promise<void> {
+export function requestAnimSet(animSet: string, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
 export function requestClipSet(clipSet: string, timeout?: number): Promise<void>;
-export function requestClipSet(clipSet: string, timeout: number): Promise<void> {
+export function requestClipSet(clipSet: string, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
 
 export function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void>;
-export function requestCutscene(cutsceneName: string, flags: string | number, timeout: number): Promise<void> {
+export function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
@@ -1518,7 +1521,7 @@ export function loadMapArea(pos: shared.IVector3, radius?: number, timeout?: num
  * @param radius Radius of sphere to load. Defaults to 50.0.
  * @param timeout The maximum milliseconds to wait, otherwise promise will be rejected. Defaults to 5000.
  */
-export function loadMapArea(pos: shared.IVector3, radius: number, timeout: number): Promise<void> {
+export function loadMapArea(pos: shared.IVector3, radius: number, timeout?: number): Promise<void> {
     // TODO Implement
     return null;
 }
@@ -2119,7 +2122,7 @@ export class Entity extends WorldObject {
      */
     public readonly isSpawned: boolean;
     /** Hash of entity model */
-    public static get model(): number {
+    public get model(): number {
         // TODO Implement
         return 0;
     }
@@ -2504,13 +2507,13 @@ export class Player extends Entity {
         return false;
     }
     // stream synced meta
-    public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): unknown;
+    public getStreamSyncedMeta<K extends string>(key: Exclude<K, never>): any;
     public getStreamSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta>>(key: K): shared.ICustomPlayerStreamSyncedMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerStreamSyncedMeta} */
 
     public getStreamSyncedMeta<K extends string, V>(
         key: K | shared.MetaValues<shared.ICustomPlayerStreamSyncedMeta>,
-    ): K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta> ? shared.ICustomPlayerStreamSyncedMeta[K] | V : unknown {
+    ): K extends shared.ExtractStringKeys<shared.ICustomPlayerStreamSyncedMeta> ? shared.ICustomPlayerStreamSyncedMeta[K] | V : any {
         // TODO implementieren
         return null as any;
     }
@@ -3185,7 +3188,7 @@ export class WebView extends BaseObject {
      * @param args Rest parameters for emit to send.
      */
 
-    public emit(eventName: string, args: any[]): void {
+    public emit(eventName: string, ...args: any[]): void {
         // TODO implement
     }
     /**
@@ -3392,7 +3395,7 @@ export class Worker {
      * @remarks This can be called before the worker is started.
      */
 
-    public emit(eventName: string, args: any[]): void {
+    public emit(eventName: string, ...args: any[]): void {
         // TODO implement
     }
     /**
@@ -4443,7 +4446,7 @@ export class RmlDocument extends RmlElement {
         return null;
     }
 
-    public show(isModal: boolean, focused: boolean): void {
+    public show(isModal?: boolean, focused?: boolean): void {
         // TODO implement
     }
 
@@ -4518,6 +4521,29 @@ export class WeaponData {
      */
 
     public static getForHash(weaponHash: number): WeaponData {
+        // TODO implement
+        return null;
+    }
+}
+
+export class Object extends Entity {
+    declare public static readonly all: readonly Object[];
+    public static readonly count: number;
+    public static readonly streamedIn: readonly Object[];
+    public readonly alpha: number;
+    public readonly textureVariation: number;
+    /** The distance at which the LOD model of the object starts being applied. */
+    public readonly lodDistance: number;
+
+    public static getByID(id: number): Object {
+        // TODO implement
+        return null;
+    }
+    /**
+     * Gets the object with the given remote id
+     */
+
+    public static getByRemoteID(id: number): Object {
         // TODO implement
         return null;
     }
@@ -4620,7 +4646,7 @@ export class LocalObject extends Object {
     }
     /** Waits asynchronously until the object spawns. */
 
-    public waitForSpawn(timeout: number): Promise<void> {
+    public waitForSpawn(timeout?: number): Promise<void> {
         // TODO implement
         return null;
     }
@@ -4664,29 +4690,6 @@ export class WeaponObject extends LocalObject {
 
     public removeComponent(componentType: number): void {
         // TODO implement
-    }
-}
-
-export class ServerObject extends Entity {
-    declare public static readonly all: readonly ServerObject[];
-    public static readonly count: number;
-    public static readonly streamedIn: readonly ServerObject[];
-    public readonly alpha: number;
-    public readonly textureVariation: number;
-    /** The distance at which the LOD model of the object starts being applied. */
-    public readonly lodDistance: number;
-
-    public static getByID(id: number): ServerObject {
-        // TODO implement
-        return null;
-    }
-    /**
-     * Gets the object with the given remote id
-     */
-
-    public static getByRemoteID(id: number): ServerObject {
-        // TODO implement
-        return null;
     }
 }
 
@@ -4805,10 +4808,15 @@ export class AudioFilter extends BaseObject {
         super();
         // TODO: Implement constructor
     }
-    public static get audioCategory(): number {
+    public get audioCategory(): number {
         // TODO Implement
         return 0;
     }
+
+    public set audioCategory(value: number) {
+        // TODO Implement
+    }
+
     public readonly hash: number;
 
     public addRotateEffect(fRate: number, priority: number): number {
@@ -4816,7 +4824,7 @@ export class AudioFilter extends BaseObject {
         return 0;
     }
 
-    public addVolumeEffect(fVolume: number, priority: number, channel: number): number {
+    public addVolumeEffect(fVolume: number, priority: number, channel?: number): number {
         // TODO implement
         return 0;
     }
@@ -5207,7 +5215,7 @@ export class LocalVehicle extends Vehicle {
     }
     /** Waits asynchronously until the vehicle spawns. */
 
-    public waitForSpawn(timeout: number): Promise<void> {
+    public waitForSpawn(timeout?: number): Promise<void> {
         // TODO implement
         return null;
     }
@@ -5380,7 +5388,7 @@ export class LocalPed extends Ped {
     }
     /** Waits asynchronously until the ped spawns. */
 
-    public waitForSpawn(timeout: number): Promise<void> {
+    public waitForSpawn(timeout?: number): Promise<void> {
         // TODO implement
         return null;
     }
@@ -5518,27 +5526,27 @@ export class InteriorPortal {
 }
 
 export namespace Utils {
-    export function requestModel(model: string | number, timeout: number): Promise<void> {
+    export function requestModel(model: string | number, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
 
-    export function requestAnimDict(animDict: string, timeout: number): Promise<void> {
+    export function requestAnimDict(animDict: string, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
 
-    export function requestAnimSet(animSet: string, timeout: number): Promise<void> {
+    export function requestAnimSet(animSet: string, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
 
-    export function requestClipSet(clipSet: string, timeout: number): Promise<void> {
+    export function requestClipSet(clipSet: string, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
 
-    export function requestCutscene(cutsceneName: string, flags: string | number, timeout: number): Promise<void> {
+    export function requestCutscene(cutsceneName: string, flags: string | number, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
@@ -5597,7 +5605,7 @@ export namespace Utils {
         return null;
     }
 
-    export function loadMapArea(pos: shared.IVector3, radius: number, timeout: number): Promise<void> {
+    export function loadMapArea(pos: shared.IVector3, radius: number, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
@@ -5691,4 +5699,27 @@ export namespace Utils {
             // TODO implement
         }
     }
+}
+
+export default {
+    WeaponObject,
+    Ped,
+    AudioFilter,
+    AudioCategory,
+    Marker,
+    Colshape,
+    ColshapeCylinder,
+    ColshapeSphere,
+    ColshapeCircle,
+    ColshapeCuboid,
+    ColshapeRectangle,
+    ColshapePolygon,
+    TextLabel,
+    LocalVehicle,
+    LocalPed,
+    Font,
+    Interior,
+    InteriorRoom,
+    InteriorPortal,
+    Utils,
 }

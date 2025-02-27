@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Stub für index.d.ts
 
 import * as shared from 'alt-shared';
@@ -769,49 +770,49 @@ export function deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICust
 
 export function emit<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export function emit<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emit<K extends string>(eventName: Exclude<K, keyof IServerEvent>, args: any[]): void {
+export function emit<K extends string>(eventName: Exclude<K, keyof IServerEvent>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitRaw<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export function emitRaw<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
-export function emitRaw<K extends string>(eventName: Exclude<K, keyof IServerEvent>, args: any[]): void {
+export function emitRaw<K extends string>(eventName: Exclude<K, keyof IServerEvent>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitClient<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
+export function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitClientRaw<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
+export function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitClientUnreliable<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, args: any[]): void {
+export function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitAllClients<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitAllClients<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitAllClients<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitAllClients<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitAllClientsRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitAllClientsRaw<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
 export function emitAllClientsUnreliable<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
-export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, never>, args: any[]): void {
+export function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, never>, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -1503,10 +1504,7 @@ export class Entity extends WorldObject {
     /**
      * Entity model hash.
      */
-    public static get model(): number {
-        // TODO Implement
-        return 0;
-    }
+    public model: number | string;
     /**
      * Entity rotation.
      *
@@ -1853,10 +1851,18 @@ export class Player extends Entity {
      * @param eventName Name of the event.
      * @param args Rest parameters for emit to send.
      */
-    public emit<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args: Parameters<shared.ICustomServerClientEvent[K]>): void;
+    public emit<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args?: Parameters<shared.ICustomServerClientEvent[K]>): void;
 
-    public emit<K extends string>(eventName: K, args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void {
-        // TODO implementieren
+    public emit<K extends string>(eventName: K, args?: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void;
+    public emit(
+        eventName: string, 
+        ...args: any[]
+    ): void;
+    public emit(
+        eventName: string, 
+        ...args: any[]
+    ): void {
+        // TODO: Implementierung
     }
 
     /**
@@ -1867,8 +1873,12 @@ export class Player extends Entity {
      */
     public emitRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 
-    public emitRaw<K extends string>(eventName: K, args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void {
-        // TODO implementieren
+    public emitRaw<K extends string>(eventName: K, args: K extends keyof shared.ICustomServerClientEvent ? Parameters<shared.ICustomServerClientEvent[K]> : any[]): void;
+    public emitRaw(
+        eventName: string, 
+        ...args: any[]
+    ): void {
+        // TODO: implement
     }
 
     /**
@@ -1878,11 +1888,11 @@ export class Player extends Entity {
      * @param ...args Arguments to pass to the RPC
      *
      */
-    public emitRpc<K extends keyof shared.ICustomServerClientRpc>(rpcName: K, args: Parameters<shared.ICustomServerClientRpc[K]>): Promise<ReturnType<shared.ICustomServerClientRpc[K]>>;
+    public emitRpc<K extends keyof shared.ICustomServerClientRpc>(rpcName: K, args?: Parameters<shared.ICustomServerClientRpc[K]>): Promise<ReturnType<shared.ICustomServerClientRpc[K]>>;
 
     public emitRpc<K extends string>(
         rpcName: K,
-        args: K extends keyof shared.ICustomServerClientRpc ? Parameters<shared.ICustomServerClientRpc[K]> : any[],
+        args?: K extends keyof shared.ICustomServerClientRpc ? Parameters<shared.ICustomServerClientRpc[K]> : any[],
     ): K extends keyof shared.ICustomServerClientRpc ? Promise<ReturnType<shared.ICustomServerClientRpc[K]>> : Promise<any> {
         // TODO implementieren
         return null as any;
@@ -1959,7 +1969,7 @@ export class Player extends Entity {
      * Removes every weapon from the player.
      */
 
-    public removeAllWeapons(removeAllAmmo: boolean): void {
+    public removeAllWeapons(removeAllAmmo?: boolean): void {
         // TODO implement
     }
     /**
@@ -2455,15 +2465,20 @@ export class Player extends Entity {
      * @param key The key of the value to get.
      * @returns Dynamic value associated with the specified key or undefined if no data is present.
      */
-    public getLocalMeta<K extends string>(key: Exclude<K, never>): unknown;
+    public getLocalMeta<K extends string>(key: Exclude<K, never>): any;
     public getLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K): shared.ICustomPlayerLocalMeta[K];
     /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
 
     public getLocalMeta<K extends string, V>(
         key: K | shared.MetaValues<shared.ICustomPlayerLocalMeta>,
-    ): K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta> ? shared.ICustomPlayerLocalMeta[K] | V : unknown {
-        // TODO implementieren
-        return null as any;
+    ): K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta> ? shared.ICustomPlayerLocalMeta[K] | V : any;
+
+    // Für alle anderen (dynamischen) Strings:
+    public getLocalMeta(key: string): any;
+
+    public getLocalMeta(key: string): any {
+        // TODO: Implementierung
+        return null;
     }
 
     public hasLocalMeta(key: string): boolean;
@@ -2591,13 +2606,13 @@ export class Vehicle extends Entity {
         model: string | number,
         x: number, y: number, z: number,
         rx: number, ry: number, rz: number,
-        streamingDistance: number
+        streamingDistance?: number
     );
     constructor(
         model: string | number,
         pos: shared.IVector3,
         rot: shared.IVector3,
-        streamingDistance: number
+        streamingDistance?: number
     );
     constructor(
         model: string | number,
@@ -4487,13 +4502,13 @@ export class Ped extends Entity {
     }
 }
 
-export class ServerObject extends Entity {
+export class Object extends Entity {
     constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, alpha: number, textureVariation: number, lodDistance: number, streamingDistance: number);
     public constructor(model?: string | number, position?: shared.IVector3, rotation?: shared.IVector3, alpha?: number, textureVariation?: number, lodDistance?: number, streamingDistance?: number) {
         super();
         // TODO: Implement constructor
     }
-    declare public static readonly all: readonly ServerObject[];
+    declare public static readonly all: readonly Object[];
     public static readonly count: number;
     /** Object transparency, values are between 0 and 255. (0 being fully transparent) */
     public alpha: number;
@@ -4510,7 +4525,7 @@ export class ServerObject extends Entity {
         // TODO implement
     }
 
-    public static getByID(id: number): ServerObject {
+    public static getByID(id: number): Object {
         // TODO implement
         return null;
     }
@@ -4554,4 +4569,10 @@ export namespace Utils {
         // TODO Implement
         return null;
     }
+}
+
+export * from "alt-shared";
+
+export default {
+    getMaxStreamingObjects
 }

@@ -1,6 +1,15 @@
 {
+  "type": "module",
+  "scripts": {
+    "clean": "npx rimraf dist",
+    "build:ts": "tsc",
+    "build:dts": "rollup -c rollup.config.dts.js",
+    "build": "npm run clean && npm run build:ts && npm run build:dts",
+    "package": "npx rollup -c package.js"
+  },
   "dependencies": {
-    "prettier": "^3.5.2"
+    "prettier": "^3.5.2",
+    "rollup": "^4.34.8"
   },
   "prettier": {
     "tabWidth": 4,
@@ -9,5 +18,8 @@
     "semi": true,
     "arrowParens": "always",
     "trailingComma": "all"
+  },
+  "devDependencies": {
+    "rollup-plugin-dts": "^6.1.1"
   }
 }

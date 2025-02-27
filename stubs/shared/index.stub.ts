@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Stub für index.d.ts
 
 export enum BaseObjectType {
@@ -2047,7 +2048,7 @@ export function emit(eventName: string, ...args: any[]): void;
  * @param eventName Name of the event.
  * @param args Rest parameters for emit to send.
  */
-export function emit(eventName: string, args: any[]): void {
+export function emit(eventName: string, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2060,7 +2061,7 @@ export function emitRaw(eventName: string, ...args: any[]): void;
  *
  * @remarks Works only from JS resource to JS resource
  */
-export function emitRaw(eventName: string, args: any[]): void {
+export function emitRaw(eventName: string, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2104,7 +2105,7 @@ export function log(arg: any, ...args: any[]): void;
  *
  * @remarks Uses {@link "alt-shared".Utils.inspect alt.Utils.inspect} to format values.
  */
-export function log(arg: any, args: any[]): void {
+export function log(arg: any, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2114,7 +2115,7 @@ export function logError(arg: any, ...args: any[]): void;
  *
  * @remarks Uses {@link "alt-shared".Utils.inspect alt.Utils.inspect} to format values.
  */
-export function logError(arg: any, args: any[]): void {
+export function logError(arg: any, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2124,7 +2125,7 @@ export function logWarning(arg: any, ...args: any[]): void;
  *
  * @remarks Uses {@link "alt-shared".Utils.inspect alt.Utils.inspect} to format values.
  */
-export function logWarning(arg: any, args: any[]): void {
+export function logWarning(arg: any, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2134,7 +2135,7 @@ export function logDebug(arg: any, ...args: any[]): void;
  *
  * @remarks Uses {@link "alt-shared".Utils.inspect alt.Utils.inspect} to format values.
  */
-export function logDebug(arg: any, args: any[]): void {
+export function logDebug(arg: any, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -2862,7 +2863,7 @@ export class Quaternion {
 }
 
 export class RGBA {
-    constructor(r: number, g: number, b: number, a: number);
+    constructor(r: number, g: number, b: number, a?: number);
     constructor(array: [r: number, g: number, b: number, a?: number]);
     public constructor(r?: number | [number, number, number, number?], g?: number, b?: number, a?: number) {
         // TODO: Implement constructor
@@ -3102,12 +3103,12 @@ export namespace Utils {
         return null;
     }
 
-    export function waitFor(callback: () => boolean, timeout: number): Promise<void> {
+    export function waitFor(callback: () => boolean, timeout?: number): Promise<void> {
         // TODO Implement
         return null;
     }
 
-    export function inspect(value: unknown, options: import('alt-shared').IInspectOptions): string {
+    export function inspect(value: unknown, options: IInspectOptions): string {
         // TODO Implement
         return '';
     }
@@ -3166,4 +3167,46 @@ export namespace Utils {
             // TODO implement
         }
     }
+}
+
+export default {
+    clearEveryTick,
+    clearInterval,
+    clearNextTick,
+    clearTimeout,
+    clearTimer,
+    emit,
+    emitRaw,
+    everyTick,
+    hash,
+    hasResource,
+    log,
+    logError,
+    logWarning,
+    logDebug,
+    nextTick,
+    on,
+    once,
+    off,
+    setInterval,
+    setTimeout,
+    getAllResources,
+    time,
+    timeEnd,
+    wait,
+    waitFor,
+    inspect,
+    assert,
+    getEventListeners,
+    stringToSHA256,
+    getVoiceConnectionState,
+    getNetTime,
+    Vector3,
+    Vector2,
+    Quaternion,
+    RGBA,
+    File,
+    BaseObject,
+    Resource,
+    Utils
 }

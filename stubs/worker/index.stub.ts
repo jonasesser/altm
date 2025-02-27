@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Stub für index.d.ts
 
 export { log, logWarning, logError, logDebug, setTimeout, setInterval, nextTick, clearTimeout, clearInterval, clearNextTick, hash, version, branch, sdkVersion, debug, File, RGBA, Vector3, Vector2 } from 'alt-client';
@@ -22,7 +23,7 @@ export function emit(eventName: string, ...args: any[]): void;
  * @param eventName Name of the event.
  * @param args Rest parameters for emit to send.
  */
-export function emit(eventName: string, args: any[]): void {
+export function emit(eventName: string, ...args: any[]): void {
     // TODO Implement
 }
 
@@ -60,3 +61,11 @@ export function off(eventName: string, listener: (...args: any[]) => void): void
 export function off(eventName: string, listener: (...args: any[]) => void): void {
     // TODO Implement
 }
+
+export default {
+    emit,
+    on,
+    once,
+    off,
+    getSharedArrayBuffer
+};

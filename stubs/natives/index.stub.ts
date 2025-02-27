@@ -1,6 +1,7 @@
+// @ts-nocheck
 // Stub für index.d.ts
 
-import { Vector3, Entity, Vehicle, Player, LocalPlayer, Ped } from 'alt-client';
+import { Vector3, Entity, Vehicle, Player, LocalPlayer, Ped } from '../client/index.stub.js';
 
 export function toggleStrictChecks(enable: boolean): void;
 export function toggleStrictChecks(enable: boolean): void {
@@ -9443,7 +9444,7 @@ export function getScreenCoordFromWorldCoord(worldX: number, worldY: number, wor
  * Returns a boolean; whether or not the operation was successful. It will return false if the coordinates given are not visible to the rendering camera.
  * For .NET users...
  * VB:
- * Public Shared Function World3DToScreen2d(pos as vector3) As Vector2
+ * Public Shared Function World3DToScreen2d(pos as Vector3) As Vector2
  *         Dim x2dp, y2dp As New Native.OutputArgument
  *         Native.Function.Call(Of Boolean)(Native.Hash.GET_SCREEN_COORD_FROM_WORLD_COORD , pos.x, pos.y, pos.z, x2dp, y2dp)
  *         Return New Vector2(x2dp.GetResult(Of Single), y2dp.GetResult(Of Single))
@@ -52872,3 +52873,31 @@ export function getHashOfMapAreaAtCoords(x: number, y: number, z: number): numbe
     // TODO Implement
     return 0;
 }
+
+export default {
+    canUseWeaponOnParachute,
+    clearPopscheduleOverrideVehicleModel,
+    createAirDefenceAngledArea,
+    createAirDefenceSphere,
+    fireAirDefenceSphereWeaponAtPosition,
+    getHashOfMapAreaAtCoords,
+    getNameOfZone,
+    getZoneAtCoords,
+    getZoneFromNameId,
+    getZonePopschedule,
+    getZoneScumminess,
+    isAirDefenceSphereInArea,
+    removeAllAirDefenceSpheres,
+    removeAirDefenceSphere,
+    requestWeaponHighDetailModel,
+    setCanPedSelectAllWeapons,
+    setCanPedSelectInventoryWeapon,
+    setEqippedWeaponStartSpinningAtFullSpeed,
+    setFlashLightActiveHistory,
+    setFlashLightFadeDistance,
+    setPedChanceOfFiringBlanks,
+    setPedShootOrdnanceWeapon,
+    setPlayerTargettableForAirDefenceSphere,
+    setWeaponAoeModifier,
+    setWeaponAnimationOverride
+};

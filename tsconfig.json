@@ -1,17 +1,31 @@
 {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "target": "ESNext",
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "paths": {
-        "alt-shared": ["./stubs/shared/index.stub.ts"],
-        "alt-client": ["./stubs/client/index.stub.ts"],
-        "alt-server": ["./stubs/server/index.stub.ts"],
-        "natives": ["./stubs/natives/index.stub.ts"],
-        "webviews": ["./stubs/webviews/index.stub.ts"],
-        "workers": ["./stubs/workers/index.stub.ts"],
-      }
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationDir": "./types",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": "src",
+    "paths": {
+      "alt-shared": ["../stubs/shared/index.stub.ts"],
+      "alt-client": ["../stubs/client/index.stub.ts"],
+      "alt-server": ["../stubs/server/index.stub.ts"],
+      "natives": ["../stubs/natives/index.stub.ts"],
+      "webviews": ["../stubs/webview/index.stub.ts"],
+      "worker": ["../stubs/worker/index.stub.ts"]
     }
-  }
-  
+  },
+  "files": [
+    "./stubs/shared/index.stub.ts",
+    "./stubs/client/index.stub.ts",
+    "./stubs/server/index.stub.ts",
+    "./stubs/natives/index.stub.ts",
+    "./stubs/webview/index.stub.ts",
+    "./stubs/worker/index.stub.ts"
+  ]
+}

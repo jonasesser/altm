@@ -1,13 +1,10 @@
-// @ts-nocheck
-// Stub für index.d.ts
-
 declare const enum AltPermission {
-    NONE,
-    SCREEN_CAPTURE,
-    WEBRTC,
-    CLIPBOARD_ACCESS,
-    EXTENDED_VOICE_API,
-    All,
+    NONE = 0,
+    SCREEN_CAPTURE = 1,
+    WEBRTC = 2,
+    CLIPBOARD_ACCESS = 3,
+    EXTENDED_VOICE_API = 4,
+    All = 5
 }
 export interface Alt {
     /**
@@ -17,7 +14,6 @@ export interface Alt {
      * @param args Rest parameters for emit to send.
      */
     emit(eventName: string, ...args: any[]): void;
-
     /**
      * Unsubscribes from client event handler with specified listener.
      *
@@ -27,7 +23,6 @@ export interface Alt {
      * @param listener Listener that should be removed.
      */
     off(eventName: string, listener: (...args: any[]) => void): void;
-
     /**
      * Subscribes to client event handler with specified listener.
      *
@@ -35,7 +30,6 @@ export interface Alt {
      * @param listener Listener that should be added.
      */
     on(eventName: string, listener: (...args: any[]) => void): void;
-
     /**
      * Subscribes to client event with specified listener, which only triggers once.
      *
@@ -43,7 +37,6 @@ export interface Alt {
      * @param listener Listener that should be added.
      */
     once(eventName: string, listener: (...args: any[]) => void): void;
-
     /**
      * Gets all the listeners for the specified webview event.
      *
@@ -54,7 +47,6 @@ export interface Alt {
     getVersion(): string;
     getBranch(): string;
     getLocale(): string;
-
     /**
      * Gets the state of the specified permission.
      *
@@ -64,13 +56,10 @@ export interface Alt {
     getPermissionState(permId: AltPermission): boolean;
     getPermissionState<T extends number>(permId: T): boolean;
 }
-
 export interface Window {
     alt: Alt;
 }
-
-declare var alt: Alt;
-
-export default {
-    alt,
-}
+declare const _default: {
+    alt: Alt;
+};
+export default _default;

@@ -21,3 +21,46 @@ Dieses Projekt nutzt generierte Stubs aus den AltV Typ-Definitions, um im nächs
    ```bash
    git clone <repository-url>
    cd <repository-verzeichnis>
+
+2. Build
+
+npm run build
+
+3. Copy dist to your project in folder altm
+
+5. 
+
+        "@altm/client": "file:altm/client/altm-client-1.0.0.tgz",
+        "@altm/natives": "file:altm/natives/altm-natives-1.0.0.tgz",
+        "@altm/server": "file:altm/server/altm-server-1.0.0.tgz",
+        "@altm/shared": "file:altm/shared/altm-shared-1.0.0.tgz",
+        "@altm/webview": "file:altm/webview/altm-webview-1.0.0.tgz",
+        "@altm/worker": "file:altm/worker/altm-worker-1.0.0.tgz",
+
+    anstatt:
+
+    "@altm/client": "^1.0.0",
+        "@altm/natives": "^1.0.0",
+        "@altm/server": "^1.0.0",
+        "@altm/shared": "^1.0.0",
+        "@altm/webview": "^1.0.0",
+        "@altm/worker": "1.0.0",
+
+
+        npm list | Select-String "@altm/"
+
+
+
+npm install --save-dev ./altm/client/altm-client-1.0.0.tgz
+npm install --save-dev ./altm/server/altm-server-1.0.0.tgz
+npm install --save-dev ./altm/shared/altm-shared-1.0.0.tgz
+npm install --save-dev ./altm/natives/altm-natives-1.0.0.tgz
+
+6. add type roots!
+
+7. checks
+
+tsc --traceResolution
+
+
+
