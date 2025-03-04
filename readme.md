@@ -16,8 +16,5 @@ Dieses Projekt nutzt generierte Stubs aus den AltV Typ-Definitions, um im nächs
 
 ## Installation
 
-1. **Repository klonen:**
-
-   ```bash
-   git clone <repository-url>
-   cd <repository-verzeichnis>
+1. ``pnpm i``
+2. ``pnpm run build``
