@@ -1261,18 +1261,18 @@ export declare enum KeyCode {
     Shift = 16,
     Alt = 18,
     Ctrl = 17,
-    "-" = 189,
-    "=" = 187,
-    "," = 188,
-    ";" = 186,
-    "." = 190,
-    "/" = 191,
-    "`" = 192,
-    "~" = 192,
+    '-' = 189,
+    '=' = 187,
+    ',' = 188,
+    ';' = 186,
+    '.' = 190,
+    '/' = 191,
+    '`' = 192,
+    '~' = 192,
     "'" = 222,
-    "[" = 219,
-    "]" = 221,
-    "\\" = 220,
+    '[' = 219,
+    ']' = 221,
+    '\\' = 220,
     KpMultiply = 106,
     KpAdd = 107,
     KpSubtract = 109,
@@ -1654,23 +1654,23 @@ export declare enum VoiceConnectionState {
     Connected = 2
 }
 /**
-   * Documentation: https://docs.altv.mp/articles/configs/resource.html
-   */
+ * Documentation: https://docs.altv.mp/articles/configs/resource.html
+ */
 export interface IResourceConfig {
     type: string;
     deps: readonly string[];
     main: string;
-    "client-main": string;
-    "client-type": string;
-    "client-files": readonly string[];
-    "required-permissions": readonly Permission[];
-    "optional-permissions": readonly Permission[];
+    'client-main': string;
+    'client-type': string;
+    'client-files': readonly string[];
+    'required-permissions': readonly Permission[];
+    'optional-permissions': readonly Permission[];
 }
-export type InterfaceValueByKey<TInterface, TKey, VDefault = unknown, VReplace = void> = (TKey extends keyof TInterface ? (VReplace extends void ? TInterface[TKey] : VReplace) : VDefault);
-type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
+export type InterfaceValueByKey<TInterface, TKey, VDefault = unknown, VReplace = void> = TKey extends keyof TInterface ? (VReplace extends void ? TInterface[TKey] : VReplace) : VDefault;
+export type ExtractStringKeys<TInterface extends Record<any, any>> = keyof {
     [K in keyof TInterface as Extract<K, string>]: TInterface[K];
 };
-export type EventParameters<TAltInterface extends Record<any, any>, TCustomInterface extends Record<any, any>, TEventName extends keyof TAltInterface | keyof TCustomInterface> = (Parameters<TEventName extends keyof TAltInterface ? TAltInterface[TEventName] : (TEventName extends keyof TCustomInterface ? TCustomInterface[TEventName] : never)>);
+export type EventParameters<TAltInterface extends Record<any, any>, TCustomInterface extends Record<any, any>, TEventName extends keyof TAltInterface | keyof TCustomInterface> = Parameters<TEventName extends keyof TAltInterface ? TAltInterface[TEventName] : TEventName extends keyof TCustomInterface ? TCustomInterface[TEventName] : never>;
 export type MetaValues<TInterface> = Partial<TInterface> & Record<string, unknown>;
 export interface IVector2 {
     x: number;
@@ -1707,188 +1707,188 @@ export declare enum VehicleLockState {
     LockedCanBeDamaged = 7
 }
 /**
-   * Extend it by interface merging for use in global meta {@link getMeta alt.getMeta}, {@link setMeta alt.setMeta}, etc.
-   *
-   * @example
-   * ```
-   * declare module "alt-shared" {
-   *   // extending interface by interface merging
-   *   export interface ICustomGlobalMeta {
-   *     numberExample: number
-   *     stringExample: string
-   *   }
-   * }
-   *
-   * const value = alt.getMeta("numberExample") // return value: number | undefined
-   * alt.setMeta("stringExample", "value") // key: "stringExample", value: string
-   * ```
-   */
+ * Extend it by interface merging for use in global meta {@link getMeta alt.getMeta}, {@link setMeta alt.setMeta}, etc.
+ *
+ * @example
+ * ```
+ * declare module "alt- {
+ *   // extending interface by interface merging
+ *   export interface ICustomGlobalMeta {
+ *     numberExample: number
+ *     stringExample: string
+ *   }
+ * }
+ *
+ * const value = alt.getMeta("numberExample") // return value: number | undefined
+ * alt.setMeta("stringExample", "value") // key: "stringExample", value: string
+ * ```
+ */
 export interface ICustomGlobalMeta {
 }
 /**
-   * Extend it by interface merging for use in global synced meta {@link getSyncedMeta alt.getSyncedMeta}, {@link setSyncedMeta alt.setSyncedMeta}, etc.
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in global synced meta {@link getSyncedMeta alt.getSyncedMeta}, {@link setSyncedMeta alt.setSyncedMeta}, etc.
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomGlobalSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in baseobject meta {@link BaseObject#getMeta}, {@link BaseObject#setMeta}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in baseobject meta {@link BaseObject#getMeta}, {@link BaseObject#setMeta}, etc.
+ *
+ * @remarks See {@link "alt-.ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by interface merging for use in baseobject synced meta {@link BaseObject#getSyncedMeta}, {@link BaseObject#hasSyncedMeta}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in baseobject synced meta {@link BaseObject#getSyncedMeta}, {@link BaseObject#hasSyncedMeta}, etc.
+ *
+ * @remarks See {@link "alt-.ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomBaseObjectSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in entity synced meta (class `Entity` on client & server, e.g. `entity.getSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in entity synced meta (class `Entity` on client & server, e.g. `entity.getSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomEntitySyncedMeta extends ICustomBaseObjectSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in entity stream synced meta (class `Entity` on client & server, e.g. `entity.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in entity stream synced meta (class `Entity` on client & server, e.g. `entity.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomEntityStreamSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in player synced meta (class `Player` on client & server, e.g. `player.getSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in player synced meta (class `Player` on client & server, e.g. `player.getSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomPlayerSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in player stream synced meta (class `Player` on client & server, e.g. `player.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in player stream synced meta (class `Player` on client & server, e.g. `player.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomPlayerStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in player local meta (class `Player` on client & server, e.g. `player.getLocalMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in player local meta (class `Player` on client & server, e.g. `player.getLocalMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomPlayerLocalMeta {
 }
 /**
-   * Extend it by interface merging for use in vehicle synced meta (class `Vehicle` on client & server, e.g. `vehicle.getSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in vehicle synced meta (class `Vehicle` on client & server, e.g. `vehicle.getSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomVehicleSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in vehicle stream synced meta (class `Vehicle` on client & server, e.g. `vehicle.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in vehicle stream synced meta (class `Vehicle` on client & server, e.g. `vehicle.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomVehicleStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in virtual entity stream synced meta (class `VirtualEntity` on client & server, e.g. `entity.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in virtual entity stream synced meta (class `VirtualEntity` on client & server, e.g. `entity.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomVirtualEntityStreamSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in ped synced meta (class `Ped` on client & server, e.g. `ped.getSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in ped synced meta (class `Ped` on client & server, e.g. `ped.getSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomPedSyncedMeta extends ICustomEntitySyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in ped stream synced meta (class `Ped` on client & server, e.g. `ped.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in ped stream synced meta (class `Ped` on client & server, e.g. `ped.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomPedStreamSyncedMeta extends ICustomEntityStreamSyncedMeta {
 }
 /**
-   * Extend it by interface merging for use in checkpoint stream synced meta (class `Checkpoint` on client & server, e.g. `checkpoint.getStreamSyncedMeta`)
-   *
-   * @remarks See {@link ICustomGlobalMeta} for an example of use
-   */
+ * Extend it by interface merging for use in checkpoint stream synced meta (class `Checkpoint` on client & server, e.g. `checkpoint.getStreamSyncedMeta`)
+ *
+ * @remarks See {@link ICustomGlobalMeta} for an example of use
+ */
 export interface ICustomCheckpointStreamSyncedMeta {
 }
 /**
-   * Extend `alt.emitServer` and `alt.onServer` auto-completion by merging interfaces.
-   *
-   * @example
-   * ```ts
-   * declare module 'alt-client' {
-   *    interface ICustomServerClientEvent {
-   *        myEvent: (arg1: string, arg2: { key: string, value: number })
-   *    }
-   * }
-   * ```
-   *
-   * @export
-   * @interface ICustomServerClientEvent
-   */
+ * Extend `alt.emitServer` and `alt.onServer` auto-completion by merging interfaces.
+ *
+ * @example
+ * ```ts
+ * declare module 'alt-client' {
+ *    interface ICustomServerClientEvent {
+ *        myEvent: (arg1: string, arg2: { key: string, value: number })
+ *    }
+ * }
+ * ```
+ *
+ * @export
+ * @interface ICustomServerClientEvent
+ */
 export interface ICustomServerClientEvent {
 }
 /**
-   * Extend `alt.onClient` and `alt.emitServer` auto-completion by merging interfaces.
-   *
-   * @example
-   * ```ts
-   * declare module 'alt-client' {
-   *    interface ICustomClientServerEvent {
-   *        myEvent: (arg1: string, arg2: { key: string, value: number })
-   *    }
-   * }
-   * ```
-   *
-   * @export
-   * @interface ICustomClientServerEvent
-   */
+ * Extend `alt.onClient` and `alt.emitServer` auto-completion by merging interfaces.
+ *
+ * @example
+ * ```ts
+ * declare module 'alt-client' {
+ *    interface ICustomClientServerEvent {
+ *        myEvent: (arg1: string, arg2: { key: string, value: number })
+ *    }
+ * }
+ * ```
+ *
+ * @export
+ * @interface ICustomClientServerEvent
+ */
 export interface ICustomClientServerEvent {
 }
 /**
-   * Extend `player.emitRpc` and `alt.onRpc` auto-completion by merging interfaces.
-   *
-   * @example
-   * ```ts
-   * declare module 'alt-client' {
-   *    interface ICustomServerClientRpc {
-   *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
-   *    }
-   * }
-   * ```
-   *
-   * @export
-   * @interface ICustomServerClientRpc
-   */
+ * Extend `player.emitRpc` and `alt.onRpc` auto-completion by merging interfaces.
+ *
+ * @example
+ * ```ts
+ * declare module 'alt-client' {
+ *    interface ICustomServerClientRpc {
+ *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
+ *    }
+ * }
+ * ```
+ *
+ * @export
+ * @interface ICustomServerClientRpc
+ */
 export interface ICustomServerClientRpc {
 }
 /**
-   * Extend `alt.onRpc` and `alt.emitRpc` auto-completion by merging interfaces.
-   *
-   * @example
-   * ```ts
-   * declare module 'alt-client' {
-   *    interface ICustomClientServerRpc {
-   *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
-   *    }
-   * }
-   * ```
-   *
-   * @export
-   * @interface ICustomClientServerRpc
-   */
+ * Extend `alt.onRpc` and `alt.emitRpc` auto-completion by merging interfaces.
+ *
+ * @example
+ * ```ts
+ * declare module 'alt-client' {
+ *    interface ICustomClientServerRpc {
+ *        myRpc: (arg1: string, arg2: { key: string, value: number }): Promise<boolean>
+ *    }
+ * }
+ * ```
+ *
+ * @export
+ * @interface ICustomClientServerRpc
+ */
 export interface ICustomClientServerRpc {
 }
 export interface IInspectOptions {
@@ -1900,7 +1900,7 @@ export interface IInspectOptions {
      * the getter function.
      * @default `false`
      */
-    getters: boolean | "get" | "set";
+    getters: boolean | 'get' | 'set';
     showHidden: boolean;
     /**
      * @default 2
@@ -1939,45 +1939,222 @@ export declare const defaultDimension: number;
 export declare const globalDimension: number;
 export declare const isClient: boolean;
 export declare const isServer: boolean;
+/**
+ * Removes the specified key and the data connected to that specific key.
+ *
+ * @param key The key of the value to remove.
+ */
 export declare function deleteMeta(key: string): void;
 export declare function deleteMeta<K extends ExtractStringKeys<ICustomGlobalMeta>>(key: K): void;
+/**
+ * Gets a value using the specified key.
+ *
+ * @param key The key of the value to get.
+ * @returns Dynamic value associated with the specified key or undefined if no data is present.
+ */
 export declare function getMeta<K extends string>(key: Exclude<K, keyof ICustomGlobalMeta>): unknown;
 export declare function getMeta<K extends ExtractStringKeys<ICustomGlobalMeta>>(key: K): ICustomGlobalMeta[K] | undefined;
-export declare function getMeta<V extends any>(key: string): V | undefined;
+/** @deprecated See {@link ICustomGlobalMeta} */
+/**
+ * Returns all meta keys which have been set
+ */
 export declare function getMetaKeys(): readonly string[];
+/**
+ * Determines whether contains the specified key.
+ *
+ * @param key The key of the value to locate.
+ * @returns True when element associated with the specified key is stored.
+ */
 export declare function hasMeta(key: string): boolean;
 export declare function hasMeta<K extends ExtractStringKeys<ICustomGlobalMeta>>(key: K): boolean;
+/**
+ * Stores the given value with the specified key.
+ *
+ * @remarks The given value will be locally to all resources.
+ *
+ * @param key The key of the value to store.
+ * @param value The value to store.
+ */
 export declare function setMeta<K extends string>(key: K, value: InterfaceValueByKey<ICustomGlobalMeta, K>): void;
 export declare function setMeta<K extends ExtractStringKeys<ICustomGlobalMeta>>(key: K, value: ICustomGlobalMeta[K]): void;
-export declare function setMeta<V extends any, K extends string = string>(key: K, value: InterfaceValueByKey<ICustomGlobalMeta, K, V>): void;
+/** @deprecated See {@link ICustomGlobalMeta} */
+/**
+ * Gets a value using the specified key.
+ *
+ * @param key The key of the value to get.
+ * @returns Dynamic value associated with the specified key or undefined if no data is present.
+ */
 export declare function getSyncedMeta<K extends string>(key: Exclude<K, keyof ICustomGlobalSyncedMeta>): unknown;
 export declare function getSyncedMeta<K extends ExtractStringKeys<ICustomGlobalSyncedMeta>>(key: K): ICustomGlobalSyncedMeta[K] | undefined;
-export declare function getSyncedMeta<V extends any>(key: string): V | undefined;
+/** @deprecated See {@link ICustomGlobalSyncedMeta} */
+/**
+ * Returns all synced meta keys which have been set
+ */
 export declare function getSyncedMetaKeys(): readonly string[];
+/**
+ * Determines whether contains the specified key.
+ *
+ * @param key The key of the value to locate.
+ * @returns True if the meta table contains any data at the specified key or False if not
+ */
 export declare function hasSyncedMeta(key: string): boolean;
 export declare function hasSyncedMeta<K extends ExtractStringKeys<ICustomGlobalSyncedMeta>>(key: K): boolean;
+/**
+ * Clears a timer set with the {@link everyTick} function.
+ *
+ * @param id The id of a timer.
+ */
 export declare function clearEveryTick(id: number): void;
+/**
+ * Clears a timer set with the {@link setInterval} function.
+ *
+ * @param id The id of a timer.
+ */
 export declare function clearInterval(id: number): void;
+/**
+ * Clears a timer set with the {@link nextTick} function.
+ *
+ * @param id The id of a timer.
+ */
 export declare function clearNextTick(id: number): void;
+/**
+ * Clears a timer set with the {@link setTimeout} function.
+ *
+ * @param id The id of a timer.
+ */
 export declare function clearTimeout(id: number): void;
+/**
+ * @hidden
+ */
 export declare function clearTimer(id: number): void;
+/**
+ * Emits specified event across resources.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emit(eventName: string, ...args: any[]): void;
+/**
+ * Emits specified event across resources.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ *
+ * @remarks Works only from JS resource to JS resource
+ */
 export declare function emitRaw(eventName: string, ...args: any[]): void;
+/**
+ * Schedules execution of handler on every tick/every frame.
+ *
+ * @param handler Handler that should be scheduled for execution.
+ * @returns A number representing the id value of the timer that is set. Use this value with the {@link clearEveryTick} function to cancel the timer.
+ */
 export declare function everyTick(handler: (...args: any[]) => void): number;
+/**
+ * Creates a hash using Jenkins one-at-a-time algorithm.
+ *
+ * @param str A string from which hash will be created.
+ */
 export declare function hash(str: string): number;
+/**
+ * Returns whether the specified resource exists.
+ *
+ * @param name Name of the resource.
+ */
 export declare function hasResource(name: string): boolean;
+/**
+ * Logs the specified arguments to the console.
+ *
+ * @remarks Uses {@link "alt-.Utils.inspect alt.Utils.inspect} to format values.
+ */
 export declare function log(arg: any, ...args: any[]): void;
+/**
+ * Logs the specified arguments as an error to the console.
+ *
+ * @remarks Uses {@link "alt-.Utils.inspect alt.Utils.inspect} to format values.
+ */
 export declare function logError(arg: any, ...args: any[]): void;
+/**
+ * Logs the specified arguments as a warning to the console.
+ *
+ * @remarks Uses {@link "alt-.Utils.inspect alt.Utils.inspect} to format values.
+ */
 export declare function logWarning(arg: any, ...args: any[]): void;
+/**
+ * Logs the specified arguments to the console if debug is enabled.
+ *
+ * @remarks Uses {@link "alt-.Utils.inspect alt.Utils.inspect} to format values.
+ */
 export declare function logDebug(arg: any, ...args: any[]): void;
+/**
+ * Schedules execution of handler on next tick/next frame.
+ *
+ * @param handler Handler that should be scheduled for execution.
+ * @returns A number representing the id value of the timer that is set. Use this value with the {@link clearNextTick} function to cancel the timer.
+ */
 export declare function nextTick(handler: (...args: any[]) => void): number;
+/**
+ * Subscribes to a custom local event with the specified listener.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function on(eventName: string, listener: (...args: any[]) => void): void;
+/**
+ * Subscribes to all events with the specified listener.
+ *
+ * @remarks Listener will be only called for user-created events.
+ *
+ * @param listener Listener that should be added.
+ */
 export declare function on(listener: (eventName: string, ...args: any[]) => void): void;
+/**
+ * Subscribes to a custom local event with the specified listener, which only triggers once.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function once(eventName: string, listener: (...args: any[]) => void): void;
+/**
+ * Subscribes to all events with the specified listener, which only triggers once.
+ *
+ * @remarks Listener will be only called for user-created events.
+ *
+ * @param listener Listener that should be added.
+ */
 export declare function once(listener: (eventName: string, ...args: any[]) => void): void;
+/**
+ * Unsubscribes from a event with the specified listener.
+ *
+ * @remarks Listener should be of the same reference as when event was subscribed to.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be removed.
+ */
 export declare function off(eventName: string, listener: (...args: any[]) => void): void;
+/**
+ * Unsubscribes from all user-created events with the specified listener.
+ *
+ * @remarks Listener should be of the same reference as when event was subscribed to.
+ *
+ * @param listener Listener that should be removed.
+ */
 export declare function off(listener: (eventName: string, ...args: any[]) => void): void;
+/**
+ * Schedules execution of handler in specified intervals.
+ *
+ * @param handler Handler that should be scheduled for execution.
+ * @param miliseconds The time, in milliseconds, between execution of specified handler.
+ * @returns A number representing the id value of the timer that is set. Use this value with the {@link clearInterval} function to cancel the timer.
+ */
 export declare function setInterval(handler: (...args: any[]) => void, miliseconds: number): number;
+/**
+ * Schedules execution of handler once after the expiration of interval.
+ *
+ * @param handler Handler that should be scheduled for execution.
+ * @param miliseconds The time, in milliseconds, before execution of specified handler.
+ * @returns A number representing the id value of the timer that is set. Use this value with the {@link clearTimeout} function to cancel the timer.
+ */
 export declare function setTimeout(handler: (...args: any[]) => void, miliseconds: number): number;
 export declare function getAllResources(): readonly IResource[];
 export declare function time(timerName: string): void;
@@ -1985,12 +2162,32 @@ export declare function time(): void;
 export declare function timeEnd(timerName: string): void;
 export declare function timeEnd(): void;
 export declare function wait(timeout: number): Promise<void>;
+/**
+ * Waits for the callback to return true, otherwise the promise will be rejected after timeout
+ *
+ * @param callback If callback returns true it resolves promise.
+ * @param timeout The maximum milliseconds to wait, otherwise promise will be rejected. Defaults to 2000.
+ */
 export declare function waitFor(callback: () => boolean, timeout?: number): Promise<void>;
+/**
+ * Returns a string representation of `value` that is intended for debugging.
+ *
+ * @remarks Proxy or promise details (returned value, status) are not supported.
+ */
 export declare function inspect(value: unknown, options?: IInspectOptions): string;
-export declare function assert(assertion: unknown, message?: string): asserts assertion;
-export declare function getEventListeners(eventName: string | null): readonly ((...args: any[]) => void)[];
+export declare function assert(assertion: unknown, message?: string): void;
+/**
+ * Gets all the listeners for the specified local event.
+ *
+ * @param eventName Name of the event or null for generic event.
+ * @returns Array of listener functions for that event.
+ */
+export declare function getEventListeners(eventName: string): readonly ((...args: any[]) => void)[];
 export declare function stringToSHA256(string: string): string;
 export declare function getVoiceConnectionState(): VoiceConnectionState;
+/**
+ * Gets the amount of milliseconds since the server was started.
+ */
 export declare function getNetTime(): number;
 export declare class Vector3 {
     constructor(x: number, y: number, z: number);
@@ -2327,7 +2524,7 @@ export declare class RGBA {
     toString(): string;
 }
 export declare class File {
-    constructor();
+    protected constructor();
     /**
      * Determines whether file exists with the specified filename.
      *
@@ -2341,44 +2538,10 @@ export declare class File {
      * @param filename The name of the file.
      * @param encoding The encoding of the file. If not specified, it defaults to "utf-8".
      */
-    read(filename: string, encoding?: FileEncoding.Utf8 | FileEncoding.Utf16 | "utf-8" | "utf-16"): string;
-    /**
-     * Reads content of the file.
-     *
-     * @param filename The name of the file.
-     * @param encoding The encoding of the file.
-     */
-    static read(filename: string, encoding: FileEncoding.Utf8 | FileEncoding.Utf16 | "utf-8" | "utf-16" | FileEncoding.Binary | "binary"): string | ArrayBuffer;
-}
-export declare namespace Utils {
-    function wait(timeout: number): Promise<void>;
-    function waitFor(callback: () => boolean, timeout?: number): Promise<void>;
-    function inspect(value: unknown, options?: import("alt-shared").IInspectOptions): string;
-    function assert(assertion: unknown, message?: string): void;
-    class Timer {
-        constructor(callback: () => void, ms: number, once: boolean);
-        readonly id: number;
-        destroy(): void;
-    }
-    class Timeout extends Timer {
-        constructor(callback: () => void, ms: number);
-    }
-    class Interval extends Timer {
-        constructor(callback: () => void, ms: number);
-    }
-    class NextTick extends Timer {
-        constructor(callback: () => void);
-    }
-    class EveryTick extends Timer {
-        constructor(callback: () => void);
-    }
-    class ConsoleCommand {
-        constructor(name: string, callback: (...args: string[]) => void);
-        destroy(): void;
-    }
+    static read(filename: string, encoding?: FileEncoding.Utf8 | FileEncoding.Utf16 | 'utf-8' | 'utf-16'): string;
 }
 export declare class BaseObject {
-    constructor();
+    protected constructor();
     /**
      * Type of the object.
      */
@@ -2425,7 +2588,7 @@ export declare class BaseObject {
     /**
      * Stores the given value with the specified key.
      *
-     * @remarks The given value will be shared locally.
+     * @remarks The given value will be locally.
      *
      * @param key The key of the value to store.
      * @param value The value to store.
@@ -2452,7 +2615,7 @@ export declare class BaseObject {
     getSyncedMetaKeys(): readonly string[];
 }
 export declare class Resource {
-    constructor();
+    protected constructor();
     readonly isStarted: boolean;
     readonly type: string;
     readonly name: string;
@@ -2469,6 +2632,32 @@ export declare class Resource {
     static getByName(name: string): Resource;
 }
 export declare class Utils {
-    constructor();
+    protected constructor();
 }
-export {};
+export declare namespace Utils {
+    function wait(timeout: number): Promise<void>;
+    function waitFor(callback: () => boolean, timeout?: number): Promise<void>;
+    function inspect(value: unknown, options?: IInspectOptions): string;
+    function assert(assertion: unknown, message?: string): void;
+    class Timer {
+        constructor(callback: () => void, ms: number, once: boolean);
+        readonly id: number;
+        destroy(): void;
+    }
+    class Timeout extends Timer {
+        constructor(callback: () => void, ms?: number, once?: boolean);
+    }
+    class Interval extends Timer {
+        constructor(callback: () => void, ms?: number, once?: boolean);
+    }
+    class NextTick extends Timer {
+        constructor(callback: () => void, ms?: number, once?: boolean);
+    }
+    class EveryTick extends Timer {
+        constructor(callback: () => void, ms?: number, once?: boolean);
+    }
+    class ConsoleCommand {
+        constructor(name: string, callback: (...args: string[]) => void);
+        destroy(): void;
+    }
+}

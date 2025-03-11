@@ -1,4 +1,4 @@
-import * as shared from "alt-shared";
+import * as shared from 'alt-shared';
 export type DateTimeHour = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23;
 export type DateTimeMinute = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59;
 export type DateTimeSecond = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59;
@@ -478,81 +478,81 @@ export interface IDecoration {
     count: number;
 }
 /**
-   * Extend it by interface merging for use in baseobject meta {@link "alt-server".BaseObject getMeta method}, {@link "alt-server".BaseObject setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in baseobject meta {@link "alt-server".BaseObject getMeta method}, {@link "alt-server".BaseObject setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomBaseObjectMeta extends shared.ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by interface merging for use in blip meta {@link "alt-server".Blip getMeta method}, {@link "alt-server".Blip setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in blip meta {@link "alt-server".Blip getMeta method}, {@link "alt-server".Blip setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomBlipMeta extends ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in colshape meta {@link "alt-server".Colshape getMeta method}, {@link "alt-server".Colshape setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomColshapeMeta extends ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by interface merging for use in checkpoint meta {@link "alt-server".Checkpoint getMeta method}, {@link "alt-server".Checkpoint setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in checkpoint meta {@link "alt-server".Checkpoint getMeta method}, {@link "alt-server".Checkpoint setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomCheckpointMeta extends ICustomColshapeMeta {
 }
 /**
-   * Extend it by interface merging for use in voice channel meta {@link "alt-server".VoiceChannel getMeta method}, {@link "alt-server".VoiceChannel setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in voice channel meta {@link "alt-server".VoiceChannel getMeta method}, {@link "alt-server".VoiceChannel setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomVoiceChannelMeta extends ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by interface merging for use in entity meta {@link "alt-server".Entity getMeta method}, {@link "alt-server".Entity setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by interface merging for use in entity meta {@link "alt-server".Entity getMeta method}, {@link "alt-server".Entity setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomEntityMeta extends ICustomBaseObjectMeta {
 }
 /**
-   * Extend it by merging interfaces for use in player meta {@link "alt-server".Player getMeta method}, {@link "alt-server".Player setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by merging interfaces for use in player meta {@link "alt-server".Player getMeta method}, {@link "alt-server".Player setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomPlayerMeta extends ICustomEntityMeta {
 }
 /**
-   * Extend it by merging interfaces for use in vehicle meta {@link "alt-server".Vehicle getMeta method}, {@link "alt-server".Vehicle setMeta method}, etc.
-   *
-   * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
-   */
+ * Extend it by merging interfaces for use in vehicle meta {@link "alt-server".Vehicle getMeta method}, {@link "alt-server".Vehicle setMeta method}, etc.
+ *
+ * @remarks See {@link "alt-shared".ICustomGlobalMeta} for an example of use.
+ */
 export interface ICustomVehicleMeta extends ICustomEntityMeta {
 }
 /**
-   * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
-   *
-   * @example
-   * ```ts
-   * declare module 'alt-server' {
-   *    interface ICustomEmitEvent {
-   *        myEvent: (arg1: string, arg2: { key: string, value: number })
-   *    }
-   * }
-   * ```
-   *
-   * @export
-   * @interface ICustomEmitEvent
-   */
+ * Extend `alt.emit` auto-completion by merging interfaces for use with `alt.emit`.
+ *
+ * @example
+ * ```ts
+ * declare module 'alt-server' {
+ *    interface ICustomEmitEvent {
+ *        myEvent: (arg1: string, arg2: { key: string, value: number })
+ *    }
+ * }
+ * ```
+ *
+ * @export
+ * @interface ICustomEmitEvent
+ */
 export interface ICustomEmitEvent {
 }
 /**
-   * Documentation: https://docs.altv.mp/articles/configs/server.html
-   */
+ * Documentation: https://docs.altv.mp/articles/configs/server.html
+ */
 export interface IServerConfig {
     resources: readonly string[];
     modules: readonly string[];
@@ -601,79 +601,293 @@ export interface IServerConfig {
         readonly port?: number;
         readonly host?: string;
     };
-    "js-module": {
-        readonly "source-maps"?: boolean;
-        readonly "heap-profiler"?: boolean;
+    'js-module': {
+        readonly 'source-maps'?: boolean;
+        readonly 'heap-profiler'?: boolean;
         readonly profiler?: boolean;
-        readonly "global-fetch"?: boolean;
-        readonly "global-webcrypto"?: boolean;
-        readonly "network-imports"?: boolean;
-        readonly "extra-cli-args"?: readonly string[];
+        readonly 'global-fetch'?: boolean;
+        readonly 'global-webcrypto'?: boolean;
+        readonly 'network-imports'?: boolean;
+        readonly 'extra-cli-args'?: readonly string[];
     };
-    "csharp-module": {
+    'csharp-module': {
         readonly disableDependencyDownload?: true;
     };
 }
 export declare const rootDir: string;
-export * from "alt-shared";
+export * from 'alt-shared';
+/**
+ * Finds the closest player (if any) from {@link Player.all alt.Player.all}.
+ *
+ * `pos` - From which position to look for the nearest player.
+ *
+ * `range` - In which range to search for the nearest vehicle. Defaults to `Infinity`.
+ */
 export declare function getClosestPlayer(options: {
     pos: shared.IVector3;
     range?: number;
-}): Player | null;
+}): Player;
+/**
+ * Finds the closest vehicle (if any) from {@link Vehicle.all alt.Vehicle.all}.
+ *
+ * `pos` - From which position to look for the nearest vehicle.
+ *
+ * `range` - In which range to search for the nearest vehicle. Defaults to `Infinity`.
+ */
 export declare function getClosestVehicle(options: {
     pos: shared.IVector3;
     range?: number;
-}): Vehicle | null;
+}): Vehicle;
+/**
+ * Stores the given value with the specified key.
+ *
+ * @remarks The given value will be shared with all client resources.
+ *
+ * @param key The key of the value to store.
+ * @param value The value to store.
+ */
 export declare function setSyncedMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomGlobalSyncedMeta, K>): void;
 export declare function setSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomGlobalSyncedMeta>>(key: K, value: shared.ICustomGlobalSyncedMeta[K]): void;
-export declare function setSyncedMeta<V extends any, K extends string = string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomGlobalSyncedMeta, K, V>): void;
+/** @deprecated See {@link "alt-shared".ICustomGlobalSyncedMeta} */
+/**
+ * Removes the specified key and the data connected to that specific key.
+ *
+ * @param key The key of the value to remove.
+ */
 export declare function deleteSyncedMeta(key: string): void;
 export declare function deleteSyncedMeta<K extends shared.ExtractStringKeys<shared.ICustomGlobalSyncedMeta>>(key: K): void;
+/**
+ * Emits specified event across resources.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emit<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export declare function emit<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
+/**
+ * Emits specified event across resources.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ *
+ * @remarks Works only from JS resource to JS resource
+ */
 export declare function emitRaw<K extends keyof ICustomEmitEvent>(eventName: K, ...args: Parameters<ICustomEmitEvent[K]>): void;
 export declare function emitRaw<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to specific client.
+ *
+ * @param player Event is sent to specific player or players.
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emitClient<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitClient<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to specific client.
+ *
+ * @param player Event is sent to specific player or players.
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emitClientRaw<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitClientRaw<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to specific client.
+ *
+ * @param player Event is sent to specific player or players.
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ *
+ * @remarks Unreliable event should be used when you don't need to be sure that event will be received by client.
+ *
+ */
 export declare function emitClientUnreliable<K extends keyof shared.ICustomServerClientEvent>(player: Player | Player[], eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitClientUnreliable<K extends string>(player: Player | Player[], eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to all clients.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emitAllClients<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitAllClients<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to all clients.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ */
 export declare function emitAllClientsRaw<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitAllClientsRaw<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Emits specified event to all clients.
+ *
+ * @param eventName Name of the event.
+ * @param args Rest parameters for emit to send.
+ *
+ * @remarks Unreliable event should be used when you don't need to be sure that event will be received by client.
+ *
+ */
 export declare function emitAllClientsUnreliable<K extends keyof shared.ICustomServerClientEvent>(eventName: K, ...args: Parameters<shared.ICustomServerClientEvent[K]>): void;
 export declare function emitAllClientsUnreliable<K extends string>(eventName: Exclude<K, keyof shared.ICustomServerClientEvent>, ...args: any[]): void;
+/**
+ * Subscribes to a client -> server RPC with the specified listener.
+ * @param rpcName Name of the RPC
+ * @param listener Listener to be assigned to this RPC name (there can only be one listener for each RPC name).
+ *
+ * @example
+ * ```js
+ * alt.onRpc("testRpc", (player, ...args) => {
+ *     alt.log(`${player.name} called testRpc`, args);
+ *
+ *    // throw new Error("I am an error! Notice me!");
+ *    return [1, 2, [10, 13, 19], false, "hey there"];
+ * });
+ * ```
+ *
+ * @remarks The return value of the listener function determines the response clients will receive. When returning multiple values, use an array. Returning an Error object will cause the promise on the client to throw an exception which has to be caught.
+ *
+ */
 export declare function onRpc<K extends keyof shared.ICustomClientServerRpc>(rpcName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerRpc[K]>) => Promise<ReturnType<shared.ICustomClientServerRpc[K]>> | ReturnType<shared.ICustomClientServerRpc[K]>): void;
 export declare function onRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, listener: (player: Player, ...args: any[]) => Promise<any> | any): void;
+/**
+ *
+ * @param rpcName Name of the RPC
+ * @param listener Listener that should be removed (if not passed current listener will be removed).
+ *
+ */
 export declare function offRpc<K extends keyof shared.ICustomClientServerRpc>(rpcName: string, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerRpc[K]>) => Promise<ReturnType<shared.ICustomClientServerRpc[K]>> | ReturnType<shared.ICustomClientServerRpc[K]>): void;
 export declare function offRpc<K extends string>(rpcName: Exclude<K, keyof shared.ICustomClientServerRpc>, listener?: (player: Player, ...args: any[]) => Promise<any> | any): void;
+/**
+ * Change the server password at runtime.
+ *
+ * @param password The new server password.
+ */
 export declare function setPassword(password: string): void;
+/**
+ * Hash a string with alt:V algorithm.
+ *
+ * @param password The string you want to hash.
+ */
 export declare function hashServerPassword(password: string): bigint;
 export declare function stopServer(): void;
+/**
+ * Unsubscribes from a client event with the specified listener.
+ *
+ * @remarks Listener should be of the same reference as when event was subscribed to.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be removed.
+ */
 export declare function offClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
 export declare function offClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
 export declare function offClient(eventName: string, listener: (player: Player, ...args: any[]) => void): void;
+/**
+ * Unsubscribes from all user-created client events with the specified listener.
+ *
+ * @remarks Listener should be of the same reference as when event was subscribed to.
+ *
+ * @param listener Listener that should be removed.
+ */
 export declare function offClient(listener: (eventName: string, ...args: any[]) => void): void;
+/**
+ * Subscribes to a server event with the specified listener.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function on<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export declare function on<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
+/**
+ * Subscribes to a server event with the specified listener, which only triggers once.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function once<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export declare function once<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
+/**
+ * Unsubscribes from a event with the specified listener.
+ *
+ * @remarks Listener should be of the same reference as when event was subscribed to.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be removed.
+ */
 export declare function off<K extends keyof IServerEvent | keyof ICustomEmitEvent>(eventName: K, listener: (...args: shared.EventParameters<IServerEvent, ICustomEmitEvent, K>) => void): void;
 export declare function off<K extends string>(eventName: Exclude<K, keyof IServerEvent | keyof ICustomEmitEvent>, listener: (...args: any[]) => void): void;
+/**
+ * Subscribes to a client event with the specified listener.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function onClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
 export declare function onClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
+/**
+ * Subscribes to all client events with the specified listener.
+ *
+ * @remarks Listener will be only called for user-created events.
+ *
+ * @param listener Listener that should be added.
+ */
 export declare function onClient(listener: (eventName: string, player: Player, ...args: any[]) => void): void;
+/**
+ * Subscribes to a client event with the specified listener, which only triggers once.
+ *
+ * @param eventName Name of the event.
+ * @param listener Listener that should be added.
+ */
 export declare function onceClient<K extends keyof shared.ICustomClientServerEvent>(eventName: K, listener: (player: Player, ...args: Parameters<shared.ICustomClientServerEvent[K]>) => void): void;
 export declare function onceClient<K extends string>(eventName: Exclude<K, keyof shared.ICustomClientServerEvent>, listener: (player: Player, ...args: any[]) => void): void;
+/**
+ * Subscribes to all client events with the specified listener, which only triggers once.
+ *
+ * @remarks Listener will be only called for user-created events.
+ *
+ * @param listener Listener that should be added.
+ */
 export declare function onceClient(listener: (eventName: string, player: Player, ...args: any[]) => void): void;
+/**
+ * Starts the specified resource.
+ *
+ * @param name Name of the resource.
+ */
 export declare function startResource(name: string): void;
+/**
+ * Restarts the specified resource.
+ *
+ * @param name Name of the resource.
+ */
 export declare function restartResource(name: string): void;
+/**
+ * Adds an extra config key that will be passed from resource.toml to client
+ *
+ * @param key the key to be added
+ *
+ */
 export declare function addClientConfigKey(key: string): void;
+/**
+ * Checks wheter or not the server has a specific benefit.
+ *
+ * @param benefit benefit to check
+ *
+ */
 export declare function hasBenefit(benefit: Benefit): boolean;
+/**
+ * Stops the specified resource.
+ *
+ * @param name Name of the resource.
+ */
 export declare function stopResource(name: string): void;
-export declare function getRemoteEventListeners(eventName: string | null): readonly ((...args: any[]) => void)[];
+/**
+ * Gets all the listeners that have been subscribed using {@link onClient} for the specified remote event.
+ *
+ * @param eventName Name of the event or null for generic event.
+ * @returns Array of listener functions for that event.
+ */
+export declare function getRemoteEventListeners(eventName: string): readonly ((...args: any[]) => void)[];
 export declare function getVehicleModelInfoByHash(vehicleHash: number): IVehicleModel;
 export declare function getLoadedVehicleModels(): number[];
 export declare function getPedModelInfoByHash(pedModelHash: number): IPedModel;
@@ -681,8 +895,93 @@ export declare function getWeaponModelInfoByHash(weaponModelHash: number): IWeap
 export declare function getAmmoHashForWeaponHash(weaponModelHash: number): number;
 export declare function getServerConfig(): IServerConfig;
 export declare function toggleWorldProfiler(state: boolean): void;
+/**
+ * Returns all entities of the specified type (or types) in the specified dimension.
+ *
+ * @example
+ * ```ts
+ * // Returns all players and vehicles in zero dimension
+ * const playersAndVehicles = alt.getEntitiesInDimension(
+ *   0, // dimension
+ *   alt.BaseObjectFilterType.Player | alt.BaseObjectFilterType.Vehicle,
+ * );
+ *
+ * // Returns only players in zero dimension
+ * const players = alt.getEntitiesInDimension(
+ *   0, // dimension
+ *   alt.BaseObjectFilterType.Player,
+ * );
+ * ```
+ *
+ * @param dimension
+ * @param allowedTypes
+ *
+ */
 export declare function getEntitiesInDimension(dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
+/**
+ * Returns all entities of the specified type (or types) at the specified position, in the given range and dimension.
+ *
+ * @example
+ * ```ts
+ * // Returns all players and vehicles in a range equal to 3 and dimension equal to 0
+ * const playersAndVehicles = alt.getEntitiesInRange(
+ *   alt.Vector3.zero, // position
+ *   3.0, // range
+ *   0, // dimension
+ *   alt.BaseObjectFilterType.Player | alt.BaseObjectFilterType.Vehicle,
+ * );
+ *
+ * // Returns players in a range equal to 3 and dimension equal to 0
+ * const players = alt.getEntitiesInRange(
+ *   alt.Vector3.zero, // position
+ *   3.0, // range
+ *   0, // dimension
+ *   alt.BaseObjectFilterType.Player,
+ * );
+ * ```
+ * @param position
+ * @param range
+ * @param dimension
+ * @param allowedTypes
+ *
+ */
 export declare function getEntitiesInRange(position: shared.IVector3, range: number, dimension: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
+/**
+ * Returns only the closest entities of the specified type (or types) at the specified position, in the given range, dimension and limit.
+ *
+ * @example
+ * ```ts
+ * // Returns closest players and vehicles (from 0 to 2 entities inclusive, because limit is 2)
+ * // in a range equal to 3 and dimension equal to 0
+ * const playersAndVehicles = alt.getClosestEntities(
+ *   alt.Vector3.zero, // position
+ *   3.0, // range
+ *   0, // dimension
+ *   2, // limit
+ *   alt.BaseObjectFilterType.Player | alt.BaseObjectFilterType.Vehicle,
+ * );
+ *
+ * // Same but only players
+ * const players = alt.getClosestEntities(
+ *   alt.Vector3.zero, // position
+ *   3.0, // range
+ *   0, // dimension
+ *   2, // limit
+ *   alt.BaseObjectFilterType.Player,
+ * );
+ * ```
+ *
+ * @param position
+ * @param range Can be set to `0` to get entities in any range.
+ * @param dimension Can be set to {@link "alt-shared".globalDimension} to get entities in  any dimension.
+ * @param limit How many entities to return if there are more entities in the specified range, dimension. (`-1` to disable).
+ * @param allowedTypes
+ *
+ * @remarks If two entities are closer than 1 unit to a position, it is not determined which one will be included.
+ * For example, if there is a vehicle at 0, 1.5, 0 and player at 0, 1.0, 0,
+ * then if we pass `position` as `new alt.Vector3(0, 0, 0)` and `limit` as `1` vehicle may be returned but the player will not.
+ *
+ */
 export declare function getClosestEntities(position: shared.IVector3, range: number, dimension: number, limit: number, allowedTypes: BaseObjectFilterType): readonly Entity[];
 export declare function setVoiceExternalPublic(host: string, port: number): void;
 export declare function setVoiceExternal(phost: string, port: number): void;
@@ -949,7 +1248,7 @@ export declare class Entity extends WorldObject {
      * @param player The given player that will be set as new network owner.
      * @param disableMigration Pass true to disable migration, false to keep it enabled. If not specified, it defaults to "false".
      */
-    setNetOwner(player: Player, disableMigration: boolean): void;
+    setNetOwner(player: Player, disableMigration?: boolean): void;
     /**
      * Resets overwritten network owner.
      *
@@ -961,7 +1260,7 @@ export declare class Entity extends WorldObject {
      *
      * @param disableMigration Pass true to disable migration, false to keep it enabled. If not specified, it defaults to "false".
      */
-    resetNetOwner(disableMigration: boolean): void;
+    resetNetOwner(disableMigration?: boolean): void;
     /**
      * Attaches this entity to another entity.
      *
@@ -1013,8 +1312,8 @@ export declare class Player extends Entity {
     readonly isAiming: boolean;
     readonly isDead: boolean;
     /**
-         * The player's state of weapon reloading.
-         */
+     * The player's state of weapon reloading.
+     */
     readonly isReloading: boolean;
     readonly isEnteringVehicle: boolean;
     readonly isLeavingVehicle: boolean;
@@ -1139,11 +1438,11 @@ export declare class Player extends Entity {
      *
      * @param reason The reason that will display to the player on the disconnect screen. If not specified, it defaults to "KICKED_OUT".
      */
-    kick(reason: string): void;
+    kick(reason?: string): void;
     /**
      * Removes every weapon from the player.
      */
-    removeAllWeapons(removeAllAmmo: boolean): void;
+    removeAllWeapons(removeAllAmmo?: boolean): void;
     /**
      * Removes the specified weapon from the player.
      *
@@ -1220,7 +1519,7 @@ export declare class Player extends Entity {
      * @param texture Texture id of the clothing.
      * @param palette Palette of the clothing.
      */
-    setClothes(component: number, drawable: number, texture: number, palette: number): boolean;
+    setClothes(component: number, drawable: number, texture: number, palette?: number): boolean;
     /**
      * Sets the specified dlc clothing component.
      *
@@ -1236,7 +1535,7 @@ export declare class Player extends Entity {
      * @param texture Texture id of the clothing.
      * @param palette Palette of the clothing.
      */
-    setDlcClothes(dlc: number, component: number, drawable: number, texture: number, palette: number): boolean;
+    setDlcClothes(dlc: number, component: number, drawable: number, texture: number, palette?: number): boolean;
     /**
      * Gets the specified prop component.
      *
@@ -1343,11 +1642,11 @@ export declare class Player extends Entity {
     getHairColor(): number;
     setHairHighlightColor(hairHighlightColor: number): void;
     getHairHighlightColor(): number;
-    addDecoration(collection: string | number, overlay: string | number, count: number): void;
+    addDecoration(collection: string | number, overlay: string | number, count?: number): void;
     removeDecoration(collection: string | number, overlay: string | number): void;
     clearDecorations(): void;
     getDecorations(): readonly IDecoration[];
-    playAnimation(animDict: string, animName: string, blendInSpeed: number, blendOutSpeed: number, duration: number, flags: number, playbackRate: number, lockX: boolean, lockY: boolean, lockZ: boolean): void;
+    playAnimation(animDict: string, animName: string, blendInSpeed?: number, blendOutSpeed?: number, duration?: number, flags?: number, playbackRate?: number, lockX?: boolean, lockY?: boolean, lockZ?: boolean): void;
     clearTasks(): void;
     playScenario(name: string): void;
     getAmmo(ammoHash: string | number): number;
@@ -1365,11 +1664,11 @@ export declare class Player extends Entity {
     getAmmoMax100(ammoHash: string | number): number;
     setAmmoMax100(ammoHash: string | number, ammoMax: number): void;
     /**
-         * Stores the given value with the specified key.
-         *
-         * @param key The key of the value to store.
-         * @param value The value to store.
-         */
+     * Stores the given value with the specified key.
+     *
+     * @param key The key of the value to store.
+     * @param value The value to store.
+     */
     setLocalMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<shared.ICustomPlayerLocalMeta, K, unknown, void>): void;
     setLocalMeta<K extends shared.ExtractStringKeys<shared.ICustomPlayerLocalMeta>>(key: K, value: shared.ICustomPlayerLocalMeta[K]): void;
     /** @deprecated See {@link "alt-shared".ICustomPlayerLocalMeta} */
@@ -2323,7 +2622,7 @@ export declare class Vehicle extends Entity {
     setTimedExplosion(state: boolean, culprit: Player, time: number): void;
     getWeaponCapacity(weaponIndex: number): number;
     setWeaponCapacity(weaponIndex: number, capacity: number): void;
-    setBadge(textureDictionary: number, texture: number, pos: VehicleBadgePosition, pos2: VehicleBadgePosition, pos3: VehicleBadgePosition, pos4: VehicleBadgePosition): void;
+    setBadge(textureDictionary: number, texture: number, pos: VehicleBadgePosition, pos2?: VehicleBadgePosition, pos3?: VehicleBadgePosition, pos4?: VehicleBadgePosition): void;
     setMeta<K extends string>(key: K, value: shared.InterfaceValueByKey<ICustomVehicleMeta, K, unknown, void>): void;
     setMeta<K extends shared.ExtractStringKeys<ICustomVehicleMeta>>(key: K, value: ICustomVehicleMeta[K]): void;
     /** @deprecated See {@link ICustomVehicleMeta} */
@@ -2519,16 +2818,6 @@ export declare class Checkpoint extends Colshape {
     hasStreamSyncedMeta(key: string): boolean;
     getStreamSyncedMetaKeys(): readonly string[];
 }
-export declare namespace Utils {
-    function getClosestPlayer(options: {
-        pos: import("alt-shared").IVector3;
-        range?: number;
-    }): import("alt-server").Player;
-    function getClosestVehicle(options: {
-        pos: import("alt-shared").IVector3;
-        range?: number;
-    }): import("alt-server").Vehicle;
-}
 export declare class VoiceChannel extends BaseObject {
     constructor(isSpatial: boolean, maxDistance: number);
     readonly maxDistance: number;
@@ -2568,7 +2857,7 @@ export declare class Resource extends shared.Resource {
     static getByName(name: string): Resource;
 }
 export declare class Utils extends shared.Utils {
-    constructor();
+    protected constructor();
 }
 export declare class Ped extends Entity {
     constructor(model: string | number, position: shared.IVector3, rotation: shared.IVector3, streamingDistance: number);
@@ -2620,4 +2909,13 @@ export declare class Marker extends WorldObject {
      */
     static getByID(id: number): Marker;
 }
-export * from "alt-shared";
+export declare namespace Utils {
+    function getClosestPlayer(options: {
+        pos: import('alt-shared').IVector3;
+        range?: number;
+    }): import('alt-server').Player;
+    function getClosestVehicle(options: {
+        pos: import('alt-shared').IVector3;
+        range?: number;
+    }): import('alt-server').Vehicle;
+}
